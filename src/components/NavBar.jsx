@@ -31,17 +31,23 @@ export default function NavBar() {
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-[background-color,padding,box-shadow] duration-300 ease-out ${
         scrolled
-          ? 'bg-[#FAFAFA]/95 py-2.5 shadow-[0_4px_20px_rgba(7,29,73,0.02)]'
+          ? 'bg-[#FAFAFA]/95 py-2 shadow-[0_4px_20px_rgba(7,29,73,0.02)]'
           : 'bg-transparent py-4'
       }`}
     >
       <nav className="flex justify-between items-center max-w-7xl mx-auto px-6 md:px-12">
         {/* Brand Logo & Name */}
-        <a href="#" className="flex items-center gap-2 group">
+        <a href="#" className="flex items-center gap-1.5 group relative">
+          {/* Professional Downwards-sliding Tooltip */}
+          <div className="absolute top-full mt-2 left-2 opacity-0 translate-y-[-4px] scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 transition-all duration-400 ease-out pointer-events-none bg-primary text-white text-[8px] font-bold uppercase tracking-[0.2em] px-2 py-0.5 rounded shadow-sm flex items-center gap-1.5 z-20">
+            HI THERE
+            <span className="inline-block w-1 h-1 rounded-full bg-lemon-yellow" />
+          </div>
+
           <img
             src="/4th.png"
             alt="LemontaKode Logo"
-            className="h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            className="h-14 w-auto object-contain transition-all duration-700 ease-out group-hover:scale-108 group-hover:rotate-[4deg]"
           />
           <span
             className={`font-display text-sm font-bold tracking-tight transition-colors duration-300 ${

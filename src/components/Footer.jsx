@@ -1,23 +1,30 @@
 'use client';
 
 import React from 'react';
-import { Cpu } from 'lucide-react';
 
 export default function Footer() {
   return (
     <footer className="bg-dark-navy text-slate-400 border-t border-white/5 relative z-10">
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          {/* Brand Info */}
+          {/* Brand Info & Typography Branding */}
           <div className="space-y-6 md:col-span-2">
-            <a href="#" className="flex items-center">
+            <a href="#" className="flex items-center gap-2.5 group">
               <img
                 src="/logo-dark-bg-transparent.png"
                 alt="LemontaKode Tech Logo"
-                className="h-12 w-auto object-contain"
+                className="h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-102"
               />
+              <div className="flex flex-col justify-center">
+                <span className="font-display text-2xl font-extrabold tracking-tight text-white leading-none">
+                  LemontaKode
+                </span>
+                <span className="text-[9px] uppercase tracking-[0.35em] font-black text-primary mt-1">
+                  Technology
+                </span>
+              </div>
             </a>
-            <p className="text-sm max-w-sm leading-relaxed">
+            <p className="text-xs max-w-sm leading-relaxed text-slate-400">
               We design and construct premium custom software systems, scalable cloud engines, and advanced cybersecurity strategies for enterprise visionaries.
             </p>
           </div>

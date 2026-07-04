@@ -24,7 +24,7 @@ export default function VisionStory() {
           
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/4th.png"
+            src="/logo-light-bg-transparent.png"
             alt="LemontaKode Official Logo"
             className="w-48 h-48 md:w-56 md:h-56 object-contain transition-transform duration-700 group-hover:scale-105"
           />
