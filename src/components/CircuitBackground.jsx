@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-export default function CircuitBackground() {
+export default function CircuitBackground({ dark = false }) {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -23,13 +23,13 @@ export default function CircuitBackground() {
     container.appendChild(renderer.domElement);
 
     // Particles Configuration
-    const particleCount = 75;
+    const particleCount = 100;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
     const velocities = [];
 
-    const colorBlue = new THREE.Color('#0066FF');
+    const colorBlue = new THREE.Color(dark ? '#33C3FF' : '#0066FF');
     const colorYellow = new THREE.Color('#FFD400');
 
     for (let i = 0; i < particleCount; i++) {
@@ -42,8 +42,8 @@ export default function CircuitBackground() {
       positions[i * 3 + 1] = y;
       positions[i * 3 + 2] = z;
 
-      // Color selection (mix of blue and yellow/amber)
-      const mixedColor = Math.random() > 0.4 ? colorBlue : colorYellow;
+      // Color selection
+      const mixedColor = Math.random() > 0.45 ? colorBlue : colorYellow;
       colors[i * 3] = mixedColor.r;
       colors[i * 3 + 1] = mixedColor.g;
       colors[i * 3 + 2] = mixedColor.b;
@@ -74,26 +74,28 @@ export default function CircuitBackground() {
     const texture = new THREE.CanvasTexture(canvas);
 
     const material = new THREE.PointsMaterial({
-      size: 0.9,
+      size: dark ? 1.6 : 1.1,
       map: texture,
       transparent: true,
-      blending: THREE.NormalBlending,
+      blending: THREE.AdditiveBlending,
       depthWrite: false,
       vertexColors: true
     });
 
     const particleSystem = new THREE.Points(geometry, material);
+    particleSystem.position.y = 4.5;
     scene.add(particleSystem);
 
     // Node connections/lines system
     const lineMaterial = new THREE.LineBasicMaterial({
-      color: 0x0066FF,
+      color: dark ? 0x33C3FF : 0x0066FF,
       transparent: true,
-      opacity: 0.08
+      opacity: dark ? 0.16 : 0.08
     });
     
     let lineGeometry = new THREE.BufferGeometry();
     let lineMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
+    lineMesh.position.y = 4.5;
     scene.add(lineMesh);
 
     // Mouse tracking
@@ -192,7 +194,12 @@ export default function CircuitBackground() {
       lineGeometry.dispose();
       renderer.dispose();
     };
-  }, []);
+  }, [dark]);
 
-  return <div ref={containerRef} className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-white" />;
+  return (
+    <div
+      ref={containerRef}
+      className={`absolute inset-0 w-full h-full z-0 overflow-hidden ${dark ? 'bg-transparent' : 'bg-transparent'}`}
+    />
+  );
 }

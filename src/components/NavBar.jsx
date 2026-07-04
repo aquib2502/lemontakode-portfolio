@@ -9,7 +9,7 @@ export default function NavBar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
+      if (window.scrollY > 40) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -20,38 +20,49 @@ export default function NavBar() {
   }, []);
 
   const navLinks = [
-    { name: 'Services', href: '#services' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Process', href: '#process' },
-    { name: 'Stats', href: '#stats' },
+    { name: 'Vision', href: '#vision' },
+    { name: 'Capabilities', href: '#services' },
+    { name: 'Craftsmanship', href: '#process' },
+    { name: 'Stories', href: '#projects' },
     { name: 'Contact', href: '#contact' },
   ];
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-[background-color,padding,box-shadow] duration-300 ease-out ${
         scrolled
-          ? 'bg-white/80 backdrop-blur-xl border-b border-slate-200/50 shadow-[0_4px_30px_rgba(0,0,0,0.03)] py-3'
-          : 'bg-transparent py-5'
+          ? 'bg-[#FAFAFA]/95 py-2.5 shadow-[0_4px_20px_rgba(7,29,73,0.02)]'
+          : 'bg-transparent py-4'
       }`}
     >
       <nav className="flex justify-between items-center max-w-7xl mx-auto px-6 md:px-12">
-        {/* Logo - using the user's light background transparent logo */}
-        <a href="#" className="flex items-center group">
+        {/* Brand Logo & Name */}
+        <a href="#" className="flex items-center gap-2 group">
           <img
-            src="/logo-light-bg-transparent.png"
-            alt="LemontaKode Tech Logo"
-            className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+            src="/4th.png"
+            alt="LemontaKode Logo"
+            className="h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
+          <span
+            className={`font-display text-sm font-bold tracking-tight transition-colors duration-300 ${
+              scrolled ? 'text-dark-navy' : 'text-white'
+            }`}
+          >
+            LemontaKode
+          </span>
         </a>
 
-        {/* Desktop Nav Links - Highly Visible Dark Navy/Slate text */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Desktop Nav Links */}
+        <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-semibold text-dark-navy hover:text-primary transition-colors duration-200"
+              className={`text-[10px] uppercase tracking-widest font-semibold transition-colors duration-300 ${
+                scrolled
+                  ? 'text-dark-navy/70 hover:text-primary'
+                  : 'text-white/70 hover:text-white'
+              }`}
             >
               {link.name}
             </a>
@@ -59,29 +70,35 @@ export default function NavBar() {
         </div>
 
         {/* CTA Button */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center">
           <a
             href="#contact"
-            className="bg-primary hover:bg-primary-container text-white px-6 py-2.5 rounded-full text-sm font-semibold shadow-[0_4px_14px_rgba(0,80,203,0.25)] hover:shadow-[0_6px_20px_rgba(0,80,203,0.35)] transition-all active:scale-95 duration-300"
+            className={`px-4 py-2 rounded-lg text-[10px] uppercase tracking-widest font-bold transition-all active:scale-95 duration-300 ${
+              scrolled
+                ? 'bg-primary hover:bg-primary-container text-white shadow-sm'
+                : 'bg-white hover:bg-white/90 text-dark-navy shadow-sm'
+            }`}
           >
-            Start Project
+            Start a Project
           </a>
         </div>
 
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2 text-dark-navy hover:text-primary transition-colors duration-200"
+          className={`md:hidden p-2 transition-colors duration-300 ${
+            scrolled ? 'text-dark-navy hover:text-primary' : 'text-white hover:text-white/80'
+          }`}
           aria-label="Toggle Menu"
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {isOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </nav>
 
       {/* Mobile Drawer */}
       <div
-        className={`fixed inset-0 top-[68px] bg-white/98 backdrop-blur-xl z-40 md:hidden flex flex-col items-center justify-center gap-8 transition-all duration-300 ${
-          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none translate-y-[-10px]'
+        className={`fixed inset-0 top-[56px] bg-dark-navy/98 backdrop-blur-2xl z-40 md:hidden flex flex-col items-center justify-center gap-8 transition-all duration-300 ${
+          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none -translate-y-4'
         }`}
       >
         {navLinks.map((link) => (
@@ -89,7 +106,7 @@ export default function NavBar() {
             key={link.name}
             href={link.href}
             onClick={() => setIsOpen(false)}
-            className="text-xl font-bold text-dark-navy hover:text-primary transition-colors duration-200"
+            className="text-lg font-bold text-white hover:text-primary transition-colors duration-300"
           >
             {link.name}
           </a>
@@ -97,9 +114,9 @@ export default function NavBar() {
         <a
           href="#contact"
           onClick={() => setIsOpen(false)}
-          className="bg-primary text-white px-8 py-3 rounded-full text-base font-semibold shadow-[0_4px_14px_rgba(0,80,203,0.25)] hover:shadow-[0_6px_20px_rgba(0,80,203,0.35)] transition-all active:scale-95 duration-300"
+          className="bg-white text-dark-navy px-8 py-3 rounded-lg text-sm font-semibold shadow-md transition-all active:scale-95 duration-300"
         >
-          Start Project
+          Start a Project
         </a>
       </div>
     </header>
