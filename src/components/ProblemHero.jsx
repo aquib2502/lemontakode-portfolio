@@ -52,15 +52,19 @@ export default function ProblemHero({ onViewWork, onStartProject }) {
           <span className="bg-gradient-to-r from-[#FAFAFA] to-white/70 bg-clip-text text-transparent">
             Digital{' '}
           </span>
+          {/* Comma lives inside the same inline-block as "excellence" so the
+              two travel together - a separate span here left a break
+              opportunity right before the comma, wrapping it onto its own
+              line. */}
           <span className="relative inline-block text-lemon-yellow">
-            excellence
-            <SquiggleUnderline className="absolute left-0 -bottom-3 sm:-bottom-4 w-full h-3 sm:h-4 text-lemon-yellow/80" />
-          </span>
-          <span className="bg-gradient-to-r from-[#FAFAFA] to-white/70 bg-clip-text text-transparent">
-            ,
+            excellence,
+            <SquiggleUnderline className="absolute left-0 -bottom-3 sm:-bottom-4 w-[90%] h-3 sm:h-4 text-lemon-yellow/80" />
           </span>
           <br />
-          <span className="bg-gradient-to-r from-primary via-blue-400 to-[#FFD400] bg-clip-text text-transparent">
+          {/* Blue-to-yellow interpolates through a muddy gray-olive in plain
+              RGB, especially over a short word - routing through white
+              avoids the dead zone and reads as a clean shine instead. */}
+          <span className="bg-gradient-to-r from-primary via-white to-[#FFD400] bg-clip-text text-transparent">
             engineered.
           </span>
         </motion.h1>
