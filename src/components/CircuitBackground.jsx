@@ -92,11 +92,29 @@ export default function CircuitBackground({ dark = false }) {
       transparent: true,
       opacity: dark ? 0.16 : 0.08
     });
-    
+
     let lineGeometry = new THREE.BufferGeometry();
     let lineMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
     lineMesh.position.y = 4.5;
     scene.add(lineMesh);
+
+    // Slow-undulating circuit-grid wireframe: a continuous, gently rolling
+    // surface (not random jitter) so the backdrop reads as smooth ambient
+    // motion, like a looping video, rather than scattered sparkle alone.
+    const gridSegX = 28;
+    const gridSegY = 18;
+    const gridGeometry = new THREE.PlaneGeometry(60, 38, gridSegX, gridSegY);
+    gridGeometry.rotateX(-Math.PI / 2.55);
+    const gridBasePositions = Float32Array.from(gridGeometry.attributes.position.array);
+    const gridMaterial = new THREE.MeshBasicMaterial({
+      color: dark ? 0x1c4d8f : 0x0066ff,
+      wireframe: true,
+      transparent: true,
+      opacity: dark ? 0.14 : 0.07,
+    });
+    const gridMesh = new THREE.Mesh(gridGeometry, gridMaterial);
+    gridMesh.position.set(0, -6.5, -6);
+    scene.add(gridMesh);
 
     // Mouse tracking
     const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
@@ -119,19 +137,41 @@ export default function CircuitBackground({ dark = false }) {
     window.addEventListener('resize', handleResize);
 
     let animationFrameId;
+    const clock = new THREE.Clock();
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
+      const elapsed = clock.getElapsedTime();
 
       // Smooth mouse easing
       mouse.x += (mouse.targetX - mouse.x) * 0.05;
       mouse.y += (mouse.targetY - mouse.y) * 0.05;
 
+      // Slow autonomous drift so the scene stays alive even with no cursor
+      // input - this is what makes it read as continuous ambient motion
+      // (like a looping video) rather than an interaction-only effect.
+      const idleX = Math.sin(elapsed * 0.06) * 0.5;
+      const idleY = Math.cos(elapsed * 0.05) * 0.3;
+
       // Parallax rotation
-      particleSystem.rotation.y = mouse.x * 0.15;
-      particleSystem.rotation.x = -mouse.y * 0.15;
-      lineMesh.rotation.y = mouse.x * 0.15;
-      lineMesh.rotation.x = -mouse.y * 0.15;
+      particleSystem.rotation.y = mouse.x * 0.15 + idleX * 0.1;
+      particleSystem.rotation.x = -mouse.y * 0.15 + idleY * 0.1;
+      lineMesh.rotation.y = mouse.x * 0.15 + idleX * 0.1;
+      lineMesh.rotation.x = -mouse.y * 0.15 + idleY * 0.1;
+      gridMesh.rotation.z = idleX * 0.02;
+
+      // Gentle rolling wave across the circuit grid - smooth, continuous,
+      // never random, so it visually reads as premium ambient motion.
+      const gridPos = gridGeometry.attributes.position.array;
+      for (let i = 0; i < gridPos.length; i += 3) {
+        const bx = gridBasePositions[i];
+        const by = gridBasePositions[i + 1];
+        gridPos[i + 2] =
+          gridBasePositions[i + 2] +
+          Math.sin(bx * 0.18 + elapsed * 0.5) * 0.9 +
+          Math.cos(by * 0.22 + elapsed * 0.35) * 0.7;
+      }
+      gridGeometry.attributes.position.needsUpdate = true;
 
       const posArr = geometry.attributes.position.array;
       const linePositions = [];
@@ -192,6 +232,8 @@ export default function CircuitBackground({ dark = false }) {
       material.dispose();
       lineMaterial.dispose();
       lineGeometry.dispose();
+      gridGeometry.dispose();
+      gridMaterial.dispose();
       renderer.dispose();
     };
   }, [dark]);
