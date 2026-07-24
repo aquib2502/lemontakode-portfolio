@@ -47,7 +47,7 @@ export default function ProblemHero({ onViewWork, onStartProject }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tight leading-[1.02]"
+          className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.05]"
         >
           <span className="bg-gradient-to-r from-[#FAFAFA] to-white/70 bg-clip-text text-transparent">
             Digital{' '}
