@@ -3,125 +3,100 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+const technologies = [
+  { name: 'React', purpose: 'Component Architecture' },
+  { name: 'Next.js', purpose: 'Hybrid Rendering' },
+  { name: 'Flutter', purpose: 'Cross-Platform Engine' },
+  { name: 'Node.js', purpose: 'Asynchronous Services' },
+  { name: 'Django', purpose: 'Rapid Backend Logic' },
+  { name: 'Docker', purpose: 'Immutable Environments' },
+  { name: 'Kubernetes', purpose: 'Cluster Orchestration' },
+  { name: 'AWS', purpose: 'Elastic Global Cloud' },
+  { name: 'Cloud Security', purpose: 'Proactive Hardening' },
+];
+
+const steps = [
+  { number: '01', title: 'Discover', desc: 'Map requirements and architecture.' },
+  { number: '02', title: 'Design', desc: 'Prototype the experience.' },
+  { number: '03', title: 'Build', desc: 'Ship scalable, tested code.' },
+  { number: '04', title: 'Launch', desc: 'Deploy to production, validated.' },
+  { number: '05', title: 'Scale', desc: 'Monitor and grow with demand.' },
+];
+
 export default function DetailsCraftsmanship() {
-  const technologies = [
-    { name: 'React', purpose: 'Component Architecture' },
-    { name: 'Next.js', purpose: 'Hybrid Rendering' },
-    { name: 'Flutter', purpose: 'Cross-Platform Engine' },
-    { name: 'Node.js', purpose: 'Asynchronous Services' },
-    { name: 'Django', purpose: 'Rapid Backend Logic' },
-    { name: 'Docker', purpose: 'Immutable Environments' },
-    { name: 'Kubernetes', purpose: 'Cluster Orchestration' },
-    { name: 'AWS', purpose: 'Elastic Global Cloud' },
-    { name: 'Cloud Security', purpose: 'Proactive Hardening' },
-  ];
-
-  const steps = [
-    {
-      number: '01',
-      title: 'Discover',
-      desc: 'We map requirements, define architectures, and document the feasibility roadmap.',
-    },
-    {
-      number: '02',
-      title: 'Design',
-      desc: 'We translate scope into human-centric, high-fidelity prototypes and fluid systems.',
-    },
-    {
-      number: '03',
-      title: 'Build',
-      desc: 'We compile scalable, modular code with continuous integration and testing.',
-    },
-    {
-      number: '04',
-      title: 'Launch',
-      desc: 'We deploy to optimized cloud structures under strict staging validation checklists.',
-    },
-    {
-      number: '05',
-      title: 'Scale',
-      desc: 'We monitor 24/7, perform security audits, and scale infrastructure as demand grows.',
-    },
-  ];
-
   return (
-    <section className="relative py-32 bg-soft-white text-dark-navy overflow-hidden" id="process">
+    <section className="relative py-20 md:py-32 bg-soft-white text-dark-navy overflow-hidden" id="process">
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
-        <div className="max-w-3xl mb-24">
+        <div className="max-w-3xl mb-10 md:mb-16">
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
             className="text-xs uppercase tracking-[0.25em] font-bold text-primary mb-4"
           >
             Craftsmanship
           </motion.div>
           <motion.h2
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-120px" }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.7, ease: 'easeOut', delay: 0.08 }}
             className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] text-dark-navy"
           >
-            Built with modern engineering principles.
+            Built right.
           </motion.h2>
         </div>
 
-        {/* Tech Craftsmanship Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-32">
+        {/* Tech stack - horizontal snap-scroll on mobile, grid on desktop */}
+        <div className="flex sm:grid sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 overflow-x-auto sm:overflow-visible snap-x snap-mandatory -mx-6 px-6 sm:mx-0 sm:px-0 pb-2 sm:pb-0 mb-16 md:mb-24 no-scrollbar">
           {technologies.map((tech, index) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: index * 0.05 }}
-              className="p-6 bg-white rounded-2xl border border-dark-navy/5 flex flex-col justify-between h-32 hover:border-primary/20 hover:shadow-[0_8px_30px_rgba(7,29,73,0.02)] transition-all duration-500 group"
+              key={tech.name}
+              initial={{ opacity: 0, y: 15, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: index * 0.04 }}
+              className="group shrink-0 w-[38%] sm:w-auto snap-start p-5 bg-white rounded-xl border border-dark-navy/5 flex flex-col justify-between h-24 hover:border-primary/20 hover:shadow-[0_8px_30px_rgba(7,29,73,0.02)] transition-all duration-300"
             >
-              <span className="font-display text-lg font-bold text-dark-navy group-hover:text-primary transition-colors duration-300">
+              <span className="font-display text-base font-bold text-dark-navy group-hover:text-primary transition-colors duration-300">
                 {tech.name}
               </span>
-              <span className="font-body text-2xs uppercase tracking-widest text-on-surface-variant/60 font-medium">
+              <span className="font-body text-[10px] uppercase tracking-widest text-on-surface-variant/60 font-medium">
                 {tech.purpose}
               </span>
             </motion.div>
           ))}
         </div>
 
-        {/* Apple-Style Process Timeline */}
+        {/* Process - horizontal snap-scroll on mobile, timeline grid on desktop */}
         <div className="relative">
-          <div className="mb-16">
-            <h3 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-dark-navy">
-              The Path to Production
-            </h3>
-          </div>
+          <h3 className="font-display text-xl sm:text-2xl font-extrabold tracking-tight text-dark-navy mb-8 md:mb-12">
+            How we work
+          </h3>
 
-          {/* Timeline Line (Desktop only) */}
-          <div className="absolute top-[35px] left-0 right-0 h-[1.5px] bg-dark-navy/10 hidden lg:block z-0" />
+          {/* Timeline line (desktop only) */}
+          <div className="absolute top-[59px] left-0 right-0 h-[1.5px] bg-dark-navy/10 hidden lg:block z-0" />
 
-          {/* Steps list */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 relative z-10">
+          <div className="flex lg:grid lg:grid-cols-5 gap-4 lg:gap-8 overflow-x-auto lg:overflow-visible snap-x snap-mandatory -mx-6 px-6 lg:mx-0 lg:px-0 pb-2 lg:pb-0 relative z-10 no-scrollbar">
             {steps.map((step, index) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: index * 0.1 }}
-                className="flex flex-col gap-4 relative group"
+                key={step.number}
+                initial={{ opacity: 0, y: 20, scale: 0.96 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: index * 0.08 }}
+                className="group shrink-0 w-[58%] sm:w-[35%] lg:w-auto snap-start flex flex-col gap-3"
               >
-                {/* Step Circle Marker */}
-                <div className="w-12 h-12 rounded-full bg-white border border-dark-navy/10 flex items-center justify-center font-display text-sm font-extrabold text-primary shadow-sm group-hover:border-primary group-hover:shadow-[0_0_15px_rgba(0,102,255,0.15)] transition-all duration-500">
+                <div className="w-11 h-11 rounded-full bg-white border border-dark-navy/10 flex items-center justify-center font-display text-sm font-extrabold text-primary shadow-sm group-hover:border-primary group-hover:shadow-[0_0_15px_rgba(0,102,255,0.15)] transition-all duration-300">
                   {step.number}
                 </div>
-
-                <div className="pt-2">
-                  <h4 className="font-display text-xl font-bold text-dark-navy mb-2 group-hover:text-primary transition-colors duration-300">
+                <div>
+                  <h4 className="font-display text-lg font-bold text-dark-navy mb-1 group-hover:text-primary transition-colors duration-300">
                     {step.title}
                   </h4>
-                  <p className="font-body text-sm text-on-surface-variant/80 leading-relaxed font-light">
+                  <p className="font-body text-sm text-on-surface-variant/80 leading-snug font-light">
                     {step.desc}
                   </p>
                 </div>
