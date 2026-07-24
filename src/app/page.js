@@ -2,7 +2,7 @@
 
 import React from 'react';
 import NavBar from '../components/NavBar';
-import ProblemHero from '../components/ProblemHero';
+import LogoExplosionHero from '../components/LogoExplosionHero';
 import VisionStory from '../components/VisionStory';
 import SolutionCapabilities from '../components/SolutionCapabilities';
 import DetailsCraftsmanship from '../components/DetailsCraftsmanship';
@@ -26,7 +26,7 @@ export default function Home() {
       <main className="flex-grow">
         {/* SECTION 1: PROBLEM (Cinematic Hero) */}
         <div id="problem">
-          <ProblemHero
+          <LogoExplosionHero
             onViewWork={() => scrollToSection('projects')}
             onStartProject={() => scrollToSection('contact')}
           />
