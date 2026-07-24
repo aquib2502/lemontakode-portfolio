@@ -4,6 +4,27 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import CircuitBackground from './CircuitBackground';
 
+// Hand-drawn accent underline for calling out a single keyword in the
+// headline - a marker-style annotation rather than a plain <u>.
+function SquiggleUnderline({ className }) {
+  return (
+    <svg
+      viewBox="0 0 200 20"
+      preserveAspectRatio="none"
+      className={className}
+      aria-hidden="true"
+    >
+      <path
+        d="M3 13 C 40 5, 75 18, 110 9 S 175 3, 197 11"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="7"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 export default function ProblemHero({ onViewWork, onStartProject }) {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#020B1E] text-[#FAFAFA] select-none">
@@ -29,7 +50,14 @@ export default function ProblemHero({ onViewWork, onStartProject }) {
           className="font-display text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tight leading-[1.02]"
         >
           <span className="bg-gradient-to-r from-[#FAFAFA] to-white/70 bg-clip-text text-transparent">
-            Digital excellence,
+            Digital{' '}
+          </span>
+          <span className="relative inline-block text-lemon-yellow">
+            excellence
+            <SquiggleUnderline className="absolute left-0 -bottom-3 sm:-bottom-4 w-full h-3 sm:h-4 text-lemon-yellow/80" />
+          </span>
+          <span className="bg-gradient-to-r from-[#FAFAFA] to-white/70 bg-clip-text text-transparent">
+            ,
           </span>
           <br />
           <span className="bg-gradient-to-r from-primary via-blue-400 to-[#FFD400] bg-clip-text text-transparent">
