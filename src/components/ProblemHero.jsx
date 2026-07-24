@@ -61,12 +61,10 @@ export default function ProblemHero({ onViewWork, onStartProject }) {
             <SquiggleUnderline className="absolute left-0 -bottom-3 sm:-bottom-4 w-[90%] h-3 sm:h-4 text-lemon-yellow/80" />
           </span>
           <br />
-          {/* Blue-to-yellow interpolates through a muddy gray-olive in plain
-              RGB, especially over a short word - routing through white
-              avoids the dead zone and reads as a clean shine instead. */}
-          <span className="bg-gradient-to-r from-primary via-white to-[#FFD400] bg-clip-text text-transparent">
-            engineered.
-          </span>
+          {/* Solid color instead of a gradient - any blue-to-yellow fade
+              muddies over a word this short, and a flat brand blue reads
+              cleaner and bolder anyway. */}
+          <span className="text-circuit-glow">engineered.</span>
         </motion.h1>
 
         {/* Subheadline */}
