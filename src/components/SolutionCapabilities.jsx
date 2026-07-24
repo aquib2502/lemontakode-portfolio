@@ -4,6 +4,40 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Smartphone, Monitor, ShieldCheck, Cpu, LayoutTemplate, Cloud } from 'lucide-react';
 
+// Fast, snappy "flip-up" reveal: a short back-out ease so cards pop into
+// place with a bit of overshoot rather than a plain fade/slide. Pure
+// transform + opacity (rotateX, scale, y) - no layout properties - so it
+// stays cheap even with several cards animating in a tight cascade.
+const POP_EASE = [0.34, 1.56, 0.64, 1];
+
+const gridVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.05, delayChildren: 0.02 },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 22, rotateX: -14, scale: 0.94 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    scale: 1,
+    transition: { duration: 0.4, ease: POP_EASE },
+  },
+};
+
+const iconVariants = {
+  hidden: { opacity: 0, scale: 0.3, rotate: -20 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    transition: { duration: 0.32, ease: POP_EASE, delay: 0.08 },
+  },
+};
+
 const capabilities = [
   {
     title: 'Mobile Experiences',
@@ -75,21 +109,28 @@ export default function SolutionCapabilities() {
         {/* Mobile: horizontal snap-scroll strip. Desktop: grid. Same cards,
             different container, so mobile is a quick swipe rather than a
             long vertical scroll. */}
-        <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory -mx-6 px-6 md:mx-0 md:px-0 pb-2 md:pb-0 no-scrollbar">
-          {capabilities.map((cap, index) => {
+        <motion.div
+          variants={gridVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          style={{ perspective: 1000 }}
+          className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory -mx-6 px-6 md:mx-0 md:px-0 pb-2 md:pb-0 no-scrollbar"
+        >
+          {capabilities.map((cap) => {
             const Icon = cap.icon;
             return (
               <motion.div
                 key={cap.title}
-                initial={{ opacity: 0, y: 20, scale: 0.96 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: index * 0.06 }}
+                variants={cardVariants}
                 className="group shrink-0 w-[70%] sm:w-[45%] md:w-auto snap-start flex flex-col p-6 md:p-7 bg-white rounded-2xl border border-dark-navy/10 shadow-[0_15px_45px_rgba(7,29,73,0.03)] hover:shadow-[0_25px_60px_rgba(7,29,73,0.08)] hover:border-primary/20 hover:-translate-y-1 transition-all duration-300"
               >
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 border transition-all duration-300 group-hover:scale-105 ${cap.accent}`}>
+                <motion.div
+                  variants={iconVariants}
+                  className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 border transition-all duration-300 group-hover:scale-105 ${cap.accent}`}
+                >
                   <Icon size={22} strokeWidth={1.75} />
-                </div>
+                </motion.div>
                 <h3 className="font-display text-lg font-bold text-dark-navy mb-1.5 group-hover:text-primary transition-colors duration-300">
                   {cap.title}
                 </h3>
@@ -99,7 +140,7 @@ export default function SolutionCapabilities() {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
