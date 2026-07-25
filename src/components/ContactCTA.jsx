@@ -3,11 +3,11 @@
 import React, { useState } from 'react';
 
 const scopes = ['Web Application', 'Mobile App', 'Business Automation', 'UX & Product Design', 'Security Audit'];
-const budgets = ['< $5,000', '$5,000 - $15,000', '$15,000+'];
+const budgets = ['< ₹50,000', '₹50,000 - ₹1,50,000', '₹1,50,000+'];
 
 export default function ContactCTA() {
   const [selectedScope, setSelectedScope] = useState('Web Application');
-  const [selectedBudget, setSelectedBudget] = useState('$5,000 - $15,000');
+  const [selectedBudget, setSelectedBudget] = useState('₹50,000 - ₹1,50,000');
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
 

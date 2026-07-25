@@ -25,9 +25,10 @@ export default function VisionStory() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1 }}
             className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.08] !text-[#121316]"
+            style={{ textWrap: 'balance', maxWidth: '18ch' }}
           >
-            We don't just build apps. <br />
-            We solve real business <br />
+            We don't just build apps.{' '}
+            We solve real business{' '}
             <span className="font-serif-italic font-normal text-[#9e8300]">hurdles.</span>
           </motion.h2>
         </div>

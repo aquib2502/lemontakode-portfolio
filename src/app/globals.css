@@ -100,27 +100,36 @@ html.lenis, html.lenis body {
   text-wrap: balance;
 }
 
-/* Navbar-Safe Hero Container Offset */
-.hero-viewport-safe {
-  min-height: 88dvh;
-  height: 88dvh;
-  max-height: 720px;
-  padding-top: 6rem;
-  padding-bottom: 2rem;
+.hero-section {
+  min-height: 100svh;
+  height: 100svh;
+  padding-top: 4rem; /* clear nav */
 }
 
-@media (min-width: 768px) {
-  .hero-viewport-safe {
-    padding-top: 7rem;
-  }
+/* Responsive headline size using clamp:
+   min: 2.5rem (mobile), preferred: 5.5vw, max: 5rem (desktop)
+   Also clamped against viewport height to avoid clipping on 768px-tall screens.
+*/
+.hero-headline {
+  font-size: clamp(2.4rem, min(5.5vw, 8vh), 5rem);
+  line-height: 1.07;
 }
 
 @media (max-height: 750px) {
-  .hero-viewport-safe {
-    height: 88dvh;
-    min-height: 540px;
-    padding-top: 5rem;
-    padding-bottom: 1rem;
+  .hero-section {
+    padding-top: 3.5rem;
+  }
+  .hero-headline {
+    font-size: clamp(2rem, min(4.5vw, 7vh), 3.8rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding-top: 4rem;
+  }
+  .hero-headline {
+    font-size: clamp(2.2rem, 9vw, 3rem);
   }
 }
 
@@ -150,27 +159,41 @@ html.lenis, html.lenis body {
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
 }
 
-/* Directional LEFT -> RIGHT Hover Sweep for Capability Rows */
-.capability-row-sweep {
+/* Service Rows — editorial minimal, no fill hover */
+.service-row {
   position: relative;
-  overflow: hidden;
   border-bottom: 1px solid rgba(244, 242, 237, 0.1);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.capability-row-sweep::before {
+/* Thin yellow accent line that sweeps LEFT → RIGHT on hover */
+.service-row::after {
   content: '';
   position: absolute;
-  inset: 0;
-  background: rgba(244, 242, 237, 0.05);
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background: #ffffff;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 0;
+  z-index: 1;
 }
 
-.capability-row-sweep:hover::before {
+.service-row:hover::after,
+.service-row:focus-within::after {
   transform: scaleX(1);
+}
+
+/* Title text clip-path wipe */
+.service-title-wipe {
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  transition: clip-path 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-row:hover .service-title-wipe,
+.service-row:focus-within .service-title-wipe {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
 /* Editorial Buttons */

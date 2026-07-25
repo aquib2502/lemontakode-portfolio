@@ -1,81 +1,135 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
 
 export default function ProblemHero({ onViewWork, onStartProject }) {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const eyebrowRef = useRef(null);
+  const line1Ref = useRef(null);
+  const line2Ref = useRef(null);
+  const line3Ref = useRef(null);
+  const descRef = useRef(null);
+  const ctaRef = useRef(null);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      const { clientX, clientY } = e;
-      const x = (clientX / window.innerWidth - 0.5) * 20;
-      const y = (clientY / window.innerHeight - 0.5) * 20;
-      setMousePos({ x, y });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    // Check prefers-reduced-motion
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+      // Entrance: sequential reveal via clip masks
+      tl.fromTo(eyebrowRef.current,
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 0.5 }
+      )
+      .fromTo(line1Ref.current,
+        { yPercent: 110 },
+        { yPercent: 0, duration: 0.7 },
+        '-=0.2'
+      )
+      .fromTo(line2Ref.current,
+        { yPercent: 110 },
+        { yPercent: 0, duration: 0.7 },
+        '-=0.5'
+      )
+      .fromTo(line3Ref.current,
+        { yPercent: 110 },
+        { yPercent: 0, duration: 0.65 },
+        '-=0.5'
+      )
+      .fromTo(descRef.current,
+        { opacity: 0, y: 8 },
+        { opacity: 1, y: 0, duration: 0.55 },
+        '-=0.3'
+      )
+      .fromTo(ctaRef.current,
+        { opacity: 0, y: 8 },
+        { opacity: 1, y: 0, duration: 0.45 },
+        '-=0.25'
+      );
+    });
+
+    return () => ctx.revert();
   }, []);
 
   return (
-    <section className="hero-viewport-safe relative flex items-center justify-center bg-[#0a0b0e] text-[#F4F2ED] select-none overflow-hidden px-6 md:px-12">
-      {/* Background Subtle Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(244,242,237,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(244,242,237,0.025)_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] pointer-events-none" />
+    <section
+      id="hero"
+      className="hero-section relative flex flex-col justify-center bg-[#0a0b0e] text-[#F4F2ED] select-none overflow-hidden px-6 md:px-12"
+    >
+      {/* Subtle background grid — purely structural, not decorative */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            'linear-gradient(to right, rgba(244,242,237,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(244,242,237,0.03) 1px, transparent 1px)',
+          backgroundSize: '3.5rem 3.5rem',
+        }}
+      />
 
-      <div className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center h-full my-auto">
-        {/* Left Column: Asymmetrical Display Typography & Actions */}
-        <div className="lg:col-span-8 flex flex-col justify-center space-y-6">
-          <div className="font-mono-tech text-xs tracking-[0.2em] text-[#ffd400] uppercase flex items-center gap-3">
-            <span className="w-2 h-2 rounded-full bg-[#ffd400]" />
-            <span>LEMONTAKODE DIGITAL STUDIO</span>
-            <span className="text-white/30">//</span>
-            <span className="text-white/60">WE SOLVE REAL PROBLEMS</span>
-          </div>
+      {/* Single centered editorial content block */}
+      <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col gap-6">
 
-          {/* Headline without Orphan Words */}
-          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.06] text-[#F4F2ED] text-balance">
-            We solve complex problems <br className="hidden sm:inline" />
-            with simple, powerful <br className="hidden sm:inline" />
-            <span className="font-serif-italic font-normal text-[#ffd400]">digital tools.</span>
-          </h1>
-
-          {/* Simple English Copy */}
-          <p className="font-body text-base sm:text-lg text-[#F4F2ED]/85 max-w-2xl leading-relaxed font-light">
-            We don't just write code or build shiny software. We solve real business hurdles—automating slow tasks, fixing broken workflows, and engineering custom apps that make your business run faster.
-          </p>
-
-          {/* Action Triggers */}
-          <div className="flex flex-wrap items-center gap-5 pt-2">
-            <button onClick={onStartProject} className="editorial-btn">
-              Tell Us Your Problem →
-            </button>
-            <button
-              onClick={onViewWork}
-              className="font-mono-tech text-xs uppercase tracking-widest text-[#F4F2ED]/80 hover:text-[#ffd400] transition-colors flex items-center gap-2 cursor-pointer px-4 py-2"
-            >
-              <span>See Solutions We Built</span>
-              <span>↓</span>
-            </button>
-          </div>
+        {/* Eyebrow */}
+        <div
+          ref={eyebrowRef}
+          className="font-mono-tech text-xs tracking-[0.2em] text-[#ffd400] uppercase flex items-center gap-3"
+          style={{ opacity: 0 }}
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-[#ffd400]" aria-hidden="true" />
+          <span>LEMONTAKODE DIGITAL STUDIO</span>
+          <span className="text-white/30" aria-hidden="true">//</span>
+          <span className="text-white/60">WE SOLVE REAL PROBLEMS</span>
         </div>
 
-        {/* Right Column: Subtle Graphic Brand Counterweight (No Card Box) */}
-        <div className="lg:col-span-4 hidden lg:flex items-center justify-center relative pointer-events-none">
-          <motion.div
-            animate={{
-              x: mousePos.x,
-              y: mousePos.y,
-              rotate: mousePos.x * 0.05,
-            }}
-            transition={{ type: 'spring', stiffness: 60, damping: 15 }}
-            className="relative flex items-center justify-center opacity-85"
+        {/* Headline — three intentional lines, clip-mask per line */}
+        <h1 className="font-display font-extrabold tracking-tight leading-[1.07] hero-headline">
+          <span className="block overflow-hidden">
+            <span ref={line1Ref} className="block">
+              We solve complex problems
+            </span>
+          </span>
+          <span className="block overflow-hidden">
+            <span ref={line2Ref} className="block">
+              with simple, powerful
+            </span>
+          </span>
+          <span className="block overflow-hidden">
+            <span ref={line3Ref} className="block font-serif-italic font-normal text-[#ffd400]">
+              digital tools.
+            </span>
+          </span>
+        </h1>
+
+        {/* Description */}
+        <p
+          ref={descRef}
+          className="font-body text-base sm:text-lg text-[#F4F2ED]/75 max-w-xl leading-relaxed font-light"
+          style={{ opacity: 0 }}
+        >
+          We don't just write code. We understand your workflow, find where it breaks,
+          and build focused software that fixes it — fast, clean, and built to last.
+        </p>
+
+        {/* CTAs */}
+        <div
+          ref={ctaRef}
+          className="flex flex-wrap items-center gap-5 pt-1"
+          style={{ opacity: 0 }}
+        >
+          <button onClick={onStartProject} className="editorial-btn">
+            Tell Us Your Problem →
+          </button>
+          <button
+            onClick={onViewWork}
+            className="font-mono-tech text-xs uppercase tracking-widest text-[#F4F2ED]/70 hover:text-[#ffd400] transition-colors duration-200 flex items-center gap-2 cursor-pointer"
           >
-            <img
-              src="/logo-1st-transparent.png"
-              alt="LemontaKode Official Brand Asset"
-              className="w-56 h-56 xl:w-64 xl:h-64 object-contain filter drop-shadow-[0_15px_30px_rgba(255,212,0,0.15)]"
-            />
-          </motion.div>
+            <span>See Solutions We Built</span>
+            <span aria-hidden="true">↓</span>
+          </button>
         </div>
       </div>
     </section>
