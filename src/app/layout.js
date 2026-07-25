@@ -1,4 +1,5 @@
 import "./globals.css";
+import LenisProvider from "@/components/LenisProvider";
 
 export const metadata = {
   title: "LemontaKode — Digital Product Studio & Software Engineering",
@@ -24,7 +25,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="min-h-full flex flex-col bg-[#0a0b0e] text-[#F4F2ED] antialiased selection:bg-[#ffd400] selection:text-[#0a0b0e]">
-        {children}
+        <LenisProvider>
+          {children}
+        </LenisProvider>
       </body>
     </html>
   );

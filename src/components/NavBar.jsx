@@ -53,9 +53,9 @@ export default function NavBar() {
           <img
             src="/4th.png"
             alt="LemontaKode"
-            className="h-6 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
-          <span className="font-display text-sm font-bold text-[#F4F2ED] tracking-tight">
+          <span className="font-display text-lg font-bold text-[#F4F2ED] tracking-tight">
             Lemonta<span className="text-[#ffd400]">Kode</span>
           </span>
         </a>

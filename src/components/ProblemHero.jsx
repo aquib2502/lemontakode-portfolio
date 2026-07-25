@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import Aurora from './reactbits/Aurora';
 
 export default function ProblemHero({ onViewWork, onStartProject }) {
   const eyebrowRef = useRef(null);
@@ -59,16 +60,15 @@ export default function ProblemHero({ onViewWork, onStartProject }) {
       id="hero"
       className="hero-section relative flex flex-col justify-center bg-[#0a0b0e] text-[#F4F2ED] select-none overflow-hidden px-6 md:px-12"
     >
-      {/* Subtle background grid — purely structural, not decorative */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(to right, rgba(244,242,237,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(244,242,237,0.03) 1px, transparent 1px)',
-          backgroundSize: '3.5rem 3.5rem',
-        }}
-      />
+      {/* 3D WebGL Aurora Background */}
+      <div className="absolute inset-0 z-0 opacity-40 mix-blend-screen pointer-events-none">
+        <Aurora
+          colorStops={['#ffd400', '#ffffff', '#ffd400']}
+          amplitude={1.2}
+          blend={0.5}
+          speed={0.5}
+        />
+      </div>
 
       {/* Single centered editorial content block */}
       <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col gap-6">
