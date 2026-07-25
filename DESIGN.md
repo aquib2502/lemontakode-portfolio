@@ -1,1134 +1,1390 @@
-# SECOND REDESIGN PASS — THE CURRENT REDESIGN IS STILL TOO SAFE
+# THIRD DESIGN PASS — FIX VISUAL, RESPONSIVE AND UX FAILURES
 
-Read the CURRENT implementation again before making changes.
+Read the CURRENT repository again before changing anything.
 
-Do not work from the previous prompt or assumptions about the old website.
+Also inspect the latest implementation visually at real viewport sizes.
 
-The first redesign improved styling, but it did NOT solve the fundamental interaction and art-direction problems.
+The structural redesign introduced some of the requested ideas, but several sections are now visually broken or poorly composed.
 
-The website still feels like vertically stacked React sections with slightly better typography.
+Do NOT start another redesign from scratch.
 
-I do not want another cosmetic refinement.
+Keep the strongest ideas, but fix the execution problems described below.
 
-I want a structural and motion redesign.
+This pass should focus on:
 
----
-
-# 1. HERO DOES NOT FIT LAPTOP VIEWPORTS — FIX THIS FIRST
-
-The current hero uses a large minimum viewport height plus large top/bottom padding and oversized content.
-
-On common laptop screens, especially approximately:
-
-1366×768
-1440×900
-1536×864
-
-the hero composition does not fit comfortably inside the initial viewport.
-
-This is unacceptable.
-
-The initial hero should be deliberately composed to fit within the available viewport.
-
-Use modern viewport units such as `svh`/`dvh` where appropriate.
-
-Account for the navbar.
-
-Do NOT simply make everything tiny.
-
-Create responsive sizing based on BOTH width and height.
-
-Use CSS such as:
-
-`clamp()`
-
-and, where useful, height-based media queries.
-
-The hero should look excellent on a MacBook/laptop viewport, not only on a large desktop monitor.
-
-The user should see the complete intended hero composition without needing to scroll just to understand it.
-
-Test at:
-
-1366×768
-1440×900
-1920×1080
-1024×768
-390×844
-
-The hero should adapt intelligently to short screens.
+1. readability
+2. project presentation
+3. responsive composition
+4. mobile-first quality
+5. hero visual logic
+6. contact section art direction
+7. brand/logo integration
+8. animation refinement
+9. viewport fitting
+10. visual consistency
 
 ---
 
-# 2. HERO STILL NEEDS A REAL VISUAL IDEA
+# CRITICAL: MOBILE-FIRST FROM THIS POINT FORWARD
 
-The current hero is mostly:
+The majority of visitors may view this portfolio on a phone.
 
-large typography
+Do NOT treat mobile as a simplified afterthought.
 
-* paragraph
-* CTA
-* telemetry list
+The website must be equally impressive on:
 
-This is still too safe.
+390×844 mobile
 
-Introduce a memorable visual system.
+430×932 mobile
 
-Do NOT add another gradient blob.
+768×1024 tablet
 
-Do NOT add floating generic cards.
+1366×768 laptop
 
-Do NOT add a random 3D sphere.
+1440×900 laptop
 
-Use the LemontaKode identity.
+1920×1080 desktop
 
-Explore a custom visual such as:
+Every major section must be intentionally designed for BOTH:
 
-* animated LemontaKode mark
-* lemon-inspired geometric object
-* fragmented brand typography
-* interactive typographic composition
-* code/product fragments that respond subtly to cursor movement
-* masked product imagery
-* animated grid deformation
-* brand object that transitions into the next section
+desktop
+and
+mobile.
 
-The visual should have a reason to exist.
+Do not create an amazing desktop interaction and then simply stack everything vertically on mobile.
 
-The hero needs ONE signature interaction.
+Mobile needs its own composition and motion decisions.
 
 ---
 
-# 3. CENTERED FLOATING NAVBAR — NOT FULL WIDTH
+# 1. FIX THE PHILOSOPHY SECTION CONTRAST IMMEDIATELY
 
-Completely redesign the current navbar.
+The current section containing:
 
-I explicitly DO NOT want a full-width navbar.
+"Technology should
+feel less like
+technology."
 
-Remove the current full-width header treatment.
+has a serious contrast problem.
 
-Remove the white horizontal line that appears after scrolling.
+The first two lines are nearly invisible against the dark background.
 
-There must be NO full-screen-width `border-bottom`.
+The supporting paragraph below is also barely readable.
 
-Create a centered floating navigation container.
+This is NOT subtle design.
 
-Desktop concept:
+It is inaccessible design.
+
+Subtlety does not mean low contrast.
+
+The hierarchy should be obvious immediately.
+
+For example:
+
+Primary statement:
+warm off-white / light neutral
+
+Secondary or background typography:
+can use reduced opacity
+
+Accent:
+LemontaKode yellow
+
+Body:
+clearly readable muted neutral
+
+Do NOT use text that is only 3–8% brighter than its background for actual content.
+
+Decorative typography may have extremely low contrast.
+
+Readable content may NOT.
+
+---
+
+# 2. PHILOSOPHY SECTION NEEDS BETTER ART DIRECTION
+
+Keep the editorial idea, but make the composition much stronger.
+
+Instead of:
+
+everything centered
+everything same width
+everything sitting in the middle
+
+create more deliberate typography.
+
+Possible desktop composition:
+
+small technical label near upper-left
+
+large statement positioned slightly asymmetrically
+
+Technology should
+feel less like
+
+*technology.*
+
+The serif italic word can break alignment slightly.
+
+Supporting copy should NOT sit as another centered grey paragraph directly underneath.
+
+Place it as a smaller editorial annotation.
+
+For example, offset toward the right or aligned against a grid column.
+
+Introduce visual tension.
+
+---
+
+# 3. MOBILE PHILOSOPHY SECTION
+
+On mobile:
+
+Do NOT shrink the desktop composition until it fits.
+
+Recompose it.
+
+For example:
+
+TECHNOLOGY
+SHOULD FEEL
+LESS LIKE
+
+*technology.*
+
+Allow the serif word to become the expressive focal point.
+
+Use approximately 70–80% of the viewport width.
+
+Supporting text should remain clearly readable.
+
+Avoid excessive empty vertical space.
+
+The section should feel like an editorial poster on a phone.
+
+---
+
+# 4. PROJECT SECTION CURRENTLY FAILS AS A PORTFOLIO
+
+The horizontal concept is useful.
+
+The current execution is not.
+
+Right now the visitor sees large fragments of project cards.
+
+The project frame extends beyond the useful viewport area.
+
+The video dominates without giving enough context.
+
+Descriptions and outcomes are not clearly visible.
+
+The visitor cannot immediately understand:
+
+What is this?
+
+What did LemontaKode do?
+
+Why is this project impressive?
+
+What technologies were involved?
+
+What was the outcome?
+
+That information needs to exist WITHOUT turning the project into a text-heavy card.
+
+---
+
+# 5. EACH PROJECT MUST FIT AS A COMPLETE COMPOSITION
+
+On desktop, when a project becomes the active project, the important composition should fit inside the available viewport.
+
+The user should see:
+
+PROJECT NUMBER
+
+PROJECT NAME
+
+CATEGORY
+
+VIDEO / PRODUCT MEDIA
+
+SHORT DESCRIPTION
+
+ROLE
+
+TECH
+
+ONE OUTCOME / IMPACT
+
+without needing to vertically scroll inside the pinned project section.
+
+Do NOT create enormous cards wider than the meaningful viewport.
+
+The active project should feel intentionally framed.
+
+---
+
+# 6. REDESIGN THE PROJECT VIEWPORT
+
+Instead of gigantic cards partially entering/exiting the screen, consider a composition like:
+
+---
+
+01 / CROWDFUNDING PLATFORM
+
+TPFAID
+
+Short one-line project explanation.
 
 ```
-             [ LemontaKode | Work | Services | Process | Contact | Let's talk ]
+    [ PRODUCT VIDEO ]
 ```
 
-The actual nav container should have a controlled maximum width and should float near the top center.
+ROLE                     IMPACT
+Design + Engineering     40% less friction
 
-Example conceptual behavior:
-
-At top:
-
-slightly wider
-transparent / visually integrated with hero
-minimal chrome
-
-After scrolling:
-
-smoothly becomes narrower
-moves slightly downward/upward as appropriate
-background gains subtle opacity
-small blur if performance permits
-corners become slightly more compact
-logo may simplify
-spacing between nav items tightens
-
-This should feel like the SAME navbar physically transforming.
-
-Do not abruptly switch CSS classes.
-
-Animate dimensions/position/background/radius/spacing smoothly.
-
-Use GSAP if it provides the cleanest implementation.
-
-The transformation should feel premium.
-
-NO white horizontal line.
-
-NO full-width background bar.
-
-NO full-width border.
-
-On mobile create an appropriately compact floating navigation control.
+TECH
+Next.js / Node / AWS
 
 ---
 
-# 4. ACTUALLY USE GSAP
+But do NOT literally turn this into a bordered card.
 
-GSAP exists in the project but the current experience barely benefits from it.
+Use layout, spacing and typography.
 
-Use GSAP intentionally.
+The viewport itself should become the project canvas.
+
+---
+
+# 7. HORIZONTAL MOVEMENT SHOULD MOVE BETWEEN COMPLETE PROJECTS
+
+The horizontal ScrollTrigger should behave conceptually like:
+
+[ PROJECT 01 ] → [ PROJECT 02 ] → [ PROJECT 03 ]
+
+NOT:
+
+[ half of project 01 ][ half of project 02 ]
+
+The active project needs a clear visual state.
+
+Consider snapping or soft snapping between project positions.
+
+Do not make snapping aggressive.
+
+Track positions based on actual viewport dimensions.
+
+Account for:
+
+viewport width
+container padding
+navbar
+project width
+
+Avoid hard-coded translations that only look correct on one monitor.
+
+---
+
+# 8. PROJECT DESCRIPTION IS REQUIRED
+
+Every project needs a concise human explanation.
+
+Example structure:
+
+TPFAID
+
+A crowdfunding platform built to connect donors with verified emergency campaigns and simplify donation processing.
+
+ROLE
+Product Design / Full-Stack Engineering
+
+TECH
+Next.js / Node / MongoDB / AWS
+
+IMPACT
+40% lower processing friction
+
+Keep it short.
+
+Do not use exaggerated AI copy.
+
+Do not use fake marketing language.
+
+The project should explain actual work.
+
+---
+
+# 9. PROJECT VIDEO MUST SHOW THE COMPLETE PRODUCT
+
+This remains critical.
+
+Do NOT use `object-cover` if it crops the application recording.
+
+Inspect each video's actual aspect ratio.
 
 Use:
 
-GSAP
-ScrollTrigger
-
-where they materially improve the experience.
-
-Do NOT use GSAP merely to reproduce:
-
-opacity: 0 → 1
-y: 20 → 0
-
-Framer Motion can handle simple component micro-interactions.
-
-GSAP should handle larger narrative motion.
-
-Potential uses:
-
-* pinned sections
-* scrubbed transitions
-* horizontal project movement
-* typography masks
-* project video transitions
-* section transformations
-* navbar morphing
-* parallax
-* controlled scale transitions
-* scroll-linked progress
-* image/video reveals
-* clip-path reveals
-
-Create proper GSAP contexts and clean them up on unmount.
-
-Do not create memory leaks.
-
----
-
-# 5. STOP MAKING EVERYTHING MOVE UP
-
-The site currently relies too much on:
-
-initial:
-opacity 0
-y 15/20
-
-then:
-opacity 1
-y 0
-
-Stop using this as the default animation.
-
-It makes the website feel generated.
-
-Every section does NOT need an entrance animation.
-
-Motion should depend on the composition.
-
-Use a richer vocabulary.
-
-For example:
-
-## Typography
-
-clip-path reveal
-mask reveal
-line splitting
-horizontal reveal
-letter-spacing transition
-selected word italic transformation
-text crossing behind/over media
-
-## Media
-
-masked expansion
-scale from cropped state
-horizontal translation
-image/video reveal through clipping
-sticky media transformation
-controlled parallax
-
-## Sections
-
-background transition
-pinned content
-horizontal progression
-overlapping sections
-scroll-linked scale
-foreground/background depth
-
-## Microinteraction
-
-magnetic button
-arrow slide
-underline expansion
-text swap
-cursor-follow project label
-
-Use restraint.
-
-Not everything needs to move.
-
----
-
-# 6. BREAK THE VERTICAL SCROLL MONOTONY
-
-This is one of the most important requirements.
-
-Currently EVERYTHING is vertically stacked.
-
-Hero ↓
-Vision ↓
-Capabilities ↓
-Process ↓
-Projects ↓
-Contact ↓
-
-Inside those sections, everything also moves vertically.
-
-This is too predictable.
-
-Create changes in scroll direction and spatial behavior.
-
-The page itself can still use normal vertical browser scrolling, but vertical wheel/touch scrolling should sometimes DRIVE other movement.
-
-Examples:
-
-vertical scroll → horizontal content movement
-
-vertical scroll → pinned composition changing internally
-
-vertical scroll → project media expanding
-
-vertical scroll → typography moving horizontally
-
-vertical scroll → capability rows crossing the viewport
-
-Do not hijack the user's scroll aggressively.
-
-The browser still needs to feel natural.
-
-But the visual response does NOT always need to be downward movement.
-
----
-
-# 7. PROJECT SECTION IS FAR TOO LONG
-
-The current project implementation gives every project approximately 85vh plus huge spacing.
-
-With four/five projects this creates an unnecessarily long page.
-
-Redesign this entire section.
-
-I do NOT want to vertically scroll through five almost-identical giant project blocks.
-
-This is a major requirement.
-
----
-
-# 8. PROJECTS SHOULD BECOME A HORIZONTAL / PINNED EXPERIENCE
-
-On desktop, strongly consider a pinned horizontal case-study experience.
-
-Concept:
-
-The visitor reaches "Selected Work."
-
-The section pins.
-
-Normal vertical scrolling now moves through projects horizontally.
-
-PROJECT 01 → PROJECT 02 → PROJECT 03 → PROJECT 04 → PROJECT 05
-
-The user continues scrolling normally with mouse wheel/trackpad.
-
-GSAP ScrollTrigger translates the internal project track horizontally.
-
-After the final project, normal vertical page scrolling resumes.
-
-This creates variation without requiring custom wheel-event hijacking.
-
-Keep the interaction smooth and predictable.
-
-Include a subtle progress indicator:
-
-01 ————— 05
-
-or a thin progress line.
-
-Do not make the horizontal section excessively long.
-
-Each project should transition efficiently.
-
----
-
-# 9. PROJECT VIDEO ASPECT RATIOS ARE WRONG
-
-Do NOT assume all project videos are 16:9.
-
-The current implementation forces:
-
-`aspect-[16/9]`
-
-and:
-
-`object-cover`
-
-which crops important UI from project recordings.
-
-Inspect the actual media dimensions/aspect ratios.
-
-Preserve each video's meaningful content.
-
-The user should be able to see the complete product interface.
-
-Use an adaptive media stage.
-
-Possible implementation:
-
-large outer project media container
-
-inside:
-
-video using its natural aspect ratio
-
 `object-fit: contain`
 
-with an intentionally designed surrounding stage.
+where necessary.
 
-Do NOT leave ugly empty black space.
-
-Instead make the container itself part of the composition.
+Build the surrounding stage around the video's natural dimensions.
 
 For example:
 
-soft neutral/dark stage
-subtle project-specific background
-browser chrome where appropriate
-small project metadata
-carefully controlled padding
+video inside dark graphite stage
+with controlled padding
+and perhaps extremely subtle browser chrome
 
-The VIDEO should never be cropped simply to satisfy a decorative 16:9 box.
+The user must see the actual UI.
 
-For landscape desktop recordings, show the entire recording.
+Do NOT cut:
 
-For taller recordings, adapt the frame.
+navigation
+dashboard edges
+footer
+sidebars
+important interface content
 
----
-
-# 10. PROJECT MEDIA SHOULD BE THE STAR
-
-Current project presentation still feels like:
-
-video
-heading
-tagline
-tech
-stat card
-
-That is too formulaic.
-
-Make each project feel like a designed case study.
-
-The video should occupy most of the visual attention.
-
-Project metadata can sit around it rather than underneath it.
-
-Example composition:
-
-01 / TPFAID
-
-```
-             [ LARGE PRODUCT VIDEO ]
-```
-
-Crowdfunding
-Platform
-
-ROLE
-Design + Engineering
-
-```
-                                72 HRS
-                                ↓
-                                6 MIN
-```
-
-Use asymmetry.
-
-Use whitespace.
-
-Allow typography to interact with the media.
+just to fill a decorative rectangle.
 
 ---
 
-# 11. EACH PROJECT CAN TRANSITION DIFFERENTLY
+# 10. PROJECT VIDEO SIZE
 
-Do not make every project transition identical.
+The current video/project area is too visually oversized.
 
-Maintain one coherent motion language, but vary composition.
+Reduce it enough that project information can coexist inside the viewport.
 
-Example:
+A good desktop target may be roughly:
 
-Project 1:
-video enters from right while title remains pinned.
+55–65% media
 
-Project 2:
-media expands from a smaller crop.
+35–45% information / whitespace
 
-Project 3:
-two pieces of project media slide past each other.
+depending on the project.
 
-Project 4:
-typography transitions behind the media.
+Do not blindly implement those percentages.
 
-The variation should feel art-directed, not random.
+Use the actual content.
+
+The project should feel cinematic WITHOUT hiding its context.
 
 ---
 
-# 12. MOBILE PROJECT FALLBACK
+# 11. PROJECT DESKTOP COMPOSITION
 
-Do NOT force desktop horizontal pinning onto mobile if it becomes awkward.
-
-Mobile can use:
-
-horizontal swipe/snap carousel
-
-or
-
-compact vertical project cards with native aspect-ratio media
-
-or another touch-friendly experience.
-
-Keep it fast.
-
-Do not make mobile users scroll through five 85vh project chapters.
-
----
-
-# 13. EVERY SECTION CURRENTLY LOOKS TOO SIMILAR
-
-This needs to change significantly.
-
-The website currently uses too much of the same:
-
-dark background
-small yellow mono label
-large white heading
-yellow serif word
-paragraph
-content underneath
-
-That is now becoming another template.
-
-Each major section needs a distinct composition.
-
-Not a different random design—different visual RHYTHM within one design system.
-
----
-
-# 14. GIVE EACH SECTION ITS OWN VISUAL CHARACTER
+Try asymmetric composition.
 
 For example:
 
-## HERO
+LEFT 65%
 
-Dark.
+large product video
 
-Highly typographic.
-
-Interactive brand visual.
-
-Controlled viewport composition.
-
----
-
-## VISION
-
-Switch atmosphere.
-
-Potentially warm off-white / cream background.
-
-Dark typography.
-
-Large editorial statement.
-
-Minimal content.
-
-Maybe oversized serif typography.
-
-Almost no UI components.
-
----
-
-## CAPABILITIES
-
-Return to dark or another neutral tone.
-
-Large horizontal typographic rows.
-
-No cards.
-
-Hover/cursor interaction.
-
-Rows may slide slightly horizontally.
-
-Supporting text/image can change as the active capability changes.
-
----
-
-## PROCESS
-
-Use a pinned storytelling composition.
-
-Left:
-
-large changing number:
+RIGHT 35%
 
 01
-02
-03
-04
-05
 
-Right:
+TPFAID
 
-Discover
-Design
-Build
-Launch
-Scale
+Crowdfunding Platform
 
-As the visitor scrolls, keep the overall section partially pinned while the active stage changes.
+description
 
-Use GSAP ScrollTrigger.
+ROLE
+Product Design + Engineering
 
-Avoid five cards.
+IMPACT
+40%
+less processing friction
 
----
+This is significantly easier to understand than one enormous project window.
 
-## PROJECTS
-
-Horizontal/pinned cinematic section.
-
-Media-first.
+For the next project, you can reverse or alter the composition slightly.
 
 ---
 
-## CONTACT
+# 12. PROJECT MOBILE EXPERIENCE MUST BE DIFFERENT
 
-Completely quiet again.
+DO NOT use desktop GSAP pinned horizontal scrolling on small mobile screens unless it genuinely feels excellent.
 
-Large typography.
+Prefer a mobile-native project interaction.
 
-Very little interface.
+Strong option:
 
-Large negative space.
+horizontal swipe carousel using CSS scroll snap.
 
-One strong action.
+One project per swipe.
 
-This creates pacing.
+Each project:
 
----
+project number
+title
+category
+video
+description
+impact
 
-# 15. BACKGROUND COLOR TRANSITIONS
+The user can swipe naturally.
 
-The website should not remain the exact same dark background from beginning to end.
+Use:
 
-Introduce carefully controlled tonal transitions.
+`scroll-snap-type: x mandatory`
 
-Example:
+with careful sizing.
 
-Hero:
-near black
+Show a small portion of the next project if useful to communicate swipeability.
 
-Vision:
-warm ivory
+But do NOT crop the active project's important information.
 
-Capabilities:
-warm grey / near black
+Another valid option is a compact vertical project sequence.
 
-Process:
-deep charcoal
-
-Projects:
-black
-
-Contact:
-LemontaKode lemon or warm off-white, if aesthetically successful
-
-Do not turn the site into a rainbow.
-
-Use maybe 3–4 foundational tones.
-
-Transition between them smoothly.
-
-GSAP can interpolate section/background states if appropriate.
+Choose whichever performs and feels better.
 
 ---
 
-# 16. TYPOGRAPHY STILL NEEDS MORE VARIATION
+# 13. MOBILE PROJECT VIDEO
 
-The previous typography changes are not enough.
+Video should fit naturally.
 
-Do not repeat the same:
+Use the video's native aspect ratio.
 
-mono yellow eyebrow
-white sans headline
-yellow serif italic word
+Do not create giant fixed-height media.
 
-in every section.
+The project title and context should remain visible without requiring excessive scrolling.
 
-That is becoming formulaic.
+Videos should:
 
-Create a typography SYSTEM, but allow different sections to emphasize different voices.
+muted
+playsInline
+loop where appropriate
+pause when outside viewport
+preload metadata
 
-Use approximately 3 complementary type voices:
-
-1. strong modern grotesk/display
-2. editorial serif / italic
-3. technical monospace
-
-But vary WHICH one dominates.
-
-Hero:
-grotesk dominant.
-
-Vision:
-serif dominant.
-
-Capabilities:
-condensed/grotesk typography dominant.
-
-Process:
-monospace numbers + restrained sans.
-
-Projects:
-huge project titles + tiny technical metadata.
-
-Contact:
-massive serif/sans combination.
+Do not preload every project video immediately.
 
 ---
 
-# 17. DIFFERENT FONT SIZES — MUCH MORE CONTRAST
+# 14. CONTACT CTA TEXT IS ALMOST INVISIBLE
 
-Stop keeping all section headings around approximately the same scale.
+The current left-side text:
 
-Create dramatic scale variation.
+"Have something
+ambitious
+in mind?"
 
-Examples:
+is far too dark.
 
-Hero headline:
-very large
+The supporting paragraph is also almost invisible.
 
-Vision statement:
-even larger but lighter
+Fix the contrast.
 
-Capability names:
-clamp(2rem, 5vw, 5rem)
-
-Process number:
-clamp(6rem, 16vw, 15rem)
-
-Project number:
-11px
-
-Project title:
-clamp(4rem, 10vw, 9rem) where composition allows
-
-Metadata:
-10–12px
-
-Body:
-15–18px
-
-Impact metric:
-very large
-
-This creates visual hierarchy.
-
----
-
-# 18. TYPOGRAPHIC COLOR VARIATION
-
-Do not use:
-
-white
-yellow
-grey
-
-in exactly the same roles everywhere.
-
-Examples:
-
-On ivory section:
-
-near-black headline
-muted graphite body
-lemon highlight
-
-On dark section:
-
-warm-white display
-grey body
-lemon technical accent
-
-Projects may borrow subtle accent colors from their actual product identity.
-
-Keep accessibility intact.
-
----
-
-# 19. HORIZONTAL TYPOGRAPHIC MOTION
-
-Introduce subtle horizontal typography movement.
-
-Examples:
-
-A huge background word:
-
-ENGINEERING →
-
-moves slowly left while scrolling.
-
-Another line:
-
-← DESIGN
-
-moves slightly right.
-
-Capabilities can use opposing horizontal movement.
-
-This immediately breaks the "everything comes upward" feeling.
-
-Keep speed subtle.
-
----
-
-# 20. VISION SECTION SHOULD BE EXTREMELY SIMPLE
-
-Do not turn vision into another component-heavy section.
-
-Consider an almost poster-like composition.
-
-Example concept:
-
-small:
-WHAT WE BELIEVE
-
-huge serif:
-Technology should
-feel less like
-technology.
-
-small annotation:
-DESIGN / ENGINEERING / PEOPLE
-
-Use large whitespace.
-
-Possibly one carefully selected image or brand detail.
-
-No cards.
-
----
-
-# 21. CAPABILITIES SHOULD FEEL INTERACTIVE
-
-Use large rows.
-
-Example:
-
-01     PRODUCT ENGINEERING                 →
-
-02     WEB EXPERIENCES                     →
-
-03     MOBILE                              →
-
-04     PRODUCT DESIGN                      →
-
-05     INFRASTRUCTURE                      →
-
-06     SECURITY                            →
-
-Hovering a row could:
-
-shift typography horizontally
-reveal a short description
-change a supporting visual
-move an arrow
-alter background tone subtly
-
-Desktop cursor interaction can add depth.
-
-Mobile should use tap/accordion behavior.
-
----
-
-# 22. PROCESS SHOULD USE PINNING
-
-This is a strong place for ScrollTrigger.
-
-Example:
-
-section height: approximately 300–400vh internally
-
-visible viewport remains pinned for part of it.
-
-As scroll progresses:
-
-01 DISCOVER
-
-transitions into
-
-02 DESIGN
-
-then
-
-03 BUILD
-
-then
-
-04 LAUNCH
-
-then
-
-05 SCALE
-
-The large number can transform.
-
-Descriptions can crossfade/mask.
-
-A line/progress element can update.
-
-But do not make the pinned duration excessive.
-
-The user should understand the process quickly.
-
----
-
-# 23. CREATE DEPTH
-
-The site currently feels flat because content mostly sits on one plane.
-
-Create subtle depth with:
-
-foreground typography
-media layer
-background typography
-small annotations
-slow parallax elements
-
-Do NOT create fake 3D everywhere.
-
-Depth should come mostly from motion speed differences and overlap.
-
----
-
-# 24. SECTION OVERLAP
-
-Some transitions can overlap.
+Primary CTA statement should have strong visual presence.
 
 For example:
 
-the final word of Vision could remain visible briefly while Capabilities enters.
+Have something
+ambitious
+in mind?
 
-Or project media could expand over the section boundary.
+could use warm white.
 
-Or the hero brand object could transition into the Vision section.
+Then:
 
-This makes the website feel continuous rather than:
+*Let's build it properly.*
 
-<Component />
-<Component />
-<Component />
-<Component />
+can remain LemontaKode yellow serif.
 
----
-
-# 25. USE CLIP-PATH / MASKING
-
-Use masking selectively for premium reveals.
-
-Examples:
-
-video reveal from center
-headline revealed line-by-line
-project image sliding beneath a mask
-section transition wipe
-
-Do not use clipping everywhere.
-
-2–4 strong uses across the page are enough.
+Do not make the main message look disabled.
 
 ---
 
-# 26. ADD A SUBTLE SCROLL PROGRESS LANGUAGE
+# 15. CONTACT SECTION SHOULD FEEL LIKE A FINALE
 
-Consider a small persistent indicator.
+Right now the contact section feels like:
 
-Not a giant progress bar.
+dark left panel
 
-Something like:
+* generic white form
 
-03 / 06
+The form looks imported from another website.
+
+Redesign the section as one cohesive composition.
+
+The contact section should feel like the final chapter of the portfolio.
+
+---
+
+# 16. REMOVE THE PURE WHITE FORM CARD
+
+Do NOT use a bright white form container on the dark website.
+
+It creates too much visual separation and looks generic.
+
+Integrate the form into the LemontaKode visual system.
+
+Potential direction:
+
+dark graphite / warm charcoal form surface
+
+subtle 1px neutral border
+
+warm off-white labels
+
+dark input surfaces
+
+LemontaKode yellow focus state
+
+minimal rounded corners
+
+excellent spacing
+
+No giant white rectangle.
+
+Alternatively, if using a light contact section, transition the ENTIRE section into a warm ivory background so the form belongs to that environment.
+
+Do not mix a near-black section with an isolated pure-white SaaS form.
+
+---
+
+# 17. FORM DESIGN
+
+Make the form feel custom.
+
+Avoid default:
+
+label
+
+large rounded input
+
+label
+
+large rounded input
+
+label
+
+select
+
+Use a cleaner editorial form.
+
+Possible style:
+
+FULL NAME
+
+---
+
+EMAIL
+
+---
+
+PROJECT TYPE
+
+---
+
+MESSAGE
+
+---
+
+with understated fields and excellent focus interaction.
+
+Or use extremely subtle filled fields.
+
+The design should feel premium but remain highly usable.
+
+---
+
+# 18. MOBILE CONTACT SECTION
+
+On mobile:
+
+CTA statement first.
+
+Then form.
+
+Do NOT create two cramped columns.
+
+Use comfortable input heights.
+
+Ensure keyboard interaction works.
+
+Use correct HTML input types.
+
+No horizontal overflow.
+
+No tiny labels.
+
+Submit button should be easy to tap.
+
+The section should look intentionally designed at 390px wide.
+
+---
+
+# 19. HERO RIGHT SIDE CURRENTLY FEELS ILLOGICAL
+
+Revisit the hero.
+
+The right side currently feels like visual filler rather than part of the story.
+
+Do NOT fill the right side simply because the hero uses a two-column grid.
+
+If the content does not deserve a right column, change the layout.
+
+The hero should have one clear visual concept.
+
+---
+
+# 20. REMOVE GENERIC HERO TELEMETRY / RANDOM INFORMATION
+
+Do not use generic studio statistics or telemetry simply to occupy space.
+
+Avoid things like:
+
+PROJECTS SHIPPED
+
+RETENTION
+
+GLOBAL REACH
+
+unless they materially support the hero.
+
+The hero should introduce LemontaKode, not behave like an analytics dashboard.
+
+---
+
+# 21. USE THE ACTUAL LEMONTAKODE BRAND ASSET
+
+Important:
+
+The repository contains the logo asset:
+
+`1st.png`
+
+This is the logo/brand asset I want used throughout the website outside the navbar where appropriate.
+
+Inspect `1st.png`.
+
+Remove its existing background and create/use a transparent-background version.
+
+Preserve the logo itself accurately.
+
+Do NOT redraw the logo.
+
+Do NOT alter its proportions.
+
+Do NOT invent another lemon icon.
+
+Do NOT replace it with a Lucide icon.
+
+Do NOT recreate it with CSS.
+
+Create a transparent version from the actual `1st.png` asset and use that.
+
+The transparent logo can become an important visual element in:
+
+hero
+section transitions
+brand moments
+contact
+footer
+
+But use it with restraint.
+
+Do NOT paste the logo everywhere.
+
+---
+
+# 22. HERO RIGHT SIDE — USE THE BRAND ASSET MEANINGFULLY
+
+The right side of the hero is a good place to explore the transparent `1st.png` brand asset.
+
+But do NOT simply display a static logo.
+
+Create an art-directed interaction around it.
+
+Possible direction:
+
+large transparent logo mark
+
+subtle GSAP entrance
+
+small controlled rotation/parallax responding to cursor
+
+masked reveal
+
+pieces of typography passing behind/in front
+
+very subtle depth
+
+scroll transformation into the next section
+
+The logo could begin as the hero's visual anchor and transform as the user begins scrolling.
+
+Keep it sophisticated.
+
+No bouncing.
+
+No constant spinning.
+
+No glowing neon logo.
+
+No cheesy 3D effect.
+
+---
+
+# 23. HERO COMPOSITION EXAMPLE
+
+Possible desktop direction:
+
+LEFT
+
+small:
+LEMONTAKODE / DIGITAL PRODUCT STUDIO
+
+huge:
+We build digital
+products that
+
+*feel considered.*
+
+short supporting copy
+
+[ View work → ]
+
+RIGHT
+
+large transparent LemontaKode brand mark
+
+small annotations around it
+
+PRODUCT
+DESIGN
+ENGINEERING
+
+subtle cursor response
+
+This is only a directional example.
+
+Do not copy it blindly.
+
+The goal is to make the right side visually meaningful.
+
+---
+
+# 24. MOBILE HERO
+
+This is extremely important.
+
+The hero must look excellent at 390px.
+
+Do not hide every visual element and leave only text.
+
+Recompose it.
+
+Possible mobile structure:
+
+small brand label
+
+large headline
+
+logo mark integrated behind/between typography
+
+short description
+
+primary CTA
+
+small scroll cue
+
+The transparent LemontaKode mark can become a background compositional element.
+
+Make sure it does not destroy readability.
+
+The hero should fit approximately within the initial mobile viewport where practical.
+
+Account for browser UI using `svh`.
+
+---
+
+# 25. DO NOT USE THE SAME SECTION TEMPLATE
+
+The screenshots reveal another problem:
+
+different sections are still using almost identical:
+
+dark background
+tiny mono heading
+huge heading
+yellow serif
+grey paragraph
+
+Stop repeating this exact formula.
+
+Keep the overall brand system.
+
+Change the composition.
+
+---
+
+# 26. DIFFERENT TYPOGRAPHIC PERSONALITY PER SECTION
+
+Use the same font system but change dominance.
+
+HERO
+
+large grotesk
+small mono details
+limited serif accent
 
 VISION
+
+serif becomes dominant
+
 CAPABILITIES
+
+large sans / condensed typography
+
 PROCESS
-WORK
 
-that changes as sections become active.
+huge numbers + technical mono
 
-Could integrate into navbar or page edge.
+PROJECTS
+
+project-specific display titles + tiny metadata
+
+CONTACT
+
+large expressive serif/sans conclusion
+
+FOOTER
+
+minimal mono/sans
+
+This creates variety without losing consistency.
+
+---
+
+# 27. READABILITY RULE
+
+Create an explicit text contrast hierarchy.
+
+On dark backgrounds:
+
+Primary:
+high-contrast warm white
+
+Secondary:
+approximately 65–80% visual strength
+
+Tertiary metadata:
+approximately 45–60%
+
+Decorative background typography:
+may go significantly lower
+
+But NEVER use decorative-level contrast for meaningful body text.
+
+On light backgrounds:
+
+Primary:
+near-black
+
+Secondary:
+dark graphite
+
+Metadata:
+medium graphite
+
+Accent:
+brand yellow only where contrast remains sufficient
+
+Check actual WCAG contrast.
+
+---
+
+# 28. MOBILE TYPOGRAPHY
+
+Do not merely use:
+
+desktop font-size / 2.
+
+Use fluid responsive sizing.
+
+For example:
+
+`clamp()`
+
+Headlines need deliberate line breaks on mobile.
+
+Use `text-wrap: balance` where useful.
+
+Prevent orphaned words.
+
+Keep body copy around readable line lengths.
+
+Do not use 10px text for meaningful mobile content.
+
+Tiny technical metadata can be smaller, but important information cannot.
+
+---
+
+# 29. MOBILE SPACING
+
+Desktop spacing cannot simply become:
+
+`py-28 → py-20`
+
+Design mobile spacing intentionally.
+
+Some sections should be compact.
+
+Some can have dramatic whitespace.
+
+But avoid making every section 100vh+.
+
+Mobile users should not need 20 swipes to reach the project section.
+
+Keep the total page journey reasonable.
+
+---
+
+# 30. MOBILE GSAP
+
+GSAP interactions need responsive behavior.
+
+Use:
+
+`gsap.matchMedia()`
+
+Create separate animation logic where necessary.
+
+Desktop may use:
+
+pinning
+horizontal translation
+cursor interaction
+parallax
+
+Mobile may use:
+
+native horizontal swipe
+simpler clip reveals
+lighter parallax
+no cursor logic
+less pinning
+
+Do not execute expensive desktop ScrollTriggers on mobile when they provide no value.
+
+---
+
+# 31. TABLET IS NOT DESKTOP
+
+Explicitly test tablet widths.
+
+At approximately 768–1024px:
+
+Do not force desktop two-column compositions when they become cramped.
+
+Do not immediately switch to tiny mobile layouts either.
+
+Create intermediate layouts.
+
+---
+
+# 32. TOUCH DEVICES
+
+Everything must work without hover.
+
+Capabilities cannot depend entirely on hover.
+
+Project interactions cannot depend on cursor.
+
+Buttons need proper touch targets.
+
+Any information revealed on hover must have a touch equivalent.
+
+---
+
+# 33. RESPONSIVE NAVBAR
+
+Desktop:
+
+centered floating navbar.
+
+Tablet:
+
+compact centered navbar.
+
+Mobile:
+
+small floating brand/navigation control.
+
+Do not allow it to consume a huge portion of the mobile viewport.
+
+Menu opening/closing should animate smoothly.
+
+Mobile menu should itself look art-directed.
+
+Do not use a generic full-screen black drawer unless it is beautifully composed.
+
+---
+
+# 34. USE THE LOGO CONSISTENTLY
+
+Navbar may retain the navbar-specific logo treatment if appropriate.
+
+For other major visual branding moments, use the transparent version derived from:
+
+`1st.png`
+
+Do not accidentally use different unrelated logo variants across sections.
+
+Establish:
+
+navbar logo
+primary brand mark
+favicon
+
+as deliberate assets.
+
+---
+
+# 35. SECTION COLOR VARIATION
+
+Continue introducing tonal variation.
+
+The site currently risks becoming endless black.
+
+Consider:
+
+Hero:
+near-black
+
+Vision:
+warm ivory OR clearly differentiated charcoal
+
+Capabilities:
+neutral dark
+
+Process:
+slightly lighter graphite
+
+Projects:
+deep black
+
+Contact:
+possibly warm ivory / brand-tinted neutral
+
+Do not force every section to be dark.
+
+If the contact section becomes light, the form can naturally use light styling without looking like an unrelated white box.
+
+---
+
+# 36. CONTACT ALTERNATIVE — STRONGLY CONSIDER THIS
+
+A strong option:
+
+transition the entire Contact section to warm ivory.
+
+Then:
+
+left:
+near-black typography
+
+yellow accent
+
+right:
+form using transparent/light-neutral fields
+
+This would create a powerful visual break after the dark project showcase.
+
+It would also solve the isolated white-form problem.
+
+If this direction looks better, use it.
+
+---
+
+# 37. PROJECT COLOR IDENTITY
+
+Each project may borrow a very subtle color from the actual product.
+
+For example:
+
+TPFAID:
+subtle green influence
+
+TPF Admin:
+appropriate interface accent
+
+Trace Express:
+brand-specific accent
+
+Flow India:
+brand-specific accent
+
+Do NOT recolor the whole page for every project.
+
+Use project colors subtly in:
+
+number
+progress indicator
+small accent
+media stage
+
+This helps distinguish projects.
+
+---
+
+# 38. PROJECT PROGRESS
+
+Make horizontal projects understandable.
+
+Show something like:
+
+01 ━━━━━━━ 02 ━━━━━━━ 03 ━━━━━━━ 04
+
+or:
+
+01 / 04
+
+with a progress line.
+
+The user should understand:
+
+where they are
+how many projects exist
+that scrolling is progressing horizontally
 
 Keep it subtle.
 
 ---
 
-# 27. PERFORMANCE
+# 39. PROJECT TRANSITION
 
-All of these animations must remain smooth.
+When moving from one project to another:
 
-Do not trade performance for complexity.
+media can shift
 
-GSAP animations should primarily animate:
+title can mask out/in
 
-transform
-opacity
-clip-path where performant
+metadata can update
 
-Avoid continuously animating expensive blur.
+background accent can subtly transition
 
-Avoid huge fixed blurred layers.
+Do NOT simply slide one enormous rectangle sideways.
 
-Use `gsap.context()`.
-
-Kill ScrollTriggers during cleanup.
-
-Refresh ScrollTrigger after media/fonts settle where necessary.
-
-Lazy-load videos.
-
-Only play project video when near/inside viewport.
-
-Pause videos when leaving.
-
-Use:
-
-`preload="metadata"`
-
-or appropriate preload strategy.
-
-Do not load every project video aggressively during initial page load.
+The transition should communicate a change of case study.
 
 ---
 
-# 28. LENIS + GSAP INTEGRATION
+# 40. FIX ALL OVERFLOW
 
-If Lenis remains enabled, integrate it properly with ScrollTrigger.
+Audit:
 
-Do not have competing smooth-scroll systems.
+`100vw`
 
-Ensure ScrollTrigger updates correctly with Lenis.
+large fixed widths
 
-The result must feel responsive rather than delayed or floaty.
+horizontal tracks
 
-Do not over-smooth scrolling.
+absolute positioning
 
-Users should retain control.
+transforms
 
----
+video containers
 
-# 29. REDUCED MOTION
+oversized typography
 
-Provide `prefers-reduced-motion` behavior.
+At:
 
-Pinned/horizontal sections must still remain understandable without heavy animation.
+390px
+430px
+768px
+1024px
+1366px
+1440px
+1920px
 
-Content should never disappear if animation is disabled.
+There should be no accidental horizontal scrollbar.
 
----
-
-# 30. DO NOT JUST EDIT CSS
-
-This request requires structural component changes.
-
-You are allowed and expected to:
-
-rewrite components
-change section markup
-create animation hooks
-create reusable GSAP utilities
-change project layout
-change navigation architecture
-change responsive behavior
-remove obsolete components/styles
-
-Do not preserve weak structure simply because it already exists.
+Horizontal project behavior must exist only inside the intended project interaction.
 
 ---
 
-# FINAL EXPERIENCE TARGET
+# 41. VERIFY REAL CONTENT BEFORE FINALIZING
 
-The page should alternate between different modes:
+Do not invent project statistics.
 
-HERO
-→ controlled interactive composition
+Do not invent technologies.
 
-VISION
-→ quiet editorial poster
+Do not invent offices.
 
-CAPABILITIES
-→ interactive horizontal typography
+Do not invent project outcomes.
 
-PROCESS
-→ pinned scroll narrative
+Use information already supported by the repository/content.
 
-PROJECTS
-→ horizontal cinematic portfolio
-
-CONTACT
-→ quiet typographic conclusion
-
-That variation is essential.
-
-The website should NOT feel like six vertically stacked Tailwind sections.
-
-It should feel like one continuous art-directed digital experience.
+If something is uncertain, use descriptive language instead of fake numbers.
 
 ---
 
-# NON-NEGOTIABLE ACCEPTANCE CHECKLIST
+# 42. VISUAL QA — ACTUALLY CHECK THE RESULT
 
-Before finishing, verify all of these:
+Do not finish after the code compiles.
 
-* Hero fits completely and intentionally on 1366×768 laptop screens.
-* Hero does not feel cramped on short-height displays.
-* Navbar is centered and floating.
-* Navbar is NOT full viewport width.
-* No white horizontal navbar line appears while scrolling.
-* Navbar smoothly morphs on scroll.
-* GSAP + ScrollTrigger are genuinely used for meaningful motion.
-* Animation is not mostly fade-up/slide-up.
-* At least one major section uses pinned scroll behavior.
-* At least one major section responds horizontally to vertical scrolling.
-* Projects no longer require four/five repetitive 85vh vertical chapters.
-* Project videos are NOT cropped by forced 16:9 `object-cover`.
-* Video aspect ratios are handled intelligently.
-* Project media is lazy/performance aware.
-* Sections have visibly different compositions.
-* Typography treatment changes between sections.
-* Font scale varies dramatically and intentionally.
-* Background tone changes at least a few times.
-* Mobile receives a deliberate fallback for complex desktop interactions.
-* No excessive scroll-jacking.
-* No excessive cards.
-* No repetitive yellow-eyebrow + white-heading + yellow-serif formula.
-* No generic AI/SaaS visual language.
-* No unnecessary gradients/glows.
-* No animation exists merely because animation was requested.
-* Scrolling remains smooth.
-* No horizontal overflow bugs.
-* Reduced-motion mode remains usable.
+Open the website at multiple viewport sizes.
 
-Do not stop when the implementation is merely "clean."
+Inspect every section visually.
 
-Iterate until the website has clearly different spatial behaviors, typography rhythms, and motion patterns across the page.
+Specifically check:
+
+text contrast
+
+hero fit
+
+navbar overlap
+
+project video cropping
+
+project descriptions
+
+project horizontal positioning
+
+form appearance
+
+mobile overflow
+
+tablet composition
+
+font loading
+
+section spacing
+
+animation smoothness
+
+video loading
+
+Then fix what looks wrong.
+
+---
+
+# 43. SCREENSHOT TEST
+
+Every major section should pass this test:
+
+"If I take a screenshot of this section with all animation frozen, does it still look professionally designed?"
+
+If no, animation is hiding weak composition.
+
+Fix the static design.
+
+---
+
+# 44. MOBILE SCREENSHOT TEST
+
+Also ask:
+
+"If someone sees only a screenshot from the 390px mobile version, would they believe this is the same premium portfolio as the desktop site?"
+
+If no, redesign mobile.
+
+Mobile should NOT look like a stripped-down fallback.
+
+---
+
+# 45. FINAL ACCEPTANCE CRITERIA
+
+Do not consider this pass complete until:
+
+✓ Philosophy text is clearly readable.
+
+✓ Philosophy body copy is clearly readable.
+
+✓ Contact heading is clearly readable.
+
+✓ Contact supporting copy is clearly readable.
+
+✓ Pure white disconnected form card is removed/redesigned.
+
+✓ Contact section feels like part of the same design system.
+
+✓ Hero right side has a meaningful visual purpose.
+
+✓ Generic hero telemetry/filler is removed.
+
+✓ `1st.png` is processed into a transparent-background asset.
+
+✓ The actual logo is preserved accurately.
+
+✓ Transparent logo is incorporated tastefully into the visual system.
+
+✓ Projects contain descriptions.
+
+✓ Projects clearly explain LemontaKode's role.
+
+✓ Project videos show the complete UI without destructive cropping.
+
+✓ Active desktop project fits meaningfully within the viewport.
+
+✓ Horizontal project movement shows complete compositions, not random halves.
+
+✓ Project section does not feel excessively long.
+
+✓ Mobile project experience is intentionally designed.
+
+✓ Desktop project interaction remains smooth.
+
+✓ Mobile does not depend on desktop pinning.
+
+✓ Every meaningful text element has sufficient contrast.
+
+✓ Every section has responsive typography.
+
+✓ Every section has deliberate mobile composition.
+
+✓ Every section looks excellent around 390px width.
+
+✓ Tablet layout is intentionally handled.
+
+✓ No horizontal overflow exists.
+
+✓ Navigation works well on mobile.
+
+✓ Touch interactions do not depend on hover.
+
+✓ GSAP uses responsive matchMedia logic where appropriate.
+
+✓ Heavy desktop animation is reduced on mobile.
+
+✓ Project videos are performance-aware.
+
+✓ Site remains smooth on realistic mobile hardware.
+
+✓ Sections no longer repeat exactly the same typography formula.
+
+✓ The website still feels like one coherent LemontaKode identity.
+
+---
+
+# MOST IMPORTANT PRINCIPLE
+
+Do not optimize the website around a 1920×1080 designer monitor.
+
+Design from:
+
+**390px mobile → 1366×768 laptop → large desktop**
+
+in that priority order.
+
+A premium portfolio that only works on a large desktop is not a premium portfolio.
+
+The mobile experience must have the same:
+
+art direction
+personality
+clarity
+craftsmanship
+brand identity
+
+as desktop, even if the layouts and animations are different.
+
+Fix the current implementation rather than layering more effects on top of the problems.

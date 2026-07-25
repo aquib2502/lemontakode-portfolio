@@ -46,7 +46,7 @@ html.lenis, html.lenis body {
   overflow: hidden;
 }
 
-/* Section Atmosphere Themes */
+/* Section Atmosphere Themes & High Contrast Rules */
 .theme-dark {
   background-color: #0a0b0e;
   color: #F4F2ED;
@@ -57,8 +57,15 @@ html.lenis, html.lenis body {
   color: #121316;
 }
 
-.theme-ivory h1, .theme-ivory h2, .theme-ivory h3, .theme-ivory h4 {
-  color: #121316;
+.theme-ivory h1, 
+.theme-ivory h2, 
+.theme-ivory h3, 
+.theme-ivory h4 {
+  color: #121316 !important;
+}
+
+.theme-ivory p {
+  color: #2a2c33 !important;
 }
 
 .theme-charcoal {
@@ -89,33 +96,33 @@ html.lenis, html.lenis body {
   font-family: 'Inter', sans-serif;
 }
 
-/* Laptop Viewport Height Utility (1366x768 / 1440x900 fit) */
+/* Reduced 90dvh Hero Height (10% smaller) */
 .hero-viewport {
-  min-height: 100dvh;
-  height: 100dvh;
-  max-height: 900px;
+  min-height: 90dvh;
+  height: 90dvh;
+  max-height: 720px;
 }
 
-@media (max-height: 800px) {
+@media (max-height: 750px) {
   .hero-viewport {
-    height: 100dvh;
-    min-height: 650px;
-    padding-top: 5rem;
-    padding-bottom: 2rem;
+    height: 90dvh;
+    min-height: 560px;
+    padding-top: 4rem;
+    padding-bottom: 1rem;
   }
 }
 
-/* Centered Floating Nav (NO Full Width, NO White Line) */
+/* Centered Floating Nav */
 .floating-nav {
   position: fixed;
   top: 1.25rem;
   left: 50%;
   transform: translateX(-50%);
-  width: 90%;
-  max-width: 46rem;
+  width: 92%;
+  max-width: 44rem;
   z-index: 50;
   border-radius: 9999px;
-  background: rgba(10, 11, 14, 0.85);
+  background: rgba(10, 11, 14, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(244, 242, 237, 0.12);
@@ -125,8 +132,8 @@ html.lenis, html.lenis body {
 
 .floating-nav.scrolled-nav {
   top: 0.85rem;
-  max-width: 42rem;
-  background: rgba(10, 11, 14, 0.95);
+  max-width: 40rem;
+  background: rgba(10, 11, 14, 0.96);
   border-color: rgba(255, 212, 0, 0.25);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
 }
@@ -136,7 +143,7 @@ html.lenis, html.lenis body {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 13px;
   font-weight: 600;
-  padding: 10px 22px;
+  padding: 11px 24px;
   border-radius: 9999px;
   background-color: #F4F2ED;
   color: #0a0b0e;
@@ -155,27 +162,58 @@ html.lenis, html.lenis body {
   transform: translateY(-2px);
 }
 
-/* Adaptive Media Frame (preserves full video aspect ratio without cropping) */
+/* Non-Cropped Adaptive Video Stage */
 .adaptive-video-stage {
   position: relative;
   width: 100%;
-  background: #0d0e12;
+  background: #090a0e;
   border: 1px solid rgba(244, 242, 237, 0.12);
-  border-radius: 16px;
+  border-radius: 12px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 0.75rem;
 }
 
 .adaptive-video-stage video {
   max-width: 100%;
-  max-height: 52vh;
+  max-height: 42vh;
   width: auto;
   height: auto;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: 6px;
+}
+
+/* Form Scope Chip Buttons */
+.form-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  border: 1px solid rgba(18, 19, 22, 0.2);
+  background-color: #f4f2ed;
+  color: #121316;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.form-chip.active-chip {
+  background-color: #121316;
+  color: #ffd400;
+  border-color: #121316;
+  font-weight: 600;
+}
+
+/* Mobile Scroll Snap Carousel */
+.mobile-carousel {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-carousel > * {
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
 }
 
 /* Capability Row Hover */

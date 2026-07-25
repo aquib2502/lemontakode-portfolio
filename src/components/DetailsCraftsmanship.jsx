@@ -7,33 +7,33 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 const steps = [
   {
     num: '01',
-    title: 'DISCOVER & ARCHITECT',
-    subtitle: 'System Modeling & Risk Analysis',
-    desc: 'We map system requirements, identify security vectors, and specify database schemas before writing a single line of production code.',
+    title: 'UNDERSTAND THE PROBLEM',
+    subtitle: 'Step 1: Goal Mapping',
+    desc: 'We start by interviewing your team, analyzing your current workflow, and identifying exact bottlenecks before writing any code.',
   },
   {
     num: '02',
-    title: 'UX & SYSTEM DESIGN',
-    subtitle: 'Interface & Modular Components',
-    desc: 'We prototype intuitive human interfaces and establish modular component architecture designed for scale and clarity.',
+    title: 'DESIGN SIMPLE INTERFACES',
+    subtitle: 'Step 2: User Testing',
+    desc: 'We design clear wireframes and prototypes so your users can navigate your software without requiring manuals or training.',
   },
   {
     num: '03',
-    title: 'TEST-DRIVEN BUILD',
-    subtitle: 'Modular Engineering & Reviews',
-    desc: 'We execute clean, modular code with automated continuous integration, unit testing, and peer code reviews.',
+    title: 'ENGINEER FAST CODE',
+    subtitle: 'Step 3: Custom Build',
+    desc: 'We write clean, modular software with automated tests to ensure maximum security, speed, and zero bugs.',
   },
   {
     num: '04',
-    title: 'VALIDATED LAUNCH',
-    subtitle: 'Zero-Downtime Deployment',
-    desc: 'We deploy to production infrastructure with load testing, security verification, and automated rollback triggers.',
+    title: 'TEST & LAUNCH',
+    subtitle: 'Step 4: Safe Release',
+    desc: 'We run live load tests and deploy your project with automated backups so your system never experiences downtime.',
   },
   {
     num: '05',
-    title: 'TELEMETRY & SCALE',
-    subtitle: 'Performance Monitoring',
-    desc: 'We monitor live performance metrics, optimize database queries, and continuously expand system capabilities.',
+    title: 'MONITOR & EXPAND',
+    subtitle: 'Step 5: Ongoing Growth',
+    desc: 'We continuously monitor system performance, optimize database speed, and help you roll out new features seamlessly.',
   },
 ];
 
@@ -49,11 +49,10 @@ export default function DetailsCraftsmanship() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Pin the process section on desktop while scrolling through steps
       const trigger = ScrollTrigger.create({
         trigger: sectionRef.current,
         start: 'top top',
-        end: '+=2000',
+        end: '+=1800',
         pin: true,
         scrub: 0.5,
         onUpdate: (self) => {
@@ -94,7 +93,7 @@ export default function DetailsCraftsmanship() {
         {/* Left Column: Oversized Dynamic Monospace Counter */}
         <div className="lg:col-span-5 flex flex-col justify-center">
           <div className="font-mono-tech text-xs tracking-[0.2em] text-[#ffd400] uppercase mb-4">
-            04 // PINNED METHODOLOGY
+            04 // HOW WE WORK
           </div>
           <div
             ref={numberRef}
@@ -115,20 +114,20 @@ export default function DetailsCraftsmanship() {
 
           <div
             ref={subtitleRef}
-            className="font-mono-tech text-xs uppercase tracking-widest text-[#ffd400]/80 font-bold"
+            className="font-mono-tech text-xs uppercase tracking-widest text-[#ffd400] font-bold"
           >
             {steps[0].subtitle}
           </div>
 
           <p
             ref={descRef}
-            className="font-body text-base sm:text-xl text-[#F4F2ED]/75 max-w-xl font-light leading-relaxed transition-all duration-300"
+            className="font-body text-base sm:text-xl text-[#cbcbcb] max-w-xl font-normal leading-relaxed transition-all duration-300"
           >
             {steps[0].desc}
           </p>
 
-          <div className="pt-8 font-mono-tech text-xs text-white/40 flex items-center gap-3">
-            <span>SCROLL TO PROGRESS</span>
+          <div className="pt-8 font-mono-tech text-xs text-white/50 flex items-center gap-3">
+            <span>SCROLL TO SEE NEXT STEP</span>
             <span className="w-12 h-[1px] bg-white/20" />
             <span>01 — 05</span>
           </div>
