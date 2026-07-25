@@ -22,11 +22,11 @@ export default function Home() {
   return (
     <SmoothScroll>
       <div className="relative flex flex-col min-h-screen bg-[#0a0b0e] text-[#F4F2ED] antialiased">
-        {/* Navigation Bar */}
+        {/* Centered Floating Morphing Navbar (NO FULL WIDTH BAR, NO WHITE LINE) */}
         <NavBar />
 
         <main className="flex-grow">
-          {/* SECTION 1: ASYMMETRICAL EDITORIAL HERO */}
+          {/* SECTION 1: 100DVH LAPTOP FIT HERO WITH INTERACTIVE BRAND OBJECT */}
           <div id="hero">
             <ProblemHero
               onViewWork={() => scrollToSection('projects')}
@@ -34,27 +34,27 @@ export default function Home() {
             />
           </div>
 
-          {/* SECTION 2: STUDIO VISION & PHILOSOPHY */}
+          {/* SECTION 2: VISION — WARM IVORY ATMOSPHERIC CONTRAST */}
           <div id="vision">
             <VisionStory />
           </div>
 
-          {/* SECTION 3: EDITORIAL CAPABILITY INDEX */}
+          {/* SECTION 3: CAPABILITIES — INTERACTIVE HORIZONTAL TYPOGRAPHY ROWS */}
           <div id="services">
             <SolutionCapabilities />
           </div>
 
-          {/* SECTION 4: METHODOLOGY & PROCESS */}
+          {/* SECTION 4: PROCESS — GSAP SCROLLTRIGGER PINNED METHODOLOGY (01->05) */}
           <div id="process">
             <DetailsCraftsmanship />
           </div>
 
-          {/* SECTION 5: CINEMATIC CASE STUDIES */}
+          {/* SECTION 5: PROJECTS — GSAP SCROLLTRIGGER PINNED HORIZONTAL TRACK */}
           <div id="projects">
             <EmotionStories />
           </div>
 
-          {/* SECTION 6: INITIATE ENGAGEMENT */}
+          {/* SECTION 6: CONTACT — WARM IVORY EDITORIAL CONCLUSION */}
           <div id="contact">
             <ContactCTA />
           </div>

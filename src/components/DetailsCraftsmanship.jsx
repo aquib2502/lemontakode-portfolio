@@ -1,93 +1,136 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const steps = [
   {
     num: '01',
-    title: 'Discover & Architecture',
-    desc: 'We map technical requirements, identify security risks, and specify system data models before writing code.',
+    title: 'DISCOVER & ARCHITECT',
+    subtitle: 'System Modeling & Risk Analysis',
+    desc: 'We map system requirements, identify security vectors, and specify database schemas before writing a single line of production code.',
   },
   {
     num: '02',
-    title: 'UX & System Design',
-    desc: 'We prototype intuitive human interfaces and establish modular component architecture.',
+    title: 'UX & SYSTEM DESIGN',
+    subtitle: 'Interface & Modular Components',
+    desc: 'We prototype intuitive human interfaces and establish modular component architecture designed for scale and clarity.',
   },
   {
     num: '03',
-    title: 'Test-Driven Build',
-    desc: 'We execute clean, modular code with automated continuous integration and peer code reviews.',
+    title: 'TEST-DRIVEN BUILD',
+    subtitle: 'Modular Engineering & Reviews',
+    desc: 'We execute clean, modular code with automated continuous integration, unit testing, and peer code reviews.',
   },
   {
     num: '04',
-    title: 'Validated Launch',
-    desc: 'We deploy to production infrastructure with load testing, security verification, and roll-back safety.',
+    title: 'VALIDATED LAUNCH',
+    subtitle: 'Zero-Downtime Deployment',
+    desc: 'We deploy to production infrastructure with load testing, security verification, and automated rollback triggers.',
   },
   {
     num: '05',
-    title: 'Telemetry & Scale',
-    desc: 'We monitor live performance metrics, optimize database queries, and continuously expand features.',
+    title: 'TELEMETRY & SCALE',
+    subtitle: 'Performance Monitoring',
+    desc: 'We monitor live performance metrics, optimize database queries, and continuously expand system capabilities.',
   },
 ];
 
-const techStack = [
-  'REACT', 'NEXT.JS', 'FLUTTER', 'NODE.JS', 'PYTHON / DJANGO', 'DOCKER', 'KUBERNETES', 'AWS CLOUD', 'CYBER SECURITY', 'GRAPHQL'
-];
-
 export default function DetailsCraftsmanship() {
+  const sectionRef = useRef(null);
+  const containerRef = useRef(null);
+  const numberRef = useRef(null);
+  const titleRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const descRef = useRef(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      // Pin the process section on desktop while scrolling through steps
+      const trigger = ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: 'top top',
+        end: '+=2000',
+        pin: true,
+        scrub: 0.5,
+        onUpdate: (self) => {
+          const progress = self.progress;
+          const stepIndex = Math.min(
+            steps.length - 1,
+            Math.floor(progress * steps.length)
+          );
+          
+          if (numberRef.current) {
+            numberRef.current.innerText = steps[stepIndex].num;
+          }
+          if (titleRef.current) {
+            titleRef.current.innerText = steps[stepIndex].title;
+          }
+          if (subtitleRef.current) {
+            subtitleRef.current.innerText = steps[stepIndex].subtitle;
+          }
+          if (descRef.current) {
+            descRef.current.innerText = steps[stepIndex].desc;
+          }
+        },
+      });
+
+      return () => trigger.kill();
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-28 md:py-36 bg-[#07080a] text-[#F4F2ED] border-t border-white/10 overflow-hidden" id="process">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        {/* Section Header */}
-        <div className="max-w-2xl mb-16">
-          <div className="font-mono-tech text-xs tracking-[0.2em] text-[#ffd400] uppercase mb-3">
-            04 // METHODOLOGY
+    <section
+      ref={sectionRef}
+      className="min-h-screen bg-[#07080a] text-[#F4F2ED] border-t border-white/10 flex items-center justify-center relative overflow-hidden px-6 md:px-12 py-20 select-none"
+      id="process"
+    >
+      <div ref={containerRef} className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        {/* Left Column: Oversized Dynamic Monospace Counter */}
+        <div className="lg:col-span-5 flex flex-col justify-center">
+          <div className="font-mono-tech text-xs tracking-[0.2em] text-[#ffd400] uppercase mb-4">
+            04 // PINNED METHODOLOGY
           </div>
-          <h2 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-[#F4F2ED]">
-            How we <span className="font-serif-italic font-normal text-[#ffd400]">execute.</span>
+          <div
+            ref={numberRef}
+            className="font-mono-tech text-[22vw] lg:text-[14rem] font-extrabold text-[#ffd400] leading-none tracking-tighter"
+          >
+            01
+          </div>
+        </div>
+
+        {/* Right Column: Dynamic Process Detail Content */}
+        <div className="lg:col-span-7 space-y-6 flex flex-col justify-center border-l border-white/10 pl-6 lg:pl-12 py-6">
+          <h2
+            ref={titleRef}
+            className="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-[#F4F2ED] transition-all duration-300"
+          >
+            {steps[0].title}
           </h2>
-        </div>
 
-        {/* 5-Step Editorial Process Sequence */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-24">
-          {steps.map((step, index) => (
-            <motion.div
-              key={step.num}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="border-t border-white/15 pt-6 flex flex-col justify-between"
-            >
-              <div>
-                <span className="font-mono-tech text-sm font-bold text-[#ffd400] block mb-4">
-                  {step.num}
-                </span>
-                <h3 className="font-display text-xl font-bold text-[#F4F2ED] mb-3">
-                  {step.title}
-                </h3>
-                <p className="font-body text-xs text-[#F4F2ED]/70 leading-relaxed font-light">
-                  {step.desc}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Subtle Horizontal Tech Stack Ticker */}
-        <div className="pt-12 border-t border-white/10">
-          <div className="font-mono-tech text-xs uppercase tracking-[0.2em] text-white/40 mb-6">
-            Supported Core Technologies
+          <div
+            ref={subtitleRef}
+            className="font-mono-tech text-xs uppercase tracking-widest text-[#ffd400]/80 font-bold"
+          >
+            {steps[0].subtitle}
           </div>
 
-          <div className="flex flex-wrap gap-x-8 gap-y-4 font-mono-tech text-xs text-[#F4F2ED]/80">
-            {techStack.map((tech) => (
-              <div key={tech} className="flex items-center gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#ffd400]" />
-                <span>{tech}</span>
-              </div>
-            ))}
+          <p
+            ref={descRef}
+            className="font-body text-base sm:text-xl text-[#F4F2ED]/75 max-w-xl font-light leading-relaxed transition-all duration-300"
+          >
+            {steps[0].desc}
+          </p>
+
+          <div className="pt-8 font-mono-tech text-xs text-white/40 flex items-center gap-3">
+            <span>SCROLL TO PROGRESS</span>
+            <span className="w-12 h-[1px] bg-white/20" />
+            <span>01 — 05</span>
           </div>
         </div>
       </div>

@@ -6,45 +6,45 @@ import { motion } from 'framer-motion';
 const capabilities = [
   {
     num: '01',
-    title: 'Product Engineering',
-    category: 'Full-Stack Software',
+    title: 'PRODUCT ENGINEERING',
+    category: 'FULL-STACK SYSTEMS',
     desc: 'End-to-end custom application development engineered for high transaction volume, maintainability, and clean system architecture.',
-    tech: 'React · Next.js · Node.js · Python · Postgres',
+    tech: 'REACT · NEXT.JS · NODE.JS · PYTHON · POSTGRES',
   },
   {
     num: '02',
-    title: 'Web Platforms',
-    category: 'High-Performance Web',
+    title: 'WEB PLATFORMS',
+    category: 'HIGH-PERFORMANCE WEB',
     desc: 'Lightning-fast, SEO-optimized web applications and portal systems built with hybrid server rendering and custom design systems.',
-    tech: 'Next.js SSR · TypeScript · Tailwind CSS · GraphQL',
+    tech: 'NEXT.JS SSR · TYPESCRIPT · TAILWIND CSS · GRAPHQL',
   },
   {
     num: '03',
-    title: 'Mobile Applications',
-    category: 'iOS & Android Engine',
+    title: 'MOBILE EXPERIENCES',
+    category: 'IOS & ANDROID ENGINE',
     desc: 'Cross-platform and native mobile experiences designed for 60fps animations, offline capabilities, and instant push synchronization.',
-    tech: 'Flutter · React Native · Swift · Kotlin · Firebase',
+    tech: 'FLUTTER · REACT NATIVE · SWIFT · KOTLIN · FIREBASE',
   },
   {
     num: '04',
-    title: 'UX & Product Design',
-    category: 'Interface & Architecture',
+    title: 'UX & SYSTEM DESIGN',
+    category: 'INTERFACE ARCHITECTURE',
     desc: 'Interface design that balances visual aesthetic with human clarity, reducing user friction and maximizing conversion efficiency.',
-    tech: 'Design Systems · Wireframing · Micro-Interactions · Prototypes',
+    tech: 'DESIGN SYSTEMS · WIREFRAMING · PROTOTYPES · UX',
   },
   {
     num: '05',
-    title: 'Cloud & Infrastructure',
-    category: 'Elastic Systems',
+    title: 'CLOUD INFRASTRUCTURE',
+    category: 'ELASTIC DEPLOYMENTS',
     desc: 'Automated CI/CD pipelines, container orchestration, and multi-region cloud deployments with zero-downtime releases.',
-    tech: 'AWS · Docker · Kubernetes · Terraform · CI/CD',
+    tech: 'AWS · DOCKER · KUBERNETES · TERRAFORM · CI/CD',
   },
   {
     num: '06',
-    title: 'Cyber Security',
-    category: 'Hardening & Auditing',
+    title: 'CYBER SECURITY',
+    category: 'HARDENING & AUDITING',
     desc: 'Proactive vulnerability assessments, OWASP auditing, penetration testing, and military-grade encryption built into your codebase.',
-    tech: 'OWASP · Vulnerability Scans · Penetration Testing · Encryption',
+    tech: 'OWASP · VULNERABILITY SCANS · ENCRYPTION · AUDITS',
   },
 ];
 
@@ -52,7 +52,7 @@ export default function SolutionCapabilities() {
   const [activeIdx, setActiveIdx] = useState(0);
 
   return (
-    <section className="py-28 md:py-36 bg-[#0a0b0e] text-[#F4F2ED] border-t border-white/10" id="services">
+    <section className="theme-charcoal py-28 md:py-36 border-t border-white/10" id="services">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
@@ -64,12 +64,12 @@ export default function SolutionCapabilities() {
               What we <span className="font-serif-italic font-normal text-[#ffd400]">engineer.</span>
             </h2>
           </div>
-          <p className="font-body text-sm text-[#F4F2ED]/60 max-w-md font-light">
-            We deliver targeted software engineering capabilities for companies building mission-critical platforms.
-          </p>
+          <div className="font-mono-tech text-xs text-white/40">
+            HOVER ROWS TO EXPLORE CAPABILITIES
+          </div>
         </div>
 
-        {/* Editorial Capability Rows List */}
+        {/* Interactive Typography Rows */}
         <div className="space-y-0">
           {capabilities.map((cap, index) => (
             <motion.div
@@ -77,32 +77,29 @@ export default function SolutionCapabilities() {
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
               onMouseEnter={() => setActiveIdx(index)}
               className={`capability-row py-8 px-4 cursor-pointer flex flex-col lg:flex-row lg:items-center justify-between gap-6 transition-all duration-300 ${
-                activeIdx === index ? 'border-l-2 border-l-[#ffd400] bg-white/[0.02]' : ''
+                activeIdx === index ? 'border-l-2 border-l-[#ffd400] bg-white/[0.03] pl-6' : ''
               }`}
             >
-              {/* Monospace Number & Title */}
               <div className="flex items-center gap-6 lg:w-5/12">
-                <span className="font-mono-tech text-sm text-[#ffd400]">{cap.num}</span>
+                <span className="font-mono-tech text-sm font-bold text-[#ffd400]">{cap.num}</span>
                 <div>
-                  <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#F4F2ED]">
+                  <h3 className="font-display text-xl sm:text-3xl font-extrabold tracking-tight text-[#F4F2ED]">
                     {cap.title}
                   </h3>
-                  <span className="font-mono-tech text-[11px] text-white/40 tracking-wider uppercase block mt-1">
+                  <span className="font-mono-tech text-[10px] text-white/40 tracking-widest uppercase block mt-1">
                     {cap.category}
                   </span>
                 </div>
               </div>
 
-              {/* Description */}
               <div className="lg:w-4/12 font-body text-sm text-[#F4F2ED]/70 leading-relaxed font-light">
                 {cap.desc}
               </div>
 
-              {/* Technical Stack Tags */}
-              <div className="lg:w-3/12 font-mono-tech text-[11px] text-[#ffd400]/80 tracking-wider text-left lg:text-right">
+              <div className="lg:w-3/12 font-mono-tech text-[11px] text-[#ffd400] tracking-wider lg:text-right">
                 {cap.tech}
               </div>
             </motion.div>

@@ -1,1387 +1,1134 @@
-# LemontaKode Portfolio — Complete Creative Redesign
+# SECOND REDESIGN PASS — THE CURRENT REDESIGN IS STILL TOO SAFE
 
-You are working inside the existing LemontaKode portfolio repository.
+Read the CURRENT implementation again before making changes.
 
-Before changing anything, inspect the entire existing landing-page implementation, including all components imported by `src/app/page.js`, global styles, fonts, animation utilities, assets, images, videos, responsive behavior, and existing dependencies.
+Do not work from the previous prompt or assumptions about the old website.
 
-Do NOT immediately start coding.
+The first redesign improved styling, but it did NOT solve the fundamental interaction and art-direction problems.
 
-First understand what already exists, then redesign the landing page as one cohesive creative system.
+The website still feels like vertically stacked React sections with slightly better typography.
 
-## PRIMARY OBJECTIVE
+I do not want another cosmetic refinement.
 
-Transform the current website from a recognizable AI-generated SaaS/agency template into a genuinely art-directed, premium software studio portfolio.
-
-The finished site should feel like a talented designer and frontend engineer spent significant time considering:
-
-* composition
-* typography
-* spacing
-* pacing
-* motion
-* imagery
-* storytelling
-* hierarchy
-* interaction
-* restraint
-* performance
-
-It should feel custom-made for **LemontaKode**, not generated from a component library.
-
-Think:
-
-premium digital studio
-× engineering company
-× editorial portfolio
-× subtle experimental interaction
-
-The website should communicate:
-
-**serious engineering + excellent design + human craftsmanship**
+I want a structural and motion redesign.
 
 ---
 
-# IMPORTANT: DO NOT PRESERVE THE CURRENT VISUAL STRUCTURE
+# 1. HERO DOES NOT FIT LAPTOP VIEWPORTS — FIX THIS FIRST
 
-You may reuse useful content and assets, but do NOT simply reskin the existing sections.
+The current hero uses a large minimum viewport height plus large top/bottom padding and oversized content.
 
-The current implementation relies too heavily on:
+On common laptop screens, especially approximately:
 
-* rounded cards
-* icon boxes
-* glowing gradients
-* centered SaaS hero layouts
-* pills/badges
-* generic bento grids
-* repeated fade-up animations
-* generic Lucide iconography
-* excessive borders
-* identical section structures
-* gradient text
-* marketing buzzwords
-* predictable alternating project layouts
+1366×768
+1440×900
+1536×864
 
-Remove or substantially redesign these patterns.
+the hero composition does not fit comfortably inside the initial viewport.
 
-Do not make every piece of information a card.
+This is unacceptable.
 
-Do not put every icon inside a rounded square.
+The initial hero should be deliberately composed to fit within the available viewport.
 
-Do not use decorative gradients simply because empty space exists.
+Use modern viewport units such as `svh`/`dvh` where appropriate.
 
-Do not fill the website with glassmorphism.
+Account for the navbar.
 
-Do not make every section `max-w-7xl + heading + paragraph + grid`.
+Do NOT simply make everything tiny.
 
-The page needs visual rhythm.
+Create responsive sizing based on BOTH width and height.
 
-Some sections should be dense.
-
-Some should breathe.
-
-Some should be typographic.
-
-Some should be visual.
-
-Some should be interactive.
-
----
-
-# DESIGN PHILOSOPHY
-
-Use restraint.
-
-Premium does NOT mean adding more effects.
-
-Premium means:
-
-* excellent typography
-* deliberate spacing
-* confident composition
-* strong imagery
-* subtle details
-* controlled motion
-* meaningful interaction
-* consistency
-
-Prefer one exceptional visual idea over ten mediocre effects.
-
-Use LemontaKode's lemon identity intelligently.
-
-The lemon yellow should become a recognizable brand signature, not something sprayed throughout every component.
-
-Use a sophisticated neutral foundation with lemon used selectively.
-
-Avoid the stereotypical neon-purple/blue AI startup appearance.
-
----
-
-# TYPOGRAPHY
-
-Typography should carry a large portion of the visual identity.
-
-Create a strong display/body relationship.
-
-Headlines should feel editorial rather than like generic SaaS headings.
-
-Use responsive typography with `clamp()` where appropriate.
-
-Pay attention to:
-
-* line length
-* line breaks
-* optical alignment
-* letter spacing
-* line height
-* hierarchy
-* whitespace
-
-Avoid generic phrases such as:
-
-"Digital excellence, engineered."
-
-"Next-gen engineering."
-
-"Guaranteed performance."
-
-"Cutting-edge solutions."
-
-"Transforming ideas into reality."
-
-Rewrite generic AI-sounding marketing copy into short, confident, human language.
-
-Copy should sound like a real software studio.
-
-Example direction:
-
-"We design and engineer digital products people actually enjoy using."
-
-Not necessarily this exact sentence—understand the tone.
-
----
-
-# NAVIGATION
-
-Create a minimal, extremely polished navigation.
-
-It should initially integrate naturally with the hero rather than looking like a detached SaaS navbar.
-
-Possible behavior:
-
-transparent at top
-→ subtly changes after scrolling
-→ compact floating navigation after leaving hero
-
-Keep interactions extremely smooth.
-
-Navigation should contain only what is necessary.
-
-Do not over-design it.
-
----
-
-# HERO — MAKE THIS THE SIGNATURE MOMENT
-
-Completely rethink the current hero.
-
-Remove the current:
-
-* Sparkles badge
-* generic radial blobs
-* metric strip
-* squiggle decoration
-* conventional CTA pair
-* generic SaaS composition
-
-The hero needs ONE memorable creative concept.
-
-It should immediately communicate that LemontaKode is a serious digital product studio.
-
-Explore a composition involving:
-
-large editorial typography
-
-* LemontaKode branding
-* controlled motion
-* an interactive visual / product imagery / abstract brand object
-
-The layout does NOT need to be perfectly centered.
-
-Asymmetry is encouraged.
-
-Use the available viewport intelligently.
-
-The hero should feel designed rather than assembled.
-
-Consider subtle mouse/parallax response on desktop, but keep it restrained.
-
-A visitor should remember the hero after closing the website.
-
----
-
-# SCROLL EXPERIENCE
-
-Scrolling should feel exceptionally smooth.
-
-The project already contains Lenis/GSAP-related infrastructure. Inspect it before modifying anything.
-
-Create a consistent motion system instead of random animations.
-
-Use approximately:
-
-fast micro interactions: 150–250ms
-normal transitions: 350–600ms
-large editorial reveals: 700–1100ms
-
-Use premium easing curves.
-
-Avoid excessive spring/bounce animations.
-
-Avoid having every element:
-
-opacity 0 → 1
-translateY 20 → 0
-
-That is one of the biggest AI-generated website tells.
-
-Instead mix meaningful techniques:
-
-* masks
-* clipping reveals
-* typography reveals
-* image cropping
-* scale
-* horizontal movement
-* pinned sections
-* controlled parallax
-* staggered typography
-* scroll-linked progress
-* layout transitions
-
-Animations should be tied to the composition.
-
----
-
-# SECTION TRANSITIONS
-
-Do not make sections feel like stacked React components.
-
-The entire landing page should feel like one continuous visual story.
-
-Create intentional transitions between major sections.
-
-Examples:
-
-dark → warm off-white
-large typography → image-led composition
-full-width project media → quiet text section
-horizontal movement → vertical reading
-large visual → restrained whitespace
-
-The transition itself can occasionally become part of the experience.
-
-Avoid obvious hard boundaries unless intentionally used.
-
----
-
-# HUMAN DETAILS
-
-Introduce subtle imperfections and crafted details that make the site feel human.
-
-Examples:
-
-* editorial annotations
-* tiny project numbers
-* understated labels
-* unusual but deliberate image crops
-* thin rules
-* offset typography
-* occasional handwritten/organic brand detail
-* cursor-aware micro interaction
-* tiny motion details
-* carefully positioned metadata
-* unexpected whitespace
-* subtle grain/noise if performant
-
-Do NOT turn these into gimmicks.
-
-The user should notice the craftsmanship subconsciously.
-
----
-
-# CAPABILITIES / SERVICES
-
-Completely remove the current six-card SaaS grid.
-
-Do not show:
-
-icon
-title
-description
-Explore capability →
-
-six times.
-
-Instead create a sophisticated capability presentation.
-
-Possible direction:
-
-01 Product Engineering
-02 Web Platforms
-03 Mobile Applications
-04 Product Design
-05 Infrastructure
-06 Security
-
-Use typography and interaction rather than cards.
-
-For example, large horizontal capability rows where hovering changes supporting imagery, typography or background details.
-
-Or create an editorial index.
-
-The section should feel like a studio capability statement rather than a pricing-page feature grid.
-
----
-
-# ENGINEERING / TECHNOLOGY
-
-Do not show the technology stack as ten identical rounded boxes.
-
-React, Next.js, Node, Docker, AWS, etc. are supporting evidence—not the main product.
-
-Present technology more subtly.
-
-Possible approaches:
-
-a horizontal technical ticker
-an editorial technology index
-stack labels embedded into project case studies
-a restrained technical matrix
-animated text rows
-
-Show engineering competence without looking like a junior developer portfolio displaying every framework learned.
-
----
-
-# PROCESS
-
-The current Discover → Design → Build → Launch → Scale content can remain conceptually, but completely rethink its presentation.
-
-Do NOT create five generic cards.
-
-Create a visual sequence.
-
-Consider scroll progression.
-
-For example:
-
-01 Discover
-large title + one concise sentence
-
-scroll
-
-02 Design
-
-scroll
-
-03 Build
-
-etc.
-
-Or use a pinned left-side title while the stages progress on the right.
-
-Keep the copy concise.
-
-Motion should help communicate progression.
-
----
-
-# PROJECTS — MOST IMPORTANT SECTION
-
-This should be the strongest section after the hero.
-
-The repository already contains project videos.
-
-Inspect and use them properly.
-
-Existing project material includes:
-
-* TPFAID Platform
-* TPF Admin System
-* The Trace Express
-* Flow India Projects
-
-and their existing local video assets.
-
-Do NOT present them as repetitive alternating:
-
-video | text
-text | video
-video | text
-
-That pattern is too predictable.
-
-Build a cinematic case-study showcase.
-
-## Desktop project experience
-
-Consider using large viewport-filling project moments.
-
-A project could occupy approximately 80–100vh.
-
-Use the video as the visual centerpiece.
-
-Videos should:
-
-* autoplay when appropriate
-* remain muted
-* loop
-* use `playsInline`
-* pause when sufficiently outside viewport if practical
-* load efficiently
-* avoid blocking initial page rendering
-
-Use IntersectionObserver where useful.
-
-Do not autoplay four heavy videos unnecessarily before the visitor reaches them.
-
-Use poster images if appropriate.
-
-Project media should feel almost like looking at the actual product on a premium showcase site.
-
----
-
-# PROJECT STORYTELLING
-
-Each project needs a compact but meaningful narrative.
-
-Show information such as:
-
-PROJECT
-TPFAID
-
-TYPE
-Crowdfunding Platform
-
-ROLE
-Product Design / Engineering
-
-PROBLEM
-Short human explanation.
-
-SOLUTION
-Short explanation.
-
-IMPACT
-Actual measurable outcome where legitimate.
-
-TECH
-Relevant technologies.
-
-Avoid paragraphs everywhere.
-
-Make the visual product the hero.
-
-The text should support it.
-
----
-
-# PROJECT INTERACTION IDEA
-
-Create an elegant project transition system.
-
-Potential directions:
-
-### Direction A — Sticky cinematic projects
-
-Project information remains sticky while video/image compositions transform while scrolling.
-
-### Direction B — Horizontal gallery
-
-Vertical scroll drives a carefully controlled horizontal project gallery.
-
-Only use this if mobile fallback is excellent.
-
-### Direction C — Full viewport chapters
-
-Each project becomes its own visual chapter with transitions between them.
-
-### Direction D — Layered media
-
-Project video begins cropped, expands toward fullscreen during scroll, then reveals project information.
-
-Choose whichever works best with the actual content.
-
-Do NOT implement complex animation merely for novelty.
-
----
-
-# PROJECT VIDEOS
-
-Treat video like premium product photography.
-
-Use:
-
-* tasteful framing
-* subtle browser/device framing only when appropriate
-* smooth scaling
-* crop transitions
-* playback triggered near viewport
-* poster images
-* responsive video sources if available
-* preload metadata instead of blindly preloading everything
-
-Avoid fake 3D laptop mockups unless they genuinely improve the presentation.
-
-Sometimes a clean fullscreen product recording is more premium.
-
----
-
-# IMAGERY
-
-The website currently relies too heavily on abstract CSS decoration.
-
-Introduce relevant imagery where it improves storytelling.
-
-Images should relate to:
-
-software
-digital products
-engineering
-interfaces
-actual project context
-human collaboration where appropriate
-
-Avoid cliché stock photos:
-
-people pointing at laptops
-fake office meetings
-generic programmer screens
-robot/AI imagery
-random futuristic city renders
-
-Prefer actual product visuals and art-directed imagery.
-
-If an image does not communicate anything, do not add it.
-
----
-
-# STATS / TRUST
-
-Do not create another dashboard/card section for statistics.
-
-Integrate credibility naturally into the story.
-
-For example:
-
-50+ projects shipped
-
-could appear as oversized editorial typography integrated into a section rather than inside a rounded card.
-
-Only display statistics that are defensible.
-
-Avoid suspicious vanity metrics.
-
----
-
-# CONTACT
-
-The final CTA should feel like the natural conclusion of the portfolio.
-
-Make it dramatically simpler.
-
-Large statement.
-
-Something along the lines of:
-
-Have something ambitious in mind?
-
-Let's build it properly.
-
-Then one clear action.
-
-Use typography and whitespace instead of another large card.
-
-The transition into the footer should be seamless.
-
----
-
-# FOOTER
-
-Keep the footer minimal.
-
-Brand.
-
-Location / availability if appropriate.
-
-Email/contact.
-
-Selected social links.
-
-Legal/copyright.
-
-No giant generic sitemap unless genuinely necessary.
-
----
-
-# MICROINTERACTIONS
-
-Create polished interaction states for:
-
-* navigation
-* text links
-* project links
-* buttons
-* project media
-* cursor interactions where appropriate
-* video hover
-* capability rows
-
-Buttons should not simply:
-
-scale(1.05)
-
-Experiment with:
-
-text sliding
-arrow movement
-background sweep
-mask transition
-underline expansion
-magnetic movement
-
-Keep movement subtle.
-
----
-
-# CURSOR
-
-On desktop only, consider a custom contextual cursor for project media.
-
-Example:
-
-hover project → cursor becomes:
-
-VIEW CASE
-
-or
-
-PLAY
-
-Do not replace the native cursor globally.
-
-Disable custom cursor behavior on touch devices.
-
----
-
-# PERFORMANCE IS NON-NEGOTIABLE
-
-The final experience must feel extremely fast.
-
-A beautiful website that stutters is unacceptable.
-
-Target:
-
-60fps animation on modern desktop devices.
-
-Avoid layout thrashing.
-
-Prefer transform and opacity animations.
-
-Use GSAP ScrollTrigger only where it genuinely adds value.
-
-Do not create dozens of independent scroll listeners.
-
-Use Lenis correctly.
-
-Clean up animation contexts/listeners on unmount.
-
-Lazy-load below-the-fold media.
-
-Optimize images.
-
-Avoid enormous blur filters covering the viewport.
-
-Avoid excessive `backdrop-filter`.
-
-Avoid unnecessary React state updates during scroll.
-
-Avoid animating layout properties where transforms can achieve the same effect.
-
-Use `will-change` only where justified.
-
-Respect:
-
-`prefers-reduced-motion`
-
-Create reduced-motion fallbacks.
-
----
-
-# MOBILE
-
-Mobile cannot simply be the desktop design squeezed vertically.
-
-Design responsive behavior intentionally.
-
-Remove expensive effects where necessary.
-
-No horizontal overflow.
-
-No broken sticky sections.
-
-No giant unreadable typography.
-
-No scroll-jacking.
-
-Project videos should maintain sensible aspect ratios.
-
-Touch interactions must work without hover.
-
-Motion should be reduced on lower-powered/mobile contexts where appropriate.
-
----
-
-# ACCESSIBILITY
-
-Maintain:
-
-semantic HTML
-keyboard navigation
-visible focus states
-proper contrast
-descriptive alt text
-reduced-motion support
-accessible buttons/links
-
-Animation should never prevent content access.
-
----
-
-# CODE QUALITY
-
-Do not rewrite the entire application unnecessarily.
-
-Reuse existing infrastructure where it is good.
-
-Refactor components where the design requires it.
-
-Break large animation systems into maintainable components/hooks.
-
-Avoid giant 500-line components.
-
-Keep content/data separated from presentation where appropriate.
-
-Do not install another animation library unless absolutely necessary.
-
-The existing stack already provides enough tools.
-
-Remove dead code and unused imports after redesigning.
-
----
-
-# IMPORTANT CREATIVE RULE
-
-Whenever you are about to add:
-
-a gradient
-a glow
-a rounded card
-a pill
-an icon box
-a floating orb
-a glass panel
-a generic fade-up animation
-
-ask:
-
-**"Does this improve the composition, or am I adding it because modern websites commonly have it?"**
-
-If it is the latter, do not add it.
-
----
-
-# VISUAL QUALITY TEST
-
-Before considering a section complete, evaluate it at:
-
-1440px desktop
-1024px laptop/tablet
-768px tablet
-390px mobile
-
-Then ask:
-
-Does this look custom?
-
-Does this look like LemontaKode?
-
-Is there a clear visual hierarchy?
-
-Is there unnecessary decoration?
-
-Does the animation have a reason?
-
-Does it look good when animation stops?
-
-Would this still be visually strong as a screenshot?
-
-If the answer is no, redesign it.
-
----
-
-# EXECUTION PROCESS
-
-Do this systematically.
-
-## Phase 1 — Audit
-
-Inspect the existing landing page and identify:
-
-* reusable content
-* reusable assets
-* project videos
-* useful components
-* weak visual patterns
-* duplicated patterns
-* performance concerns
-* animation infrastructure
-
-## Phase 2 — Design direction
-
-Define internally:
-
-* typography system
-* color system
-* spacing rhythm
-* grid
-* project treatment
-* animation language
-* section pacing
-
-Do this BEFORE implementing individual components.
-
-## Phase 3 — Structural redesign
-
-Rebuild the landing-page composition.
-
-Do not merely change CSS on the existing layout.
-
-## Phase 4 — Motion
-
-Once static composition looks excellent, add motion.
-
-Static design must look premium BEFORE animation.
-
-## Phase 5 — Performance
-
-Profile the implementation.
-
-Fix:
-
-* unnecessary rerenders
-* video loading
-* scroll performance
-* animation cleanup
-* layout shifts
-
-## Phase 6 — Responsive refinement
-
-Review every section at mobile/tablet/desktop widths.
-
----
-
-# FINAL RESULT
-
-The visitor should not think:
-
-"Nice animated template."
-
-They should think:
-
-**"These people clearly know how to design and build digital products."**
-
-The portfolio should feel confident enough to win serious software clients.
-
-Prioritize:
-
-1. art direction
-2. project presentation
-3. typography
-4. visual hierarchy
-5. motion quality
-6. storytelling
-7. performance
-8. responsive quality
-
-Do not prioritize quantity of effects.
-
-Build fewer things, but execute them exceptionally well.
-
-Start by auditing the current code and assets. Then redesign the landing page as a single coherent experience rather than independently styling each existing section.
-
-
-# TYPOGRAPHY — MAKE IT A CORE PART OF THE ART DIRECTION
-
-Typography must be one of the strongest visual elements of the entire LemontaKode website.
-
-Do NOT use one font, one weight, one heading style, and one body style everywhere.
-
-The current uniform typography contributes to the generic AI-generated appearance.
-
-Create a deliberate **multi-typeface typography system** with contrast, personality, and hierarchy.
-
-## Use Multiple Font Personalities
-
-Choose approximately **2–3 complementary font families**, each with a specific role.
-
-For example:
-
-### 1. Primary Display Font
-
-Use for major statements, hero typography, project titles, and important section headlines.
-
-It should feel:
-
-* distinctive
-* modern
-* confident
-* editorial
-* premium
-
-It may be geometric, grotesk, neo-grotesk, or another strong contemporary display face.
-
-### 2. Editorial / Accent Font
-
-Introduce a contrasting font for selected words, statements, project quotes, or expressive moments.
-
-Consider:
-
-* elegant serif
-* italic serif
-* condensed display font
-* tasteful variable font
-
-Use it selectively.
-
-For example, a headline could combine:
-
-**We design digital products**
-*people remember.*
-
-where the first line uses the primary display font and the second uses an elegant italic serif.
-
-The contrast should feel intentionally art-directed rather than decorative.
-
-### 3. Functional / Body Font
-
-Use a highly readable neutral sans-serif for:
-
-* descriptions
-* navigation
-* case-study information
-* buttons
-* captions
-* supporting text
-
-It should disappear into the experience rather than competing with the display typography.
-
----
-
-# TYPOGRAPHIC VARIETY
-
-Create meaningful variation using:
-
-* font family
-* font size
-* weight
-* width
-* italic styles
-* capitalization
-* letter spacing
-* line height
-* color
-* opacity
-* alignment
-* indentation
-* line breaks
-* text orientation where appropriate
-
-Do NOT make every heading:
-
-`font-bold text-5xl text-white`
-
-Typography should have composition.
-
----
-
-# EXTREME SCALE CONTRAST
-
-Use stronger differences between important and supporting typography.
-
-A major desktop statement might reach:
-
-`clamp(4rem, 9vw, 10rem)`
-
-while supporting metadata could be:
-
-`11px–13px`
-
-This large scale contrast creates editorial hierarchy.
-
-Do not make everything medium-sized.
-
-Use combinations such as:
-
-HUGE DISPLAY TEXT
-
-small metadata
-
-medium editorial copy
-
-tiny project index
-
-large italic statement
-
-compact technical labels
-
-The differences should be obvious.
-
----
-
-# RESPONSIVE TYPOGRAPHY
-
-Avoid relying entirely on Tailwind breakpoint jumps such as:
-
-`text-4xl md:text-6xl lg:text-8xl`
-
-Use fluid typography where beneficial:
+Use CSS such as:
 
 `clamp()`
 
-Typography should scale continuously with the viewport.
+and, where useful, height-based media queries.
 
-Carefully control line breaks so headlines remain composed at:
+The hero should look excellent on a MacBook/laptop viewport, not only on a large desktop monitor.
 
-1440px
-1024px
-768px
-390px
+The user should see the complete intended hero composition without needing to scroll just to understand it.
 
-Do not allow awkward one-word lines.
+Test at:
 
----
+1366×768
+1440×900
+1920×1080
+1024×768
+390×844
 
-# MIX FONTS INSIDE HEADLINES
-
-Important headlines can contain multiple typographic voices.
-
-Example concept:
-
-BUILDING
-*digital products*
-THAT WORK.
-
-Where:
-
-"BUILDING" = bold grotesk
-"digital products" = large elegant italic serif
-"THAT WORK." = bold grotesk
-
-Or:
-
-Software should feel
-**EFFORTLESS.**
-
-with radically different scale between the two lines.
-
-Do not copy these examples literally. Develop typography appropriate to LemontaKode.
+The hero should adapt intelligently to short screens.
 
 ---
 
-# TYPOGRAPHY + BRAND COLOR
+# 2. HERO STILL NEEDS A REAL VISUAL IDEA
 
-Use color as part of the typography system.
+The current hero is mostly:
 
-Do NOT simply make random keywords blue/yellow.
+large typography
 
-Establish clear rules.
+* paragraph
+* CTA
+* telemetry list
 
-Possible palette:
+This is still too safe.
 
-primary text → warm off-white
-secondary text → muted grey
-brand emphasis → LemontaKode lemon
-technical metadata → cool neutral
-project-specific accent → derived carefully from project media
+Introduce a memorable visual system.
 
-Use lemon yellow sparingly so it remains powerful.
+Do NOT add another gradient blob.
 
-Some oversized typography can use very low-contrast colors to become part of the composition.
+Do NOT add floating generic cards.
 
-Example:
+Do NOT add a random 3D sphere.
 
-ENGINEERING
+Use the LemontaKode identity.
 
-could appear as enormous dark-grey background typography while smaller content moves above it.
+Explore a custom visual such as:
 
----
+* animated LemontaKode mark
+* lemon-inspired geometric object
+* fragmented brand typography
+* interactive typographic composition
+* code/product fragments that respond subtly to cursor movement
+* masked product imagery
+* animated grid deformation
+* brand object that transitions into the next section
 
-# TYPOGRAPHIC MOTION
+The visual should have a reason to exist.
 
-Typography animation should also vary.
-
-Do not animate every heading using:
-
-opacity 0 → 1
-translateY 20px → 0
-
-Use different techniques according to importance.
-
-Possible techniques:
-
-### Mask reveal
-
-Text emerges vertically from an overflow-hidden wrapper.
-
-### Line reveal
-
-Headline lines appear sequentially.
-
-### Character reveal
-
-Individual characters subtly appear/stagger.
-
-Use sparingly.
-
-### Split typography
-
-Two portions of a headline move from opposing directions.
-
-### Scroll-linked typography
-
-Large words subtly translate as the visitor scrolls.
-
-### Variable font animation
-
-If a suitable variable font is used, carefully animate weight or width.
-
-### Italic transition
-
-A selected word can subtly transform between roman and italic on interaction.
-
-### Text color transition
-
-Typography can change color as the background/section changes.
-
-### Oversized background words
-
-Large words can move slower than foreground content to create depth.
-
-Keep everything smooth and restrained.
+The hero needs ONE signature interaction.
 
 ---
 
-# EDITORIAL COMPOSITION
+# 3. CENTERED FLOATING NAVBAR — NOT FULL WIDTH
 
-Treat typography like graphic design rather than HTML text.
+Completely redesign the current navbar.
 
-Experiment with:
+I explicitly DO NOT want a full-width navbar.
 
-* asymmetrical positioning
-* text occupying only part of the viewport
-* oversized words extending near viewport edges
-* unexpected line breaks
-* small annotations beside huge headlines
-* vertical project numbers
-* offset serif words
-* aligned metadata columns
-* intentional whitespace
-* baseline alignment
+Remove the current full-width header treatment.
 
-Not every section title needs to sit at:
+Remove the white horizontal line that appears after scrolling.
 
-left: 0
-then paragraph
-then grid
+There must be NO full-screen-width `border-bottom`.
 
-Break this pattern.
+Create a centered floating navigation container.
+
+Desktop concept:
+
+```
+             [ LemontaKode | Work | Services | Process | Contact | Let's talk ]
+```
+
+The actual nav container should have a controlled maximum width and should float near the top center.
+
+Example conceptual behavior:
+
+At top:
+
+slightly wider
+transparent / visually integrated with hero
+minimal chrome
+
+After scrolling:
+
+smoothly becomes narrower
+moves slightly downward/upward as appropriate
+background gains subtle opacity
+small blur if performance permits
+corners become slightly more compact
+logo may simplify
+spacing between nav items tightens
+
+This should feel like the SAME navbar physically transforming.
+
+Do not abruptly switch CSS classes.
+
+Animate dimensions/position/background/radius/spacing smoothly.
+
+Use GSAP if it provides the cleanest implementation.
+
+The transformation should feel premium.
+
+NO white horizontal line.
+
+NO full-width background bar.
+
+NO full-width border.
+
+On mobile create an appropriately compact floating navigation control.
 
 ---
 
-# PROJECT TYPOGRAPHY
+# 4. ACTUALLY USE GSAP
 
-Each case study should have strong typographic identity.
+GSAP exists in the project but the current experience barely benefits from it.
+
+Use GSAP intentionally.
+
+Use:
+
+GSAP
+ScrollTrigger
+
+where they materially improve the experience.
+
+Do NOT use GSAP merely to reproduce:
+
+opacity: 0 → 1
+y: 20 → 0
+
+Framer Motion can handle simple component micro-interactions.
+
+GSAP should handle larger narrative motion.
+
+Potential uses:
+
+* pinned sections
+* scrubbed transitions
+* horizontal project movement
+* typography masks
+* project video transitions
+* section transformations
+* navbar morphing
+* parallax
+* controlled scale transitions
+* scroll-linked progress
+* image/video reveals
+* clip-path reveals
+
+Create proper GSAP contexts and clean them up on unmount.
+
+Do not create memory leaks.
+
+---
+
+# 5. STOP MAKING EVERYTHING MOVE UP
+
+The site currently relies too much on:
+
+initial:
+opacity 0
+y 15/20
+
+then:
+opacity 1
+y 0
+
+Stop using this as the default animation.
+
+It makes the website feel generated.
+
+Every section does NOT need an entrance animation.
+
+Motion should depend on the composition.
+
+Use a richer vocabulary.
 
 For example:
 
-small:
-`01 / CROWDFUNDING PLATFORM`
+## Typography
 
-huge:
-`TPFAID`
+clip-path reveal
+mask reveal
+line splitting
+horizontal reveal
+letter-spacing transition
+selected word italic transformation
+text crossing behind/over media
 
-supporting:
-`Design · Engineering · Infrastructure`
+## Media
 
-then an editorial outcome such as:
+masked expansion
+scale from cropped state
+horizontal translation
+image/video reveal through clipping
+sticky media transformation
+controlled parallax
 
-`72 HOURS → 6 MINUTES`
+## Sections
 
-The outcome could become a major typographic moment instead of another statistic card.
+background transition
+pinned content
+horizontal progression
+overlapping sections
+scroll-linked scale
+foreground/background depth
 
-Project videos and typography should interact compositionally.
+## Microinteraction
 
-Typography can partially overlap media where readability remains excellent.
+magnetic button
+arrow slide
+underline expansion
+text swap
+cursor-follow project label
+
+Use restraint.
+
+Not everything needs to move.
 
 ---
 
-# TECHNICAL TYPOGRAPHY
+# 6. BREAK THE VERTICAL SCROLL MONOTONY
 
-Use a tasteful monospace font selectively for technical information such as:
+This is one of the most important requirements.
 
-`NEXT.JS / NODE / MONGODB`
+Currently EVERYTHING is vertically stacked.
 
-`2026`
+Hero ↓
+Vision ↓
+Capabilities ↓
+Process ↓
+Projects ↓
+Contact ↓
 
-`WEB PLATFORM`
+Inside those sections, everything also moves vertically.
 
-`ROLE — DESIGN + ENGINEERING`
+This is too predictable.
 
-`STATUS — LIVE`
+Create changes in scroll direction and spatial behavior.
 
-Do NOT use monospace for normal paragraphs.
-
-It should provide a subtle engineering character.
-
----
-
-# FONT WEIGHTS
-
-Use the full range intentionally.
+The page itself can still use normal vertical browser scrolling, but vertical wheel/touch scrolling should sometimes DRIVE other movement.
 
 Examples:
 
-300 → elegant supporting copy
-400 → body
-500 → navigation / labels
-600 → important information
-700 → headings
-800/900 → rare display moments
+vertical scroll → horizontal content movement
 
-Avoid making everything bold.
+vertical scroll → pinned composition changing internally
 
-Thin/light typography beside extremely heavy display typography can create sophisticated contrast.
+vertical scroll → project media expanding
 
----
+vertical scroll → typography moving horizontally
 
-# ITALICS
+vertical scroll → capability rows crossing the viewport
 
-Use italics as an art-direction tool.
+Do not hijack the user's scroll aggressively.
 
-A premium serif italic can make selected words feel more human and editorial.
+The browser still needs to feel natural.
 
-Examples of concepts:
-
-Engineered with
-*intention.*
-
-Digital products for
-*real people.*
-
-Again, do not blindly copy these phrases.
-
-Use the technique where it improves the composition.
+But the visual response does NOT always need to be downward movement.
 
 ---
 
-# TEXT COLOR HIERARCHY
+# 7. PROJECT SECTION IS FAR TOO LONG
 
-Do not use pure white for every piece of text.
+The current project implementation gives every project approximately 85vh plus huge spacing.
 
-Create depth.
+With four/five projects this creates an unnecessarily long page.
 
-Example hierarchy:
+Redesign this entire section.
 
-Primary headline:
-`#F4F2ED`
+I do NOT want to vertically scroll through five almost-identical giant project blocks.
 
-Body:
-`rgba(244,242,237,0.72)`
+This is a major requirement.
+
+---
+
+# 8. PROJECTS SHOULD BECOME A HORIZONTAL / PINNED EXPERIENCE
+
+On desktop, strongly consider a pinned horizontal case-study experience.
+
+Concept:
+
+The visitor reaches "Selected Work."
+
+The section pins.
+
+Normal vertical scrolling now moves through projects horizontally.
+
+PROJECT 01 → PROJECT 02 → PROJECT 03 → PROJECT 04 → PROJECT 05
+
+The user continues scrolling normally with mouse wheel/trackpad.
+
+GSAP ScrollTrigger translates the internal project track horizontally.
+
+After the final project, normal vertical page scrolling resumes.
+
+This creates variation without requiring custom wheel-event hijacking.
+
+Keep the interaction smooth and predictable.
+
+Include a subtle progress indicator:
+
+01 ————— 05
+
+or a thin progress line.
+
+Do not make the horizontal section excessively long.
+
+Each project should transition efficiently.
+
+---
+
+# 9. PROJECT VIDEO ASPECT RATIOS ARE WRONG
+
+Do NOT assume all project videos are 16:9.
+
+The current implementation forces:
+
+`aspect-[16/9]`
+
+and:
+
+`object-cover`
+
+which crops important UI from project recordings.
+
+Inspect the actual media dimensions/aspect ratios.
+
+Preserve each video's meaningful content.
+
+The user should be able to see the complete product interface.
+
+Use an adaptive media stage.
+
+Possible implementation:
+
+large outer project media container
+
+inside:
+
+video using its natural aspect ratio
+
+`object-fit: contain`
+
+with an intentionally designed surrounding stage.
+
+Do NOT leave ugly empty black space.
+
+Instead make the container itself part of the composition.
+
+For example:
+
+soft neutral/dark stage
+subtle project-specific background
+browser chrome where appropriate
+small project metadata
+carefully controlled padding
+
+The VIDEO should never be cropped simply to satisfy a decorative 16:9 box.
+
+For landscape desktop recordings, show the entire recording.
+
+For taller recordings, adapt the frame.
+
+---
+
+# 10. PROJECT MEDIA SHOULD BE THE STAR
+
+Current project presentation still feels like:
+
+video
+heading
+tagline
+tech
+stat card
+
+That is too formulaic.
+
+Make each project feel like a designed case study.
+
+The video should occupy most of the visual attention.
+
+Project metadata can sit around it rather than underneath it.
+
+Example composition:
+
+01 / TPFAID
+
+```
+             [ LARGE PRODUCT VIDEO ]
+```
+
+Crowdfunding
+Platform
+
+ROLE
+Design + Engineering
+
+```
+                                72 HRS
+                                ↓
+                                6 MIN
+```
+
+Use asymmetry.
+
+Use whitespace.
+
+Allow typography to interact with the media.
+
+---
+
+# 11. EACH PROJECT CAN TRANSITION DIFFERENTLY
+
+Do not make every project transition identical.
+
+Maintain one coherent motion language, but vary composition.
+
+Example:
+
+Project 1:
+video enters from right while title remains pinned.
+
+Project 2:
+media expands from a smaller crop.
+
+Project 3:
+two pieces of project media slide past each other.
+
+Project 4:
+typography transitions behind the media.
+
+The variation should feel art-directed, not random.
+
+---
+
+# 12. MOBILE PROJECT FALLBACK
+
+Do NOT force desktop horizontal pinning onto mobile if it becomes awkward.
+
+Mobile can use:
+
+horizontal swipe/snap carousel
+
+or
+
+compact vertical project cards with native aspect-ratio media
+
+or another touch-friendly experience.
+
+Keep it fast.
+
+Do not make mobile users scroll through five 85vh project chapters.
+
+---
+
+# 13. EVERY SECTION CURRENTLY LOOKS TOO SIMILAR
+
+This needs to change significantly.
+
+The website currently uses too much of the same:
+
+dark background
+small yellow mono label
+large white heading
+yellow serif word
+paragraph
+content underneath
+
+That is now becoming another template.
+
+Each major section needs a distinct composition.
+
+Not a different random design—different visual RHYTHM within one design system.
+
+---
+
+# 14. GIVE EACH SECTION ITS OWN VISUAL CHARACTER
+
+For example:
+
+## HERO
+
+Dark.
+
+Highly typographic.
+
+Interactive brand visual.
+
+Controlled viewport composition.
+
+---
+
+## VISION
+
+Switch atmosphere.
+
+Potentially warm off-white / cream background.
+
+Dark typography.
+
+Large editorial statement.
+
+Minimal content.
+
+Maybe oversized serif typography.
+
+Almost no UI components.
+
+---
+
+## CAPABILITIES
+
+Return to dark or another neutral tone.
+
+Large horizontal typographic rows.
+
+No cards.
+
+Hover/cursor interaction.
+
+Rows may slide slightly horizontally.
+
+Supporting text/image can change as the active capability changes.
+
+---
+
+## PROCESS
+
+Use a pinned storytelling composition.
+
+Left:
+
+large changing number:
+
+01
+02
+03
+04
+05
+
+Right:
+
+Discover
+Design
+Build
+Launch
+Scale
+
+As the visitor scrolls, keep the overall section partially pinned while the active stage changes.
+
+Use GSAP ScrollTrigger.
+
+Avoid five cards.
+
+---
+
+## PROJECTS
+
+Horizontal/pinned cinematic section.
+
+Media-first.
+
+---
+
+## CONTACT
+
+Completely quiet again.
+
+Large typography.
+
+Very little interface.
+
+Large negative space.
+
+One strong action.
+
+This creates pacing.
+
+---
+
+# 15. BACKGROUND COLOR TRANSITIONS
+
+The website should not remain the exact same dark background from beginning to end.
+
+Introduce carefully controlled tonal transitions.
+
+Example:
+
+Hero:
+near black
+
+Vision:
+warm ivory
+
+Capabilities:
+warm grey / near black
+
+Process:
+deep charcoal
+
+Projects:
+black
+
+Contact:
+LemontaKode lemon or warm off-white, if aesthetically successful
+
+Do not turn the site into a rainbow.
+
+Use maybe 3–4 foundational tones.
+
+Transition between them smoothly.
+
+GSAP can interpolate section/background states if appropriate.
+
+---
+
+# 16. TYPOGRAPHY STILL NEEDS MORE VARIATION
+
+The previous typography changes are not enough.
+
+Do not repeat the same:
+
+mono yellow eyebrow
+white sans headline
+yellow serif italic word
+
+in every section.
+
+That is becoming formulaic.
+
+Create a typography SYSTEM, but allow different sections to emphasize different voices.
+
+Use approximately 3 complementary type voices:
+
+1. strong modern grotesk/display
+2. editorial serif / italic
+3. technical monospace
+
+But vary WHICH one dominates.
+
+Hero:
+grotesk dominant.
+
+Vision:
+serif dominant.
+
+Capabilities:
+condensed/grotesk typography dominant.
+
+Process:
+monospace numbers + restrained sans.
+
+Projects:
+huge project titles + tiny technical metadata.
+
+Contact:
+massive serif/sans combination.
+
+---
+
+# 17. DIFFERENT FONT SIZES — MUCH MORE CONTRAST
+
+Stop keeping all section headings around approximately the same scale.
+
+Create dramatic scale variation.
+
+Examples:
+
+Hero headline:
+very large
+
+Vision statement:
+even larger but lighter
+
+Capability names:
+clamp(2rem, 5vw, 5rem)
+
+Process number:
+clamp(6rem, 16vw, 15rem)
+
+Project number:
+11px
+
+Project title:
+clamp(4rem, 10vw, 9rem) where composition allows
 
 Metadata:
-`rgba(244,242,237,0.45)`
+10–12px
 
-Brand:
-LemontaKode lemon
+Body:
+15–18px
 
-Very subtle decorative text:
-`rgba(244,242,237,0.08)`
+Impact metric:
+very large
 
-Adjust actual values based on the final palette and accessibility requirements.
-
-Maintain sufficient contrast for readable content.
+This creates visual hierarchy.
 
 ---
 
-# FONT SELECTION
+# 18. TYPOGRAPHIC COLOR VARIATION
 
-Choose fonts intentionally.
+Do not use:
 
-Do not automatically default to:
+white
+yellow
+grey
 
-Inter
-Poppins
-Roboto
-Montserrat
+in exactly the same roles everywhere.
 
-unless there is a compelling reason.
+Examples:
 
-Explore high-quality fonts that give the portfolio more identity.
+On ivory section:
 
-Prefer performant variable fonts where practical.
+near-black headline
+muted graphite body
+lemon highlight
 
-If using Google Fonts or another webfont source, keep the number of requested files/weights under control.
+On dark section:
 
-Use `next/font` where appropriate to avoid unnecessary font-loading issues and layout shifts.
+warm-white display
+grey body
+lemon technical accent
 
-Do not sacrifice performance for typography.
+Projects may borrow subtle accent colors from their actual product identity.
 
----
-
-# TYPOGRAPHY PERFORMANCE
-
-Only load weights/styles actually used.
-
-Prefer variable font files when appropriate.
-
-Preload critical fonts.
-
-Use sensible fallbacks.
-
-Avoid FOIT.
-
-Prevent layout shift.
-
-Do not import ten font weights just because they exist.
+Keep accessibility intact.
 
 ---
 
-# IMPORTANT RULE
+# 19. HORIZONTAL TYPOGRAPHIC MOTION
 
-Typography should NOT merely contain the design.
+Introduce subtle horizontal typography movement.
 
-**Typography should BE part of the design.**
+Examples:
 
-If all images, gradients, glows, icons and animations were removed, the page should still look beautifully composed because of:
+A huge background word:
 
-type
-scale
-spacing
-alignment
-contrast
-hierarchy
+ENGINEERING →
 
-Every major section should have its own typographic rhythm while remaining part of one coherent LemontaKode design system.
+moves slowly left while scrolling.
 
-The final result should feel closer to an art-directed digital studio portfolio or editorial design piece than a conventional software-company template.
+Another line:
+
+← DESIGN
+
+moves slightly right.
+
+Capabilities can use opposing horizontal movement.
+
+This immediately breaks the "everything comes upward" feeling.
+
+Keep speed subtle.
+
+---
+
+# 20. VISION SECTION SHOULD BE EXTREMELY SIMPLE
+
+Do not turn vision into another component-heavy section.
+
+Consider an almost poster-like composition.
+
+Example concept:
+
+small:
+WHAT WE BELIEVE
+
+huge serif:
+Technology should
+feel less like
+technology.
+
+small annotation:
+DESIGN / ENGINEERING / PEOPLE
+
+Use large whitespace.
+
+Possibly one carefully selected image or brand detail.
+
+No cards.
+
+---
+
+# 21. CAPABILITIES SHOULD FEEL INTERACTIVE
+
+Use large rows.
+
+Example:
+
+01     PRODUCT ENGINEERING                 →
+
+02     WEB EXPERIENCES                     →
+
+03     MOBILE                              →
+
+04     PRODUCT DESIGN                      →
+
+05     INFRASTRUCTURE                      →
+
+06     SECURITY                            →
+
+Hovering a row could:
+
+shift typography horizontally
+reveal a short description
+change a supporting visual
+move an arrow
+alter background tone subtly
+
+Desktop cursor interaction can add depth.
+
+Mobile should use tap/accordion behavior.
+
+---
+
+# 22. PROCESS SHOULD USE PINNING
+
+This is a strong place for ScrollTrigger.
+
+Example:
+
+section height: approximately 300–400vh internally
+
+visible viewport remains pinned for part of it.
+
+As scroll progresses:
+
+01 DISCOVER
+
+transitions into
+
+02 DESIGN
+
+then
+
+03 BUILD
+
+then
+
+04 LAUNCH
+
+then
+
+05 SCALE
+
+The large number can transform.
+
+Descriptions can crossfade/mask.
+
+A line/progress element can update.
+
+But do not make the pinned duration excessive.
+
+The user should understand the process quickly.
+
+---
+
+# 23. CREATE DEPTH
+
+The site currently feels flat because content mostly sits on one plane.
+
+Create subtle depth with:
+
+foreground typography
+media layer
+background typography
+small annotations
+slow parallax elements
+
+Do NOT create fake 3D everywhere.
+
+Depth should come mostly from motion speed differences and overlap.
+
+---
+
+# 24. SECTION OVERLAP
+
+Some transitions can overlap.
+
+For example:
+
+the final word of Vision could remain visible briefly while Capabilities enters.
+
+Or project media could expand over the section boundary.
+
+Or the hero brand object could transition into the Vision section.
+
+This makes the website feel continuous rather than:
+
+<Component />
+<Component />
+<Component />
+<Component />
+
+---
+
+# 25. USE CLIP-PATH / MASKING
+
+Use masking selectively for premium reveals.
+
+Examples:
+
+video reveal from center
+headline revealed line-by-line
+project image sliding beneath a mask
+section transition wipe
+
+Do not use clipping everywhere.
+
+2–4 strong uses across the page are enough.
+
+---
+
+# 26. ADD A SUBTLE SCROLL PROGRESS LANGUAGE
+
+Consider a small persistent indicator.
+
+Not a giant progress bar.
+
+Something like:
+
+03 / 06
+
+VISION
+CAPABILITIES
+PROCESS
+WORK
+
+that changes as sections become active.
+
+Could integrate into navbar or page edge.
+
+Keep it subtle.
+
+---
+
+# 27. PERFORMANCE
+
+All of these animations must remain smooth.
+
+Do not trade performance for complexity.
+
+GSAP animations should primarily animate:
+
+transform
+opacity
+clip-path where performant
+
+Avoid continuously animating expensive blur.
+
+Avoid huge fixed blurred layers.
+
+Use `gsap.context()`.
+
+Kill ScrollTriggers during cleanup.
+
+Refresh ScrollTrigger after media/fonts settle where necessary.
+
+Lazy-load videos.
+
+Only play project video when near/inside viewport.
+
+Pause videos when leaving.
+
+Use:
+
+`preload="metadata"`
+
+or appropriate preload strategy.
+
+Do not load every project video aggressively during initial page load.
+
+---
+
+# 28. LENIS + GSAP INTEGRATION
+
+If Lenis remains enabled, integrate it properly with ScrollTrigger.
+
+Do not have competing smooth-scroll systems.
+
+Ensure ScrollTrigger updates correctly with Lenis.
+
+The result must feel responsive rather than delayed or floaty.
+
+Do not over-smooth scrolling.
+
+Users should retain control.
+
+---
+
+# 29. REDUCED MOTION
+
+Provide `prefers-reduced-motion` behavior.
+
+Pinned/horizontal sections must still remain understandable without heavy animation.
+
+Content should never disappear if animation is disabled.
+
+---
+
+# 30. DO NOT JUST EDIT CSS
+
+This request requires structural component changes.
+
+You are allowed and expected to:
+
+rewrite components
+change section markup
+create animation hooks
+create reusable GSAP utilities
+change project layout
+change navigation architecture
+change responsive behavior
+remove obsolete components/styles
+
+Do not preserve weak structure simply because it already exists.
+
+---
+
+# FINAL EXPERIENCE TARGET
+
+The page should alternate between different modes:
+
+HERO
+→ controlled interactive composition
+
+VISION
+→ quiet editorial poster
+
+CAPABILITIES
+→ interactive horizontal typography
+
+PROCESS
+→ pinned scroll narrative
+
+PROJECTS
+→ horizontal cinematic portfolio
+
+CONTACT
+→ quiet typographic conclusion
+
+That variation is essential.
+
+The website should NOT feel like six vertically stacked Tailwind sections.
+
+It should feel like one continuous art-directed digital experience.
+
+---
+
+# NON-NEGOTIABLE ACCEPTANCE CHECKLIST
+
+Before finishing, verify all of these:
+
+* Hero fits completely and intentionally on 1366×768 laptop screens.
+* Hero does not feel cramped on short-height displays.
+* Navbar is centered and floating.
+* Navbar is NOT full viewport width.
+* No white horizontal navbar line appears while scrolling.
+* Navbar smoothly morphs on scroll.
+* GSAP + ScrollTrigger are genuinely used for meaningful motion.
+* Animation is not mostly fade-up/slide-up.
+* At least one major section uses pinned scroll behavior.
+* At least one major section responds horizontally to vertical scrolling.
+* Projects no longer require four/five repetitive 85vh vertical chapters.
+* Project videos are NOT cropped by forced 16:9 `object-cover`.
+* Video aspect ratios are handled intelligently.
+* Project media is lazy/performance aware.
+* Sections have visibly different compositions.
+* Typography treatment changes between sections.
+* Font scale varies dramatically and intentionally.
+* Background tone changes at least a few times.
+* Mobile receives a deliberate fallback for complex desktop interactions.
+* No excessive scroll-jacking.
+* No excessive cards.
+* No repetitive yellow-eyebrow + white-heading + yellow-serif formula.
+* No generic AI/SaaS visual language.
+* No unnecessary gradients/glows.
+* No animation exists merely because animation was requested.
+* Scrolling remains smooth.
+* No horizontal overflow bugs.
+* Reduced-motion mode remains usable.
+
+Do not stop when the implementation is merely "clean."
+
+Iterate until the website has clearly different spatial behaviors, typography rhythms, and motion patterns across the page.
