@@ -3,11 +3,9 @@
 import React from 'react';
 import SmoothScroll from '../components/SmoothScroll';
 import NavBar from '../components/NavBar';
-import FloatingContactButton from '../components/FloatingContactButton';
 import ProblemHero from '../components/ProblemHero';
 import VisionStory from '../components/VisionStory';
 import SolutionCapabilities from '../components/SolutionCapabilities';
-import StatsSection from '../components/StatsSection';
 import DetailsCraftsmanship from '../components/DetailsCraftsmanship';
 import EmotionStories from '../components/EmotionStories';
 import ContactCTA from '../components/ContactCTA';
@@ -23,15 +21,12 @@ export default function Home() {
 
   return (
     <SmoothScroll>
-      <div className="relative flex flex-col min-h-screen bg-[#0b0d14] text-white antialiased">
+      <div className="relative flex flex-col min-h-screen bg-[#0a0b0e] text-[#F4F2ED] antialiased">
         {/* Navigation Bar */}
         <NavBar />
 
-        {/* Floating Quick Contact Trigger */}
-        <FloatingContactButton />
-
         <main className="flex-grow">
-          {/* SECTION 1: HERO */}
+          {/* SECTION 1: ASYMMETRICAL EDITORIAL HERO */}
           <div id="hero">
             <ProblemHero
               onViewWork={() => scrollToSection('projects')}
@@ -39,38 +34,33 @@ export default function Home() {
             />
           </div>
 
-          {/* SECTION 2: VISION */}
+          {/* SECTION 2: STUDIO VISION & PHILOSOPHY */}
           <div id="vision">
             <VisionStory />
           </div>
 
-          {/* SECTION 3: CAPABILITIES */}
+          {/* SECTION 3: EDITORIAL CAPABILITY INDEX */}
           <div id="services">
             <SolutionCapabilities />
           </div>
 
-          {/* SECTION 4: PERFORMANCE & STATS */}
-          <div id="stats">
-            <StatsSection />
-          </div>
-
-          {/* SECTION 5: CRAFTSMANSHIP & PROCESS */}
+          {/* SECTION 4: METHODOLOGY & PROCESS */}
           <div id="process">
             <DetailsCraftsmanship />
           </div>
 
-          {/* SECTION 6: STORIES OF IMPACT */}
+          {/* SECTION 5: CINEMATIC CASE STUDIES */}
           <div id="projects">
             <EmotionStories />
           </div>
 
-          {/* SECTION 7: CONTACT / PARTNERSHIP */}
+          {/* SECTION 6: INITIATE ENGAGEMENT */}
           <div id="contact">
             <ContactCTA />
           </div>
         </main>
 
-        {/* Footer */}
+        {/* Minimal Studio Footer */}
         <Footer />
       </div>
     </SmoothScroll>

@@ -7,160 +7,138 @@ export default function EmotionStories() {
   const projects = [
     {
       id: 'tpfaid',
-      title: 'TPFAID Platform',
-      subtitle: 'Crowdfunding Platform',
-      tagline: 'Empowering communities through collective empathy.',
-      story: {
-        problem: 'Traditional donation platforms were slow and lacked verification, causing donors to lose trust and beneficiaries to wait weeks for vital aid.',
-        change: 'We built a high-performance, real-time crowdfunding system that connects donors directly to verified emergency projects.',
-        achieved: 'Enabled instant disbursements, lowered processing friction by 40%, and restored donor trust globally.',
-      },
+      num: '01',
+      category: 'CROWDFUNDING PLATFORM',
+      title: 'TPFAID',
+      subtitle: 'Realtime Aid Disbursement Platform',
+      tagline: 'Empowering global donors through instant, trackable aid verification.',
+      outcomeLabel: 'DISBURSEMENT SPEED',
+      outcomeVal: 'INSTANT',
+      outcomeDesc: 'Lowered donation processing friction by 40% globally.',
+      role: 'Product Design · Full-Stack Engineering · AWS Infrastructure',
+      tech: 'NEXT.JS / AWS AMPLIFY / TAILWIND / REALTIME MAP',
       videoUrl: '/tpfvideo.mp4',
-      glow: 'from-blue-600/20 via-primary/10 to-transparent',
     },
     {
       id: 'tpf-admin',
-      title: 'tpf-admin System',
-      subtitle: 'Management Dashboard',
-      tagline: 'Orchestrating trust with absolute precision.',
-      story: {
-        problem: 'Administrators struggled to verify claims, moderate campaigns, and handle distribution pipelines using fragmented tools.',
-        change: 'We engineered a centralized control dashboard designed specifically for campaign approval workflows, audit trails, and security.',
-        achieved: 'Reduced campaign approval delay from 72 hours to 6 minutes, ensuring emergency funding arrives when needed.',
-      },
+      num: '02',
+      category: 'MANAGEMENT DASHBOARD',
+      title: 'TPF ADMIN',
+      subtitle: 'Enterprise Control System',
+      tagline: 'Orchestrating trust & campaign verification with absolute precision.',
+      outcomeLabel: 'APPROVAL DELAY',
+      outcomeVal: '72 HRS → 6 MIN',
+      outcomeDesc: 'Cut campaign review backlog from days to minutes.',
+      role: 'System Architecture · Security Audit · Dashboard UI',
+      tech: 'REACT / NODE.JS / EXPRESS / MONGO / WEBSOCKET',
       videoUrl: '/tpfadmin-video.mp4',
-      glow: 'from-[#00D4FF]/20 via-[#00D4FF]/10 to-transparent',
     },
     {
       id: 'thetraceexpress',
-      title: 'The Trace Express',
-      subtitle: 'Courier Delivery Engine',
-      tagline: 'Shrinking global logistics friction.',
-      story: {
-        problem: 'International courier tracking was complex, plagued by missing manifests and customs delays.',
-        change: 'We designed a cross-border shipping engine with predictive customs validation and multi-carrier live tracking.',
-        achieved: 'Automated international courier routing and delivered real-time tracking across 120+ countries.',
-      },
+      num: '03',
+      category: 'COURIER LOGISTICS ENGINE',
+      title: 'THE TRACE EXPRESS',
+      subtitle: 'Cross-Border Shipping Engine',
+      tagline: 'Shrinking international courier tracking & customs friction.',
+      outcomeLabel: 'GLOBAL REACH',
+      outcomeVal: '120+ COUNTRIES',
+      outcomeDesc: 'Predictive manifest processing across global shipping hubs.',
+      role: 'API Integration · Custom Logistics CMS · Microservices',
+      tech: 'NEXT.JS SSR / GRAPHQL / KUBERNETES / DOCKER',
       videoUrl: '/tte-video.mp4',
-      glow: 'from-[#FFD400]/20 via-[#FFD400]/10 to-transparent',
     },
     {
       id: 'flowindia',
-      title: 'Flow India Projects',
-      subtitle: 'Brand Identity Showcase',
-      tagline: 'Sculpting a digital legacy.',
-      story: {
-        problem: 'Flow India lacked an immersive digital presentation to convey enterprise authority to international clients.',
-        change: 'We constructed a high-speed, minimalist web identity with fluid typography and dynamic project showcases.',
-        achieved: 'Established a premium digital presence, driving client conversions and corporate authority.',
-      },
+      num: '04',
+      category: 'BRAND IDENTITY & DIGITAL SHOWCASE',
+      title: 'FLOW INDIA',
+      subtitle: 'Immersive Studio Identity',
+      tagline: 'Sculpting an authoritative corporate presence online.',
+      outcomeLabel: 'CLIENT ENGAGEMENT',
+      outcomeVal: '+250% RETENTION',
+      outcomeDesc: 'Established a premium corporate showcase benchmark.',
+      role: 'Brand Direction · Editorial Web Design · Animations',
+      tech: 'NEXT.JS / GSAP / FRAMER MOTION / TAILWIND',
       videoUrl: '/flowindiavideo.mp4',
-      glow: 'from-purple-600/20 via-purple-500/10 to-transparent',
     }
   ];
 
   return (
-    <section className="relative py-28 md:py-36 bg-[#0b0d14] text-white overflow-hidden" id="projects">
-      {/* Divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-white/10" />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
-        {/* Header */}
-        <div className="max-w-3xl mb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6 }}
-            className="text-xs uppercase tracking-[0.25em] font-bold text-primary mb-3"
-          >
-            Stories of Impact
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight"
-          >
-            Featured Case Studies.
-          </motion.h2>
+    <section className="bg-[#0a0b0e] text-[#F4F2ED]" id="projects">
+      {/* Section Header */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-28 pb-16 border-t border-white/10">
+        <div className="font-mono-tech text-xs tracking-[0.2em] text-[#ffd400] uppercase mb-3">
+          05 // FEATURED CASE STUDIES
         </div>
+        <h2 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-[#F4F2ED]">
+          Selected <span className="font-serif-italic font-normal text-[#ffd400]">works.</span>
+        </h2>
+      </div>
 
-        {/* Stories Listing */}
-        <div className="space-y-36">
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12 lg:gap-20`}
+      {/* Viewport-Filling Cinematic Project Chapters */}
+      <div className="space-y-32 pb-32">
+        {projects.map((project) => (
+          <div
+            key={project.id}
+            className="min-h-[85vh] flex flex-col justify-center border-t border-white/10 pt-16 px-6 md:px-12 max-w-7xl mx-auto"
+          >
+            {/* Top Project Metadata Header */}
+            <div className="flex flex-col md:flex-row justify-between md:items-end mb-8 gap-4 font-mono-tech text-xs">
+              <div className="flex items-center gap-3">
+                <span className="text-[#ffd400] font-bold text-sm">{project.num}</span>
+                <span className="text-white/40">//</span>
+                <span className="tracking-widest uppercase text-white/80">{project.category}</span>
+              </div>
+              <div className="text-white/40">{project.role}</div>
+            </div>
+
+            {/* Massive Viewport Video Frame */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.8 }}
+              className="w-full aspect-[16/9] max-h-[60vh] rounded-2xl overflow-hidden bg-[#111319] border border-white/15 mb-10 relative group"
             >
-              {/* Video Loop Container Frame */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: '-80px' }}
-                transition={{ duration: 0.8 }}
-                className="w-full lg:w-7/12 aspect-[16/9] relative rounded-3xl overflow-hidden bg-[#121212] border border-white/15 shadow-[0_25px_80px_rgba(0,0,0,0.6)] group"
-              >
-                {/* Visual Ambient Glow */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.glow} opacity-30 pointer-events-none z-10`} />
+              <video
+                src={project.videoUrl}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
 
-                {/* Video Loop */}
-                <video
-                  src={project.videoUrl}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover relative z-0 group-hover:scale-102 transition-transform duration-700"
-                />
-              </motion.div>
-
-              {/* Story Details */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-80px' }}
-                transition={{ duration: 0.8, delay: 0.15 }}
-                className="w-full lg:w-5/12 flex flex-col justify-center"
-              >
-                <span className="text-xs font-bold uppercase tracking-widest text-primary block mb-2">
-                  {project.subtitle}
-                </span>
-                <h3 className="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+            {/* Editorial Project Story Details & Outcome Callout */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+              <div className="lg:col-span-7 space-y-4">
+                <h3 className="font-display text-4xl sm:text-5xl font-extrabold text-[#F4F2ED] tracking-tight">
                   {project.title}
                 </h3>
-                <p className="font-body text-base text-white/80 italic font-light mb-8 leading-relaxed">
+                <p className="font-serif-italic text-lg sm:text-xl text-[#ffd400] leading-relaxed font-normal">
                   "{project.tagline}"
                 </p>
-
-                {/* Story Segments */}
-                <div className="space-y-5 border-l-2 border-white/10 pl-6">
-                  <div>
-                    <h4 className="text-[11px] uppercase tracking-widest text-white/40 font-bold mb-1">The Problem</h4>
-                    <p className="text-sm text-[#cbcbcb] font-light leading-relaxed">
-                      {project.story.problem}
-                    </p>
-                  </div>
-
-                  <div>
-                    <h4 className="text-[11px] uppercase tracking-widest text-primary font-bold mb-1">The Solution</h4>
-                    <p className="text-sm text-[#cbcbcb] font-light leading-relaxed">
-                      {project.story.change}
-                    </p>
-                  </div>
-
-                  <div>
-                    <h4 className="text-[11px] uppercase tracking-widest text-lemon-yellow font-bold mb-1">The Result</h4>
-                    <p className="text-sm text-[#cbcbcb] font-light leading-relaxed">
-                      {project.story.achieved}
-                    </p>
-                  </div>
+                <div className="font-mono-tech text-xs text-white/50 tracking-wider">
+                  TECH: {project.tech}
                 </div>
-              </motion.div>
+              </div>
+
+              {/* Major Typographic Outcome Moment */}
+              <div className="lg:col-span-5 bg-[#111319] p-6 rounded-xl border border-white/10 font-mono-tech text-right">
+                <span className="text-[10px] uppercase tracking-widest text-white/40 block mb-1">
+                  {project.outcomeLabel}
+                </span>
+                <div className="text-3xl sm:text-4xl font-extrabold text-[#F4F2ED] tracking-tight mb-1">
+                  {project.outcomeVal}
+                </div>
+                <span className="text-xs text-[#F4F2ED]/70 block font-sans font-light">
+                  {project.outcomeDesc}
+                </span>
+              </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );

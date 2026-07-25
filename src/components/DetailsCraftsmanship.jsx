@@ -3,110 +3,90 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const technologies = [
-  { name: 'React', purpose: 'Component Architecture' },
-  { name: 'Next.js', purpose: 'Hybrid Rendering' },
-  { name: 'Flutter', purpose: 'Cross-Platform Engine' },
-  { name: 'Node.js', purpose: 'Asynchronous Services' },
-  { name: 'Django', purpose: 'Rapid Backend Logic' },
-  { name: 'Docker', purpose: 'Immutable Containers' },
-  { name: 'Kubernetes', purpose: 'Cluster Orchestration' },
-  { name: 'AWS', purpose: 'Elastic Cloud Infrastructure' },
-  { name: 'Cloud Security', purpose: 'Proactive Hardening' },
-  { name: 'Tailwind CSS', purpose: 'Fluid Design System' },
+const steps = [
+  {
+    num: '01',
+    title: 'Discover & Architecture',
+    desc: 'We map technical requirements, identify security risks, and specify system data models before writing code.',
+  },
+  {
+    num: '02',
+    title: 'UX & System Design',
+    desc: 'We prototype intuitive human interfaces and establish modular component architecture.',
+  },
+  {
+    num: '03',
+    title: 'Test-Driven Build',
+    desc: 'We execute clean, modular code with automated continuous integration and peer code reviews.',
+  },
+  {
+    num: '04',
+    title: 'Validated Launch',
+    desc: 'We deploy to production infrastructure with load testing, security verification, and roll-back safety.',
+  },
+  {
+    num: '05',
+    title: 'Telemetry & Scale',
+    desc: 'We monitor live performance metrics, optimize database queries, and continuously expand features.',
+  },
 ];
 
-const steps = [
-  { number: '01', title: 'Discover', desc: 'Map requirements, tech stack, and roadmap.' },
-  { number: '02', title: 'Design', desc: 'Prototype high-converting user flows.' },
-  { number: '03', title: 'Build', desc: 'Write clean, test-driven production code.' },
-  { number: '04', title: 'Launch', desc: 'Deploy to production with automated validation.' },
-  { number: '05', title: 'Scale', desc: 'Monitor telemetry and expand functionality.' },
+const techStack = [
+  'REACT', 'NEXT.JS', 'FLUTTER', 'NODE.JS', 'PYTHON / DJANGO', 'DOCKER', 'KUBERNETES', 'AWS CLOUD', 'CYBER SECURITY', 'GRAPHQL'
 ];
 
 export default function DetailsCraftsmanship() {
   return (
-    <section className="relative py-28 md:py-36 bg-[#0b0d14] text-white overflow-hidden" id="process">
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
+    <section className="py-28 md:py-36 bg-[#07080a] text-[#F4F2ED] border-t border-white/10 overflow-hidden" id="process">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6 }}
-            className="text-xs uppercase tracking-[0.25em] font-bold text-primary mb-3"
-          >
-            Craftsmanship
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight"
-          >
-            Built right from line one.
-          </motion.h2>
-        </div>
-
-        {/* Tech Stack Grid */}
-        <div className="mb-24">
-          <h3 className="font-display text-lg font-bold text-white/80 uppercase tracking-widest mb-6">
-            Technologies & Frameworks
-          </h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-            {technologies.map((tech, index) => (
-              <motion.div
-                key={tech.name}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="group p-5 bg-[#121212] rounded-xl border border-white/10 flex flex-col justify-between h-24 hover:border-primary/40 hover:bg-[#181920] transition-all duration-300"
-              >
-                <span className="font-display text-base font-bold text-white group-hover:text-primary transition-colors">
-                  {tech.name}
-                </span>
-                <span className="font-body text-[10px] uppercase tracking-wider text-[#cbcbcb] font-medium">
-                  {tech.purpose}
-                </span>
-              </motion.div>
-            ))}
+        <div className="max-w-2xl mb-16">
+          <div className="font-mono-tech text-xs tracking-[0.2em] text-[#ffd400] uppercase mb-3">
+            04 // METHODOLOGY
           </div>
+          <h2 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-[#F4F2ED]">
+            How we <span className="font-serif-italic font-normal text-[#ffd400]">execute.</span>
+          </h2>
         </div>
 
-        {/* 5-Step Process Timeline */}
-        <div className="relative">
-          <h3 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-12">
-            How We Execute
-          </h3>
+        {/* 5-Step Editorial Process Sequence */}
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-24">
+          {steps.map((step, index) => (
+            <motion.div
+              key={step.num}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="border-t border-white/15 pt-6 flex flex-col justify-between"
+            >
+              <div>
+                <span className="font-mono-tech text-sm font-bold text-[#ffd400] block mb-4">
+                  {step.num}
+                </span>
+                <h3 className="font-display text-xl font-bold text-[#F4F2ED] mb-3">
+                  {step.title}
+                </h3>
+                <p className="font-body text-xs text-[#F4F2ED]/70 leading-relaxed font-light">
+                  {step.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
 
-          {/* Connecting Line (Desktop) */}
-          <div className="absolute top-[65px] left-0 right-0 h-[2px] bg-white/10 hidden lg:block z-0" />
+        {/* Subtle Horizontal Tech Stack Ticker */}
+        <div className="pt-12 border-t border-white/10">
+          <div className="font-mono-tech text-xs uppercase tracking-[0.2em] text-white/40 mb-6">
+            Supported Core Technologies
+          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 relative z-10">
-            {steps.map((step, index) => (
-              <motion.div
-                key={step.number}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group flex flex-col gap-4 p-6 rounded-2xl bg-[#121212] lg:bg-transparent border border-white/10 lg:border-none"
-              >
-                <div className="w-12 h-12 rounded-full bg-[#121212] border border-white/20 flex items-center justify-center font-display text-sm font-extrabold text-primary shadow-lg group-hover:border-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  {step.number}
-                </div>
-                <div>
-                  <h4 className="font-display text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
-                    {step.title}
-                  </h4>
-                  <p className="font-body text-sm text-[#cbcbcb] leading-relaxed font-light">
-                    {step.desc}
-                  </p>
-                </div>
-              </motion.div>
+          <div className="flex flex-wrap gap-x-8 gap-y-4 font-mono-tech text-xs text-[#F4F2ED]/80">
+            {techStack.map((tech) => (
+              <div key={tech} className="flex items-center gap-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#ffd400]" />
+                <span>{tech}</span>
+              </div>
             ))}
           </div>
         </div>

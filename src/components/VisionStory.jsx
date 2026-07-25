@@ -5,62 +5,59 @@ import { motion } from 'framer-motion';
 
 export default function VisionStory() {
   return (
-    <section className="relative py-28 md:py-36 bg-[#0b0d14] text-white overflow-hidden" id="vision">
-      {/* Background Glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/10 rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute top-1/4 right-1/4 w-[350px] h-[350px] bg-lemon-yellow/5 rounded-full blur-[140px] pointer-events-none animate-pulse-slow" />
+    <section className="py-28 md:py-36 bg-[#07080a] text-[#F4F2ED] border-t border-white/10 relative overflow-hidden" id="vision">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+        {/* Left Column: Editorial Statement */}
+        <div className="lg:col-span-8 space-y-8">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="font-mono-tech text-xs tracking-[0.2em] text-[#ffd400] uppercase"
+          >
+            02 // STUDIO PHILOSOPHY
+          </motion.div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-12 flex flex-col items-center">
-        {/* Floating Logo Box */}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-[#F4F2ED]"
+          >
+            Technology should feel <br />
+            <span className="font-serif-italic font-normal text-[#ffd400]">fresh, simple,</span> and human.
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="font-body text-base sm:text-xl text-[#F4F2ED]/70 max-w-2xl leading-relaxed font-light"
+          >
+            We reject code bloat, fragile dependencies, and generic SaaS templates. At LemontaKode, we combine creative thinking with disciplined engineering to build software that users genuinely love to interact with.
+          </motion.p>
+        </div>
+
+        {/* Right Column: Logo Artwork Box */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.85 }}
+          initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-56 h-56 md:w-72 md:h-72 mb-14 flex items-center justify-center bg-[#121212] rounded-3xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.6)] group"
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="lg:col-span-4 flex items-center justify-center"
         >
-          {/* Subtle outer glowing breathing ring */}
-          <div className="absolute -inset-2 rounded-3xl border border-primary/20 group-hover:border-primary/40 transition-colors duration-500" />
-          
-          <img
-            src="/logo-light-bg-transparent.png"
-            alt="LemontaKode Official Logo"
-            className="w-40 h-40 md:w-52 md:h-52 object-contain transition-transform duration-700 group-hover:scale-105"
-          />
+          <div className="w-56 h-56 md:w-64 md:h-64 bg-[#111319] border border-white/10 rounded-2xl p-8 flex items-center justify-center relative group">
+            <div className="absolute inset-0 border border-[#ffd400]/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <img
+              src="/logo-light-bg-transparent.png"
+              alt="LemontaKode Logo Mark"
+              className="w-40 h-40 object-contain transition-transform duration-500 group-hover:scale-105"
+            />
+          </div>
         </motion.div>
-
-        {/* Vision Statement Headline */}
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold text-center tracking-tight leading-[1.15] max-w-4xl text-gradient-blue"
-        >
-          We believe technology should feel <br className="hidden md:inline" />
-          <span className="text-lemon-yellow">fresh</span>, <span className="text-primary">simple</span>, and <span className="text-white">human</span>.
-        </motion.h2>
-
-        {/* Statement Body */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-          className="font-body text-base sm:text-xl text-[#cbcbcb] text-center max-w-2xl mt-8 leading-relaxed font-light"
-        >
-          At LemontaKode, we combine creative thinking with engineering precision to build digital products that people genuinely love to use and businesses rely on.
-        </motion.p>
-      </div>
-
-      {/* Side Watermark Labels */}
-      <div className="absolute left-8 bottom-12 hidden xl:flex items-center gap-3 opacity-30 select-none">
-        <div className="w-2 h-2 rounded-full bg-lemon-yellow" />
-        <span className="text-xs uppercase tracking-widest font-semibold font-body text-white">Organic Freshness</span>
-      </div>
-      <div className="absolute right-8 bottom-12 hidden xl:flex items-center gap-3 opacity-30 select-none">
-        <span className="text-xs uppercase tracking-widest font-semibold font-body text-white">Digital Engineering</span>
-        <div className="w-2 h-2 rounded-full bg-primary" />
       </div>
     </section>
   );

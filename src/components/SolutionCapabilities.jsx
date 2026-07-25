@@ -1,118 +1,112 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Smartphone, Monitor, ShieldCheck, Cpu, LayoutTemplate, Cloud } from 'lucide-react';
 
 const capabilities = [
   {
-    title: 'Mobile Experiences',
-    outcome: 'Native iOS & Android apps that feel instant and responsive.',
-    icon: Smartphone,
-    color: 'text-primary border-primary/30 bg-primary/10',
+    num: '01',
+    title: 'Product Engineering',
+    category: 'Full-Stack Software',
+    desc: 'End-to-end custom application development engineered for high transaction volume, maintainability, and clean system architecture.',
+    tech: 'React · Next.js · Node.js · Python · Postgres',
   },
   {
+    num: '02',
     title: 'Web Platforms',
-    outcome: 'High-performance, SEO-ready web applications built to scale.',
-    icon: Monitor,
-    color: 'text-sky-400 border-sky-400/30 bg-sky-400/10',
+    category: 'High-Performance Web',
+    desc: 'Lightning-fast, SEO-optimized web applications and portal systems built with hybrid server rendering and custom design systems.',
+    tech: 'Next.js SSR · TypeScript · Tailwind CSS · GraphQL',
   },
   {
-    title: 'Business Software',
-    outcome: 'Custom enterprise software that unifies your operations.',
-    icon: Cpu,
-    color: 'text-lemon-yellow border-lemon-yellow/30 bg-lemon-yellow/10',
+    num: '03',
+    title: 'Mobile Applications',
+    category: 'iOS & Android Engine',
+    desc: 'Cross-platform and native mobile experiences designed for 60fps animations, offline capabilities, and instant push synchronization.',
+    tech: 'Flutter · React Native · Swift · Kotlin · Firebase',
   },
   {
+    num: '04',
+    title: 'UX & Product Design',
+    category: 'Interface & Architecture',
+    desc: 'Interface design that balances visual aesthetic with human clarity, reducing user friction and maximizing conversion efficiency.',
+    tech: 'Design Systems · Wireframing · Micro-Interactions · Prototypes',
+  },
+  {
+    num: '05',
+    title: 'Cloud & Infrastructure',
+    category: 'Elastic Systems',
+    desc: 'Automated CI/CD pipelines, container orchestration, and multi-region cloud deployments with zero-downtime releases.',
+    tech: 'AWS · Docker · Kubernetes · Terraform · CI/CD',
+  },
+  {
+    num: '06',
     title: 'Cyber Security',
-    outcome: 'Military-grade encryption, vulnerability audits, and defense.',
-    icon: ShieldCheck,
-    color: 'text-emerald-400 border-emerald-400/30 bg-emerald-400/10',
-  },
-  {
-    title: 'UX Product Design',
-    outcome: 'Modern, high-converting interfaces crafted for clarity.',
-    icon: LayoutTemplate,
-    color: 'text-purple-400 border-purple-400/30 bg-purple-400/10',
-  },
-  {
-    title: 'Cloud Infrastructure',
-    outcome: 'Automated CI/CD pipelines with zero downtime deployment.',
-    icon: Cloud,
-    color: 'text-orange-400 border-orange-400/30 bg-orange-400/10',
+    category: 'Hardening & Auditing',
+    desc: 'Proactive vulnerability assessments, OWASP auditing, penetration testing, and military-grade encryption built into your codebase.',
+    tech: 'OWASP · Vulnerability Scans · Penetration Testing · Encryption',
   },
 ];
 
 export default function SolutionCapabilities() {
-  return (
-    <section className="relative py-28 md:py-36 bg-[#0b0d14] text-white overflow-hidden" id="services">
-      {/* Background Circuit Grid */}
-      <div className="absolute inset-0 circuit-grid opacity-30 pointer-events-none" />
+  const [activeIdx, setActiveIdx] = useState(0);
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
+  return (
+    <section className="py-28 md:py-36 bg-[#0a0b0e] text-[#F4F2ED] border-t border-white/10" id="services">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6 }}
-            className="text-xs uppercase tracking-[0.25em] font-bold text-primary mb-3"
-          >
-            Capabilities
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight"
-          >
-            What we build.
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="font-body text-base text-[#cbcbcb] mt-4 font-light max-w-xl"
-          >
-            End-to-end software development tailored to your exact industry requirements.
-          </motion.p>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+          <div>
+            <div className="font-mono-tech text-xs tracking-[0.2em] text-[#ffd400] uppercase mb-3">
+              03 // CAPABILITY INDEX
+            </div>
+            <h2 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-[#F4F2ED]">
+              What we <span className="font-serif-italic font-normal text-[#ffd400]">engineer.</span>
+            </h2>
+          </div>
+          <p className="font-body text-sm text-[#F4F2ED]/60 max-w-md font-light">
+            We deliver targeted software engineering capabilities for companies building mission-critical platforms.
+          </p>
         </div>
 
-        {/* Bento Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {capabilities.map((cap, index) => {
-            const Icon = cap.icon;
-            return (
-              <motion.div
-                key={cap.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                className="group relative p-8 rounded-2xl bg-[#121212] border border-white/10 hover:border-primary/40 transition-all duration-300 hover:-translate-y-1.5 shadow-[0_15px_40px_rgba(0,0,0,0.4)] flex flex-col justify-between"
-              >
+        {/* Editorial Capability Rows List */}
+        <div className="space-y-0">
+          {capabilities.map((cap, index) => (
+            <motion.div
+              key={cap.num}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.05 }}
+              onMouseEnter={() => setActiveIdx(index)}
+              className={`capability-row py-8 px-4 cursor-pointer flex flex-col lg:flex-row lg:items-center justify-between gap-6 transition-all duration-300 ${
+                activeIdx === index ? 'border-l-2 border-l-[#ffd400] bg-white/[0.02]' : ''
+              }`}
+            >
+              {/* Monospace Number & Title */}
+              <div className="flex items-center gap-6 lg:w-5/12">
+                <span className="font-mono-tech text-sm text-[#ffd400]">{cap.num}</span>
                 <div>
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 border transition-transform duration-300 group-hover:scale-110 ${cap.color}`}>
-                    <Icon size={22} />
-                  </div>
-                  <h3 className="font-display text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#F4F2ED]">
                     {cap.title}
                   </h3>
-                  <p className="font-body text-sm text-[#cbcbcb] leading-relaxed font-light">
-                    {cap.outcome}
-                  </p>
+                  <span className="font-mono-tech text-[11px] text-white/40 tracking-wider uppercase block mt-1">
+                    {cap.category}
+                  </span>
                 </div>
+              </div>
 
-                <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-white/50 group-hover:text-white/80 transition-colors">
-                  <span>Explore capability</span>
-                  <span className="text-primary font-bold group-hover:translate-x-1 transition-transform">→</span>
-                </div>
-              </motion.div>
-            );
-          })}
+              {/* Description */}
+              <div className="lg:w-4/12 font-body text-sm text-[#F4F2ED]/70 leading-relaxed font-light">
+                {cap.desc}
+              </div>
+
+              {/* Technical Stack Tags */}
+              <div className="lg:w-3/12 font-mono-tech text-[11px] text-[#ffd400]/80 tracking-wider text-left lg:text-right">
+                {cap.tech}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
