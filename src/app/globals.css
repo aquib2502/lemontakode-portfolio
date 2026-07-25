@@ -96,18 +96,30 @@ html.lenis, html.lenis body {
   font-family: 'Inter', sans-serif;
 }
 
-/* Reduced 90dvh Hero Height (10% smaller) */
-.hero-viewport {
-  min-height: 90dvh;
-  height: 90dvh;
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Navbar-Safe Hero Container Offset */
+.hero-viewport-safe {
+  min-height: 88dvh;
+  height: 88dvh;
   max-height: 720px;
+  padding-top: 6rem;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .hero-viewport-safe {
+    padding-top: 7rem;
+  }
 }
 
 @media (max-height: 750px) {
-  .hero-viewport {
-    height: 90dvh;
-    min-height: 560px;
-    padding-top: 4rem;
+  .hero-viewport-safe {
+    height: 88dvh;
+    min-height: 540px;
+    padding-top: 5rem;
     padding-bottom: 1rem;
   }
 }
@@ -126,7 +138,7 @@ html.lenis, html.lenis body {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(244, 242, 237, 0.12);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -135,7 +147,30 @@ html.lenis, html.lenis body {
   max-width: 40rem;
   background: rgba(10, 11, 14, 0.96);
   border-color: rgba(255, 212, 0, 0.25);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+}
+
+/* Directional LEFT -> RIGHT Hover Sweep for Capability Rows */
+.capability-row-sweep {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(244, 242, 237, 0.1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.capability-row-sweep::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(244, 242, 237, 0.05);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
+}
+
+.capability-row-sweep:hover::before {
+  transform: scaleX(1);
 }
 
 /* Editorial Buttons */
@@ -214,17 +249,6 @@ html.lenis, html.lenis body {
 .mobile-carousel > * {
   scroll-snap-align: center;
   scroll-snap-stop: always;
-}
-
-/* Capability Row Hover */
-.capability-row {
-  border-bottom: 1px solid rgba(244, 242, 237, 0.1);
-  transition: all 0.3s ease;
-}
-
-.capability-row:hover {
-  background-color: rgba(244, 242, 237, 0.04);
-  padding-left: 1rem;
 }
 
 .no-scrollbar::-webkit-scrollbar {

@@ -49,10 +49,10 @@ const capabilities = [
 ];
 
 export default function SolutionCapabilities() {
-  const [activeIdx, setActiveIdx] = useState(0);
+  const [activeIdx, setActiveIdx] = useState(null);
 
   return (
-    <section className="theme-charcoal py-24 md:py-32 border-t border-white/10" id="services">
+    <section className="theme-charcoal py-24 md:py-32 border-t border-white/10 select-none" id="services">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
@@ -65,27 +65,29 @@ export default function SolutionCapabilities() {
             </h2>
           </div>
           <div className="font-mono-tech text-xs text-white/50">
-            HOVER OR TAP ANY SERVICE TO LEARN MORE
+            HOVER OR TAP ANY SERVICE TO EXPLORE →
           </div>
         </div>
 
-        {/* High-Contrast Interactive Typography Rows */}
-        <div className="space-y-0">
+        {/* Interactive Capability Rows with Directional LEFT -> RIGHT Sweep */}
+        <div className="space-y-0 border-t border-white/10">
           {capabilities.map((cap, index) => (
-            <motion.div
+            <div
               key={cap.num}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
               onMouseEnter={() => setActiveIdx(index)}
+              onMouseLeave={() => setActiveIdx(null)}
               onClick={() => setActiveIdx(index)}
-              className={`capability-row py-8 px-4 cursor-pointer flex flex-col lg:flex-row lg:items-center justify-between gap-6 transition-all duration-300 ${
-                activeIdx === index ? 'border-l-2 border-l-[#ffd400] bg-white/[0.04] pl-6' : ''
+              className={`capability-row-sweep relative py-8 px-6 cursor-pointer flex flex-col lg:flex-row lg:items-center justify-between gap-6 transition-all duration-300 ${
+                activeIdx === index ? 'bg-white/[0.04]' : ''
               }`}
             >
-              <div className="flex items-center gap-6 lg:w-5/12">
-                <span className="font-mono-tech text-sm font-bold text-[#ffd400]">{cap.num}</span>
+              {/* Row Left: Number & Title with Right-Shift Motion */}
+              <div className="relative z-10 flex items-center gap-6 lg:w-5/12 transition-transform duration-300 transform group-hover:translate-x-3">
+                <span className={`font-mono-tech text-sm font-bold transition-colors ${
+                  activeIdx === index ? 'text-[#ffd400]' : 'text-white/40'
+                }`}>
+                  {cap.num}
+                </span>
                 <div>
                   <h3 className="font-display text-xl sm:text-2.5xl font-extrabold tracking-tight text-[#F4F2ED]">
                     {cap.title}
@@ -96,14 +98,19 @@ export default function SolutionCapabilities() {
                 </div>
               </div>
 
-              <div className="lg:w-4/12 font-body text-sm text-[#cbcbcb] leading-relaxed font-normal">
+              {/* Row Center: Description */}
+              <div className="relative z-10 lg:w-4/12 font-body text-sm text-[#cbcbcb] leading-relaxed font-normal">
                 {cap.desc}
               </div>
 
-              <div className="lg:w-3/12 font-mono-tech text-[11px] text-[#ffd400] tracking-wider lg:text-right">
-                {cap.tech}
+              {/* Row Right: Tech Tag & Gliding Arrow Signal */}
+              <div className="relative z-10 lg:w-3/12 font-mono-tech text-[11px] text-[#ffd400] tracking-wider flex items-center lg:justify-end gap-3">
+                <span>{cap.tech}</span>
+                <span className={`transition-transform duration-300 ${activeIdx === index ? 'translate-x-2 text-[#ffd400]' : 'text-white/30'}`}>
+                  →
+                </span>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
