@@ -4,94 +4,60 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Smartphone, Monitor, ShieldCheck, Cpu, LayoutTemplate, Cloud } from 'lucide-react';
 
-// Fast, snappy "flip-up" reveal: a short back-out ease so cards pop into
-// place with a bit of overshoot rather than a plain fade/slide. Pure
-// transform + opacity (rotateX, scale, y) - no layout properties - so it
-// stays cheap even with several cards animating in a tight cascade.
-const POP_EASE = [0.34, 1.56, 0.64, 1];
-
-const gridVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.05, delayChildren: 0.02 },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 22, rotateX: -14, scale: 0.94 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    rotateX: 0,
-    scale: 1,
-    transition: { duration: 0.4, ease: POP_EASE },
-  },
-};
-
-const iconVariants = {
-  hidden: { opacity: 0, scale: 0.3, rotate: -20 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    rotate: 0,
-    transition: { duration: 0.32, ease: POP_EASE, delay: 0.08 },
-  },
-};
-
 const capabilities = [
   {
     title: 'Mobile Experiences',
-    outcome: 'Native iOS & Android apps that feel instant.',
+    outcome: 'Native iOS & Android apps that feel instant and responsive.',
     icon: Smartphone,
-    accent: 'bg-primary/5 border-primary/20 text-primary',
+    color: 'text-primary border-primary/30 bg-primary/10',
   },
   {
     title: 'Web Platforms',
-    outcome: 'Fast, SEO-ready sites built to convert.',
+    outcome: 'High-performance, SEO-ready web applications built to scale.',
     icon: Monitor,
-    accent: 'bg-blue-400/5 border-blue-400/20 text-blue-500',
+    color: 'text-sky-400 border-sky-400/30 bg-sky-400/10',
   },
   {
     title: 'Business Software',
-    outcome: 'Custom tools that unify your workflows.',
+    outcome: 'Custom enterprise software that unifies your operations.',
     icon: Cpu,
-    accent: 'bg-amber-500/5 border-amber-500/20 text-amber-600',
+    color: 'text-lemon-yellow border-lemon-yellow/30 bg-lemon-yellow/10',
   },
   {
     title: 'Cyber Security',
-    outcome: 'Military-grade protection, built in.',
+    outcome: 'Military-grade encryption, vulnerability audits, and defense.',
     icon: ShieldCheck,
-    accent: 'bg-emerald-500/5 border-emerald-500/20 text-emerald-500',
+    color: 'text-emerald-400 border-emerald-400/30 bg-emerald-400/10',
   },
   {
-    title: 'UX Design',
-    outcome: 'Interfaces people actually enjoy using.',
+    title: 'UX Product Design',
+    outcome: 'Modern, high-converting interfaces crafted for clarity.',
     icon: LayoutTemplate,
-    accent: 'bg-purple-500/5 border-purple-500/20 text-purple-500',
+    color: 'text-purple-400 border-purple-400/30 bg-purple-400/10',
   },
   {
     title: 'Cloud Infrastructure',
-    outcome: 'Infinite scale, zero downtime.',
+    outcome: 'Automated CI/CD pipelines with zero downtime deployment.',
     icon: Cloud,
-    accent: 'bg-orange-500/5 border-orange-500/20 text-orange-500',
+    color: 'text-orange-400 border-orange-400/30 bg-orange-400/10',
   },
 ];
 
 export default function SolutionCapabilities() {
   return (
-    <section className="relative py-20 md:py-32 bg-[#F5F6F8] text-dark-navy overflow-hidden" id="services">
-      {/* Background Soft Lines */}
-      <div className="absolute inset-0 circuit-grid opacity-[0.25] pointer-events-none" />
+    <section className="relative py-28 md:py-36 bg-[#0b0d14] text-white overflow-hidden" id="services">
+      {/* Background Circuit Grid */}
+      <div className="absolute inset-0 circuit-grid opacity-30 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
-        {/* Header */}
-        <div className="max-w-3xl mb-10 md:mb-16">
+        {/* Section Header */}
+        <div className="max-w-3xl mb-16">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-            className="text-xs uppercase tracking-[0.25em] font-bold text-primary mb-4"
+            transition={{ duration: 0.6 }}
+            className="text-xs uppercase tracking-[0.25em] font-bold text-primary mb-3"
           >
             Capabilities
           </motion.div>
@@ -99,48 +65,55 @@ export default function SolutionCapabilities() {
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.7, ease: 'easeOut', delay: 0.08 }}
-            className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] text-dark-navy"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight"
           >
             What we build.
           </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="font-body text-base text-[#cbcbcb] mt-4 font-light max-w-xl"
+          >
+            End-to-end software development tailored to your exact industry requirements.
+          </motion.p>
         </div>
 
-        {/* Mobile: horizontal snap-scroll strip. Desktop: grid. Same cards,
-            different container, so mobile is a quick swipe rather than a
-            long vertical scroll. */}
-        <motion.div
-          variants={gridVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-          style={{ perspective: 1000 }}
-          className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory -mx-6 px-6 md:mx-0 md:px-0 pb-2 md:pb-0 no-scrollbar"
-        >
-          {capabilities.map((cap) => {
+        {/* Bento Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {capabilities.map((cap, index) => {
             const Icon = cap.icon;
             return (
               <motion.div
                 key={cap.title}
-                variants={cardVariants}
-                className="group shrink-0 w-[70%] sm:w-[45%] md:w-auto snap-start flex flex-col p-6 md:p-7 bg-white rounded-2xl border border-dark-navy/10 shadow-[0_15px_45px_rgba(7,29,73,0.03)] hover:shadow-[0_25px_60px_rgba(7,29,73,0.08)] hover:border-primary/20 hover:-translate-y-1 transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                className="group relative p-8 rounded-2xl bg-[#121212] border border-white/10 hover:border-primary/40 transition-all duration-300 hover:-translate-y-1.5 shadow-[0_15px_40px_rgba(0,0,0,0.4)] flex flex-col justify-between"
               >
-                <motion.div
-                  variants={iconVariants}
-                  className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 border transition-all duration-300 group-hover:scale-105 ${cap.accent}`}
-                >
-                  <Icon size={22} strokeWidth={1.75} />
-                </motion.div>
-                <h3 className="font-display text-lg font-bold text-dark-navy mb-1.5 group-hover:text-primary transition-colors duration-300">
-                  {cap.title}
-                </h3>
-                <p className="font-body text-sm text-on-surface-variant leading-snug font-light">
-                  {cap.outcome}
-                </p>
+                <div>
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 border transition-transform duration-300 group-hover:scale-110 ${cap.color}`}>
+                    <Icon size={22} />
+                  </div>
+                  <h3 className="font-display text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                    {cap.title}
+                  </h3>
+                  <p className="font-body text-sm text-[#cbcbcb] leading-relaxed font-light">
+                    {cap.outcome}
+                  </p>
+                </div>
+
+                <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-white/50 group-hover:text-white/80 transition-colors">
+                  <span>Explore capability</span>
+                  <span className="text-primary font-bold group-hover:translate-x-1 transition-transform">→</span>
+                </div>
               </motion.div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

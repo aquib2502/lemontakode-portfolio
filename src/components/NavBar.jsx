@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,7 +9,7 @@ export default function NavBar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 40) {
+      if (window.scrollY > 30) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -29,81 +29,76 @@ export default function NavBar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-[background-color,padding,box-shadow] duration-300 ease-out ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#FAFAFA]/95 py-2 shadow-[0_4px_20px_rgba(7,29,73,0.02)]'
-          : 'bg-transparent py-4'
+          ? 'glass-header py-3 shadow-[0_10px_30px_rgba(0,0,0,0.5)]'
+          : 'bg-transparent py-5'
       }`}
     >
-      <nav className="flex justify-between items-center max-w-7xl mx-auto px-6 md:px-12">
+      <nav className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
         {/* Brand Logo & Name */}
-        <a href="#" className="flex items-center gap-1.5 group relative">
-          {/* Professional Downwards-sliding Tooltip */}
-          <div className="absolute top-full mt-2 left-2 opacity-0 translate-y-[-4px] scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 transition-all duration-400 ease-out pointer-events-none bg-primary text-white text-[8px] font-bold uppercase tracking-[0.2em] px-2 py-0.5 rounded shadow-sm flex items-center gap-1.5 z-20">
-            HI THERE
-            <span className="inline-block w-1 h-1 rounded-full bg-lemon-yellow" />
-          </div>
-
+        <a href="#" className="flex items-center gap-2.5 group relative">
           <img
             src="/4th.png"
             alt="LemontaKode Logo"
-            className="h-14 w-auto object-contain transition-all duration-700 ease-out group-hover:scale-108 group-hover:rotate-[4deg]"
+            className="h-10 w-auto object-contain transition-transform duration-500 group-hover:scale-105 group-hover:rotate-[3deg]"
           />
-          <span
-            className={`font-display text-sm font-bold tracking-tight transition-colors duration-300 ${
-              scrolled ? 'text-dark-navy' : 'text-white'
-            }`}
-          >
-            LemontaKode
-          </span>
+          <div className="flex flex-col">
+            <span className="font-display text-base font-extrabold tracking-tight text-white group-hover:text-primary transition-colors">
+              Lemonta<span className="text-lemon-yellow font-normal">Kode</span>
+            </span>
+            <span className="text-[9px] uppercase tracking-[0.25em] text-white/50 font-semibold font-body">
+              Tech Studio
+            </span>
+          </div>
         </a>
 
+        {/* Live Status Pill (Desktop) */}
+        <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] text-white/80 font-medium">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+          </span>
+          <span>Available for projects</span>
+        </div>
+
         {/* Desktop Nav Links */}
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className={`text-[10px] uppercase tracking-widest font-semibold transition-colors duration-300 ${
-                scrolled
-                  ? 'text-dark-navy/70 hover:text-primary'
-                  : 'text-white/70 hover:text-white'
-              }`}
+              className="text-xs uppercase tracking-widest font-semibold text-white/70 hover:text-primary transition-colors duration-200"
             >
               {link.name}
             </a>
           ))}
         </div>
 
-        {/* CTA Button */}
+        {/* Action Button */}
         <div className="hidden md:flex items-center">
           <a
             href="#contact"
-            className={`px-4 py-2 rounded-lg text-[10px] uppercase tracking-widest font-bold transition-all active:scale-95 duration-300 ${
-              scrolled
-                ? 'bg-primary hover:bg-primary-container text-white shadow-sm'
-                : 'bg-white hover:bg-white/90 text-dark-navy shadow-sm'
-            }`}
+            className="px-5 py-2.5 rounded-xl bg-white hover:bg-[#6289ff] text-[#0b0d14] hover:text-white text-xs uppercase tracking-wider font-bold transition-all duration-300 active:scale-95 flex items-center gap-1.5 shadow-[0_4px_20px_rgba(255,255,255,0.15)] hover:shadow-[0_6px_25px_rgba(98,137,255,0.4)]"
           >
             Start a Project
+            <ArrowUpRight size={14} />
           </a>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Toggle Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`md:hidden p-2 transition-colors duration-300 ${
-            scrolled ? 'text-dark-navy hover:text-primary' : 'text-white hover:text-white/80'
-          }`}
+          className="md:hidden p-2 text-white/90 hover:text-primary transition-colors"
           aria-label="Toggle Menu"
         >
-          {isOpen ? <X size={20} /> : <Menu size={20} />}
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </nav>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Menu Drawer */}
       <div
-        className={`fixed inset-0 top-[56px] bg-dark-navy/98 backdrop-blur-2xl z-40 md:hidden flex flex-col items-center justify-center gap-8 transition-all duration-300 ${
+        className={`fixed inset-0 top-[60px] bg-[#0b0d14]/98 backdrop-blur-2xl z-40 md:hidden flex flex-col items-center justify-center gap-8 transition-all duration-300 ${
           isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none -translate-y-4'
         }`}
       >
@@ -112,7 +107,7 @@ export default function NavBar() {
             key={link.name}
             href={link.href}
             onClick={() => setIsOpen(false)}
-            className="text-lg font-bold text-white hover:text-primary transition-colors duration-300"
+            className="text-xl font-bold text-white hover:text-primary transition-colors"
           >
             {link.name}
           </a>
@@ -120,9 +115,10 @@ export default function NavBar() {
         <a
           href="#contact"
           onClick={() => setIsOpen(false)}
-          className="bg-white text-dark-navy px-8 py-3 rounded-lg text-sm font-semibold shadow-md transition-all active:scale-95 duration-300"
+          className="mt-4 bg-primary text-white px-8 py-3.5 rounded-xl text-sm uppercase tracking-wider font-bold shadow-lg transition-all active:scale-95 flex items-center gap-2"
         >
           Start a Project
+          <ArrowUpRight size={16} />
         </a>
       </div>
     </header>

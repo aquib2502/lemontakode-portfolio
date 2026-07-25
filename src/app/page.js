@@ -1,10 +1,13 @@
 'use client';
 
 import React from 'react';
+import SmoothScroll from '../components/SmoothScroll';
 import NavBar from '../components/NavBar';
+import FloatingContactButton from '../components/FloatingContactButton';
 import ProblemHero from '../components/ProblemHero';
 import VisionStory from '../components/VisionStory';
 import SolutionCapabilities from '../components/SolutionCapabilities';
+import StatsSection from '../components/StatsSection';
 import DetailsCraftsmanship from '../components/DetailsCraftsmanship';
 import EmotionStories from '../components/EmotionStories';
 import ContactCTA from '../components/ContactCTA';
@@ -19,47 +22,57 @@ export default function Home() {
   };
 
   return (
-    <div className="relative flex flex-col min-h-screen bg-soft-white text-dark-navy antialiased">
-      {/* Navigation Bar */}
-      <NavBar />
+    <SmoothScroll>
+      <div className="relative flex flex-col min-h-screen bg-[#0b0d14] text-white antialiased">
+        {/* Navigation Bar */}
+        <NavBar />
 
-      <main className="flex-grow">
-        {/* SECTION 1: PROBLEM (Cinematic Hero) */}
-        <div id="problem">
-          <ProblemHero
-            onViewWork={() => scrollToSection('projects')}
-            onStartProject={() => scrollToSection('contact')}
-          />
-        </div>
+        {/* Floating Quick Contact Trigger */}
+        <FloatingContactButton />
 
-        {/* SECTION 2: VISION */}
-        <div id="vision">
-          <VisionStory />
-        </div>
+        <main className="flex-grow">
+          {/* SECTION 1: HERO */}
+          <div id="hero">
+            <ProblemHero
+              onViewWork={() => scrollToSection('projects')}
+              onStartProject={() => scrollToSection('contact')}
+            />
+          </div>
 
-        {/* SECTION 3: SOLUTION */}
-        <div id="solution">
-          <SolutionCapabilities />
-        </div>
+          {/* SECTION 2: VISION */}
+          <div id="vision">
+            <VisionStory />
+          </div>
 
-        {/* SECTION 4: DETAILS */}
-        <div id="details">
-          <DetailsCraftsmanship />
-        </div>
+          {/* SECTION 3: CAPABILITIES */}
+          <div id="services">
+            <SolutionCapabilities />
+          </div>
 
-        {/* SECTION 5: EMOTION */}
-        <div id="emotion">
-          <EmotionStories />
-        </div>
+          {/* SECTION 4: PERFORMANCE & STATS */}
+          <div id="stats">
+            <StatsSection />
+          </div>
 
-        {/* SECTION 6: CALL TO ACTION */}
-        <div id="cta">
-          <ContactCTA />
-        </div>
-      </main>
+          {/* SECTION 5: CRAFTSMANSHIP & PROCESS */}
+          <div id="process">
+            <DetailsCraftsmanship />
+          </div>
 
-      {/* Footer */}
-      <Footer />
-    </div>
+          {/* SECTION 6: STORIES OF IMPACT */}
+          <div id="projects">
+            <EmotionStories />
+          </div>
+
+          {/* SECTION 7: CONTACT / PARTNERSHIP */}
+          <div id="contact">
+            <ContactCTA />
+          </div>
+        </main>
+
+        {/* Footer */}
+        <Footer />
+      </div>
+    </SmoothScroll>
   );
 }
