@@ -9,6 +9,7 @@ const PUBLIC_KEY = 'kvwsQoFKEDH5a4KKL';
 
 const scopes = ['Web Application', 'Mobile App', 'Business Automation', 'UX & Product Design', 'Security Audit'];
 
+
 export default function ContactCTA() {
   const formRef = useRef(null);
   const [formData, setFormData] = useState({

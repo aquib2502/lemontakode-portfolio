@@ -16,6 +16,7 @@ export default function ContactSection() {
     subject: 'Mobile App Development',
     message: ''
   });
+  
 
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle'); // 'idle' | 'sending' | 'success' | 'error'
