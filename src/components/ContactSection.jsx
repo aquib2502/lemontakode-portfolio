@@ -1,24 +1,107 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Mail, MapPin, Send, CheckCircle2 } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Mail, MapPin, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+
+const SERVICE_ID = 'service_2xon1oq';
+const TEMPLATE_ID = 'template_xovznfr';
+const PUBLIC_KEY = 'kvwsQoFKEDH5a4KKL';
 
 export default function ContactSection() {
+  const formRef = useRef(null);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    scope: 'Mobile App Development',
+    from_name: '',
+    from_email: '',
+    phone: '',
+    subject: 'Mobile App Development',
     message: ''
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const [errors, setErrors] = useState({});
+  const [status, setStatus] = useState('idle'); // 'idle' | 'sending' | 'success' | 'error'
+  const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.emailjs) {
+      window.emailjs.init(PUBLIC_KEY);
+    }
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: '' }));
+    }
+  };
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.from_name.trim()) {
+      newErrors.from_name = 'Name is required';
+    }
+
+    if (!formData.from_email.trim()) {
+      newErrors.from_email = 'Email address is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.from_email.trim())) {
+      newErrors.from_email = 'Please enter a valid email address';
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate API request
-    setTimeout(() => {
-      setIsSubmitted(true);
-      setFormData({ name: '', email: '', scope: 'Mobile App Development', message: '' });
-    }, 600);
+    setErrorMessage('');
+
+    if (!validate()) {
+      return;
+    }
+
+    setStatus('sending');
+
+    try {
+      if (typeof window !== 'undefined' && window.emailjs) {
+        window.emailjs.init(PUBLIC_KEY);
+        await window.emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current || e.target);
+      } else {
+        await new Promise((resolve, reject) => {
+          const script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+          script.onload = () => {
+            if (window.emailjs) {
+              window.emailjs.init(PUBLIC_KEY);
+              resolve();
+            } else {
+              reject(new Error('EmailJS SDK failed to load'));
+            }
+          };
+          script.onerror = () => reject(new Error('Failed to load EmailJS SDK script'));
+          document.head.appendChild(script);
+        });
+        await window.emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current || e.target);
+      }
+
+      setStatus('success');
+      setFormData({
+        from_name: '',
+        from_email: '',
+        phone: '',
+        subject: 'Mobile App Development',
+        message: ''
+      });
+      setErrors({});
+      if (formRef.current) formRef.current.reset();
+    } catch (err) {
+      console.error('EmailJS Form Submission Error:', err);
+      setStatus('error');
+      setErrorMessage(err?.text || err?.message || 'Failed to send message. Please try again.');
+    }
   };
 
   return (
@@ -62,7 +145,7 @@ export default function ContactSection() {
 
           {/* Form Card */}
           <div className="glass-card p-8 sm:p-10 rounded-3xl border border-outline-variant/30 shadow-lg relative">
-            {isSubmitted ? (
+            {status === 'success' ? (
               <div className="py-16 text-center flex flex-col items-center justify-center h-full">
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6 animate-bounce">
                   <CheckCircle2 size={36} />
@@ -72,71 +155,126 @@ export default function ContactSection() {
                   Thank you for reaching out. A senior engineering manager will contact you within 24 hours.
                 </p>
                 <button
-                  onClick={() => setIsSubmitted(false)}
-                  className="mt-8 text-sm font-semibold text-primary hover:underline"
+                  onClick={() => setStatus('idle')}
+                  className="mt-8 text-sm font-semibold text-primary hover:underline cursor-pointer"
                 >
                   Send another message
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6" noValidate>
+                {status === 'error' && (
+                  <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 flex items-start gap-3 text-red-600 text-sm">
+                    <AlertCircle size={18} className="shrink-0 mt-0.5" />
+                    <div>
+                      <span className="font-bold block">Submission Error</span>
+                      <span>{errorMessage}</span>
+                    </div>
+                  </div>
+                )}
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-on-surface-variant/70 uppercase tracking-wider">Full Name</label>
+                    <label className="text-xs font-bold text-on-surface-variant/70 uppercase tracking-wider">
+                      Full Name <span className="text-red-500">*</span>
+                    </label>
                     <input
                       type="text"
+                      name="from_name"
                       required
                       placeholder="John Doe"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-surface-container-low border border-outline-variant/20 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all text-on-surface"
+                      value={formData.from_name}
+                      onChange={handleChange}
+                      className={`w-full bg-surface-container-low border ${
+                        errors.from_name ? 'border-red-500' : 'border-outline-variant/20'
+                      } rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all text-on-surface`}
                     />
+                    {errors.from_name && <p className="text-xs text-red-500">{errors.from_name}</p>}
                   </div>
+
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-on-surface-variant/70 uppercase tracking-wider">Email Address</label>
+                    <label className="text-xs font-bold text-on-surface-variant/70 uppercase tracking-wider">
+                      Email Address <span className="text-red-500">*</span>
+                    </label>
                     <input
                       type="email"
+                      name="from_email"
                       required
                       placeholder="john@company.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      value={formData.from_email}
+                      onChange={handleChange}
+                      className={`w-full bg-surface-container-low border ${
+                        errors.from_email ? 'border-red-500' : 'border-outline-variant/20'
+                      } rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all text-on-surface`}
+                    />
+                    {errors.from_email && <p className="text-xs text-red-500">{errors.from_email}</p>}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-on-surface-variant/70 uppercase tracking-wider">
+                      Phone Number (Optional)
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="+1 (555) 000-0000"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="w-full bg-surface-container-low border border-outline-variant/20 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all text-on-surface"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-on-surface-variant/70 uppercase tracking-wider">
+                      Subject (Optional)
+                    </label>
+                    <input
+                      type="text"
+                      name="subject"
+                      placeholder="e.g. Mobile App Development"
+                      value={formData.subject}
+                      onChange={handleChange}
                       className="w-full bg-surface-container-low border border-outline-variant/20 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all text-on-surface"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-on-surface-variant/70 uppercase tracking-wider">Project Scope</label>
-                  <select
-                    value={formData.scope}
-                    onChange={(e) => setFormData({ ...formData, scope: e.target.value })}
-                    className="w-full bg-surface-container-low border border-outline-variant/20 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all text-on-surface"
-                  >
-                    <option>Mobile App Development</option>
-                    <option>Enterprise Web App</option>
-                    <option>Cyber Security Audit</option>
-                    <option>Custom Cloud Architecture</option>
-                  </select>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-on-surface-variant/70 uppercase tracking-wider">Message</label>
+                  <label className="text-xs font-bold text-on-surface-variant/70 uppercase tracking-wider">
+                    Message <span className="text-red-500">*</span>
+                  </label>
                   <textarea
+                    name="message"
                     rows={4}
                     required
                     placeholder="Tell us about your project goals and timeline..."
                     value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-surface-container-low border border-outline-variant/20 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all text-on-surface"
+                    onChange={handleChange}
+                    className={`w-full bg-surface-container-low border ${
+                      errors.message ? 'border-red-500' : 'border-outline-variant/20'
+                    } rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all text-on-surface`}
                   />
+                  {errors.message && <p className="text-xs text-red-500">{errors.message}</p>}
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-primary hover:bg-primary-container text-white py-4 rounded-xl font-display text-base font-bold hover:shadow-[0px_0px_20px_rgba(0,102,255,0.3)] transition-all active:scale-[0.98] flex items-center justify-center gap-2 group cursor-pointer"
+                  disabled={status === 'sending'}
+                  className="w-full bg-primary hover:bg-primary-container text-white py-4 rounded-xl font-display text-base font-bold hover:shadow-[0px_0px_20px_rgba(0,102,255,0.3)] transition-all active:scale-[0.98] flex items-center justify-center gap-2 group cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Send Message
-                  <Send size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  {status === 'sending' ? (
+                    <>
+                      <Loader2 size={18} className="animate-spin shrink-0" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Send Message
+                      <Send size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </>
+                  )}
                 </button>
               </form>
             )}

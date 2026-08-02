@@ -1,4 +1,5 @@
 import "./globals.css";
+import Script from "next/script";
 import LenisProvider from "@/components/LenisProvider";
 
 export const metadata = {
@@ -22,6 +23,10 @@ export default function RootLayout({ children }) {
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
+        />
+        <Script
+          src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+          strategy="beforeInteractive"
         />
       </head>
       <body className="min-h-full flex flex-col bg-[#0a0b0e] text-[#F4F2ED] antialiased selection:bg-[#ffd400] selection:text-[#0a0b0e]">
