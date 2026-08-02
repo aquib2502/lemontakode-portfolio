@@ -13,10 +13,9 @@ export default function ContactSection() {
     from_name: '',
     from_email: '',
     phone: '',
-    subject: 'Mobile App Development',
+    subject: '',
     message: ''
   });
-  
 
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle'); // 'idle' | 'sending' | 'success' | 'error'
@@ -46,6 +45,10 @@ export default function ContactSection() {
       newErrors.from_email = 'Email address is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.from_email.trim())) {
       newErrors.from_email = 'Please enter a valid email address';
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
     }
 
     if (!formData.message.trim()) {
@@ -93,7 +96,7 @@ export default function ContactSection() {
         from_name: '',
         from_email: '',
         phone: '',
-        subject: 'Mobile App Development',
+        subject: '',
         message: ''
       });
       setErrors({});
@@ -183,7 +186,7 @@ export default function ContactSection() {
                       type="text"
                       name="from_name"
                       required
-                      placeholder="John Doe"
+                      placeholder="Aquib Hingwala"
                       value={formData.from_name}
                       onChange={handleChange}
                       className={`w-full bg-surface-container-low border ${
@@ -201,7 +204,7 @@ export default function ContactSection() {
                       type="email"
                       name="from_email"
                       required
-                      placeholder="john@company.com"
+                      placeholder="aquib@example.com"
                       value={formData.from_email}
                       onChange={handleChange}
                       className={`w-full bg-surface-container-low border ${
@@ -215,16 +218,20 @@ export default function ContactSection() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-on-surface-variant/70 uppercase tracking-wider">
-                      Phone Number (Optional)
+                      Phone Number <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="tel"
                       name="phone"
-                      placeholder="+1 (555) 000-0000"
+                      required
+                      placeholder="+91 98765 43210"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full bg-surface-container-low border border-outline-variant/20 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all text-on-surface"
+                      className={`w-full bg-surface-container-low border ${
+                        errors.phone ? 'border-red-500' : 'border-outline-variant/20'
+                      } rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all text-on-surface`}
                     />
+                    {errors.phone && <p className="text-xs text-red-500">{errors.phone}</p>}
                   </div>
 
                   <div className="space-y-2">

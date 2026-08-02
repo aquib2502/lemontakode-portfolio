@@ -7,16 +7,13 @@ const SERVICE_ID = 'service_2xon1oq';
 const TEMPLATE_ID = 'template_xovznfr';
 const PUBLIC_KEY = 'kvwsQoFKEDH5a4KKL';
 
-const scopes = ['Web Application', 'Mobile App', 'Business Automation', 'UX & Product Design', 'Security Audit'];
-
-
 export default function ContactCTA() {
   const formRef = useRef(null);
   const [formData, setFormData] = useState({
     from_name: '',
     from_email: '',
     phone: '',
-    subject: 'Web Application',
+    subject: '',
     message: ''
   });
 
@@ -38,10 +35,6 @@ export default function ContactCTA() {
     }
   };
 
-  const handleScopeSelect = (scope) => {
-    setFormData((prev) => ({ ...prev, subject: scope }));
-  };
-
   const validate = () => {
     const newErrors = {};
     if (!formData.from_name.trim()) {
@@ -52,6 +45,10 @@ export default function ContactCTA() {
       newErrors.from_email = 'Email address is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.from_email.trim())) {
       newErrors.from_email = 'Please enter a valid email address';
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
     }
 
     if (!formData.message.trim()) {
@@ -100,7 +97,7 @@ export default function ContactCTA() {
         from_name: '',
         from_email: '',
         phone: '',
-        subject: 'Web Application',
+        subject: '',
         message: ''
       });
       setErrors({});
@@ -173,27 +170,8 @@ export default function ContactCTA() {
                 </div>
               )}
 
-              {/* Step 1: Project Scope Chips (Sets Subject) */}
-              <div className="space-y-3">
-                <label className="font-mono-tech text-xs uppercase tracking-wider text-[#121316]/80 font-bold block">
-                  Select Project Scope (Optional)
-                </label>
-                <div className="flex flex-wrap gap-2">
-                  {scopes.map((scope) => (
-                    <button
-                      key={scope}
-                      type="button"
-                      onClick={() => handleScopeSelect(scope)}
-                      className={`form-chip ${formData.subject === scope ? 'active-chip' : ''}`}
-                    >
-                      {scope}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
               {/* Contact Inputs */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label className="font-mono-tech text-xs uppercase tracking-wider text-[#121316]/70 block">
                     Your Name <span className="text-red-600">*</span>
@@ -202,7 +180,7 @@ export default function ContactCTA() {
                     type="text"
                     name="from_name"
                     required
-                    placeholder="John Doe"
+                    placeholder="Aquib Hingwala"
                     value={formData.from_name}
                     onChange={handleChange}
                     className={`w-full bg-[#f4f2ed] border ${
@@ -220,7 +198,7 @@ export default function ContactCTA() {
                     type="email"
                     name="from_email"
                     required
-                    placeholder="john@company.com"
+                    placeholder="aquib@example.com"
                     value={formData.from_email}
                     onChange={handleChange}
                     className={`w-full bg-[#f4f2ed] border ${
@@ -234,16 +212,20 @@ export default function ContactCTA() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label className="font-mono-tech text-xs uppercase tracking-wider text-[#121316]/70 block">
-                    Phone Number (Optional)
+                    Phone Number <span className="text-red-600">*</span>
                   </label>
                   <input
                     type="tel"
                     name="phone"
-                    placeholder="+1 (555) 000-0000"
+                    required
+                    placeholder="+91 98765 43210"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full bg-[#f4f2ed] border border-black/15 rounded-xl p-3.5 text-sm text-[#121316] focus:outline-none focus:border-[#9e8300] transition-colors"
+                    className={`w-full bg-[#f4f2ed] border ${
+                      errors.phone ? 'border-red-500' : 'border-black/15'
+                    } rounded-xl p-3.5 text-sm text-[#121316] focus:outline-none focus:border-[#9e8300] transition-colors`}
                   />
+                  {errors.phone && <p className="text-xs text-red-600 mt-1">{errors.phone}</p>}
                 </div>
 
                 <div className="space-y-1.5">

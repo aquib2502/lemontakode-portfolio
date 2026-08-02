@@ -7,6 +7,11 @@ export const metadata = {
   description: "We design and engineer digital products people actually enjoy using. Custom mobile apps, web platforms, and enterprise software.",
   keywords: ["software studio", "digital products", "product engineering", "LemontaKode", "Next.js", "Flutter", "custom software"],
   authors: [{ name: "LemontaKode" }],
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
 };
 
 export const viewport = {
