@@ -42,7 +42,7 @@ export default function NavBar() {
   return (
     <>
       <header
-        className={`editorial-nav px-6 md:px-8 py-3.5 flex items-center justify-between ${
+        className={`editorial-nav px-5 md:px-8 py-3 flex items-center justify-between ${
           scrolled ? 'scrolled-nav' : ''
         }`}
       >
@@ -50,25 +50,25 @@ export default function NavBar() {
         <a href="#hero" className="flex items-center gap-2.5 group shrink-0">
           <img
             src="/4th.png"
-            alt="LemontaKode Monogram"
-            className="h-6 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            alt="LemontaKode Logo"
+            className="h-5 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
-          <span className="font-display text-sm font-bold tracking-[0.14em] uppercase text-[#111111]">
+          <span className="font-display text-xs sm:text-sm font-bold tracking-[0.14em] uppercase text-[#111111]">
             LEMONTAKODE
           </span>
           <span className="w-1.5 h-1.5 rounded-full bg-[#B89B5E]" />
         </a>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-9">
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <a
                 key={link.name}
                 href={link.href}
-                className={`font-display text-xs font-medium tracking-wider uppercase transition-colors duration-200 relative py-1 ${
-                  isActive ? 'text-[#111111]' : 'text-[#77736B] hover:text-[#111111]'
+                className={`font-display text-xs font-semibold tracking-widest uppercase transition-colors duration-200 relative py-1 ${
+                  isActive ? 'text-[#111111]' : 'text-[#6F6C65] hover:text-[#111111]'
                 }`}
               >
                 <span>{link.name}</span>
@@ -94,7 +94,7 @@ export default function NavBar() {
         {/* Mobile Menu Toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-1.5 text-[#111111] hover:text-[#B89B5E] transition-colors"
+          className="md:hidden p-1.5 text-[#111111] hover:text-[#B89B5E] transition-colors cursor-pointer"
           aria-label="Toggle Menu"
         >
           {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -103,8 +103,8 @@ export default function NavBar() {
 
       {/* Mobile Menu Overlay */}
       {isOpen && (
-        <div className="fixed inset-0 bg-[#F7F5F0]/98 backdrop-blur-2xl z-40 md:hidden flex flex-col justify-between p-8 pt-28 border-b border-[#E5E2D9]">
-          <div className="flex flex-col gap-6">
+        <div className="fixed inset-0 bg-[#F7F5F0]/98 backdrop-blur-xl z-40 md:hidden flex flex-col justify-between p-8 pt-28 border-b border-[#E5E2D9]">
+          <div className="flex flex-col gap-5">
             {navLinks.map((link, idx) => (
               <a
                 key={link.name}
@@ -113,7 +113,7 @@ export default function NavBar() {
                 className="flex items-center justify-between text-2xl font-display font-semibold text-[#111111] border-b border-[#E5E2D9] pb-4"
               >
                 <span>{link.name}</span>
-                <span className="font-display text-xs text-[#B89B5E]">0{idx + 1}</span>
+                <span className="font-display text-xs text-[#B89B5E] font-mono">0{idx + 1}</span>
               </a>
             ))}
           </div>
@@ -121,14 +121,15 @@ export default function NavBar() {
           <a
             href="#contact"
             onClick={() => setIsOpen(false)}
-            className="btn-editorial-primary justify-center w-full py-4 text-center text-sm"
+            className="btn-editorial-primary justify-center w-full py-3.5 text-center text-sm"
           >
             <span>Start a conversation</span>
-            <ArrowRight size={16} className="text-[#B89B5E]" />
+            <ArrowRight size={15} className="text-[#B89B5E]" />
           </a>
         </div>
       )}
     </>
   );
 }
+
 
