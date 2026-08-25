@@ -10,9 +10,12 @@ export default function VisionStory() {
         
         {/* Eyebrow */}
         <div className="flex items-center gap-3 mb-8">
-          <span className="h-px w-6 bg-[#B89B5E]" />
+          <span className="h-px w-6 bg-[#D9A74A]" />
           <span className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-[#6F6C65]">
             PHILOSOPHY & APPROACH
+          </span>
+          <span className="px-2 py-0.5 rounded text-[10px] font-display font-semibold uppercase tracking-wider bg-[#2563EB]/10 text-[#2563EB] border border-[#2563EB]/20">
+            Brand Manifesto
           </span>
         </div>
 
@@ -31,7 +34,7 @@ export default function VisionStory() {
               Technology should make business{' '}
               <span className="font-serif-italic font-normal text-[#111111] relative inline-block">
                 simpler,
-                <span className="absolute bottom-1 left-0 right-0 h-[1.5px] bg-[#B89B5E]/40" />
+                <span className="absolute bottom-1 left-0 right-0 h-[2px] bg-[#D9A74A]/60" />
               </span>{' '}
               not more complicated.
             </motion.h2>
@@ -54,14 +57,14 @@ export default function VisionStory() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="aspect-[4/3] rounded-lg overflow-hidden relative border border-[#E5E2D9] group"
+              className="aspect-[4/3] rounded-lg overflow-hidden relative border border-[#E5E2D9] group shadow-sm"
             >
               <img
                 src="/about-studio.png"
                 alt="LemontaKode Design & Architectural Philosophy"
                 className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/75 via-transparent to-transparent flex items-end p-5">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/80 via-transparent to-transparent flex items-end p-5">
                 <p className="font-serif-italic text-sm text-[#FFFFFF]">
                   &ldquo;Good software should make complicated things feel simple.&rdquo;
                 </p>
@@ -75,5 +78,6 @@ export default function VisionStory() {
     </section>
   );
 }
+
 
 

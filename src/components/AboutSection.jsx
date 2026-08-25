@@ -10,7 +10,7 @@ export default function AboutSection() {
         
         {/* Eyebrow */}
         <div className="flex items-center gap-3 mb-6">
-          <span className="h-px w-6 bg-[#B89B5E]" />
+          <span className="h-px w-6 bg-[#D9A74A]" />
           <span className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-[#6F6C65]">
             ABOUT LEMONTAKODE
           </span>
@@ -30,7 +30,7 @@ export default function AboutSection() {
               We are a technology company built around one simple idea:{' '}
               <span className="font-serif-italic font-normal text-[#111111] relative inline-block">
                 good software
-                <span className="absolute bottom-1 left-0 right-0 h-[1.5px] bg-[#B89B5E]/40" />
+                <span className="absolute bottom-1 left-0 right-0 h-[2px] bg-[#D9A74A]/60" />
               </span>{' '}
               should make complicated things feel simple.
             </motion.h2>
@@ -60,12 +60,12 @@ export default function AboutSection() {
 
             <div className="pt-6 border-t border-[#E5E2D9] grid grid-cols-2 gap-6">
               <div>
-                <span className="font-display text-lg font-bold text-[#111111] block mb-0.5">Bespoke Systems</span>
-                <span className="font-display text-[11px] uppercase tracking-wider text-[#6F6C65]">Tailored Software Engineering</span>
+                <span className="font-display text-base font-bold text-[#111111] block mb-0.5">Bespoke Systems</span>
+                <span className="font-display text-[10px] font-semibold uppercase tracking-wider text-[#2563EB] bg-[#2563EB]/10 px-2 py-0.5 rounded border border-[#2563EB]/20 inline-block">Tailored Engineering</span>
               </div>
               <div>
-                <span className="font-display text-lg font-bold text-[#111111] block mb-0.5">Direct Partnering</span>
-                <span className="font-display text-[11px] uppercase tracking-wider text-[#6F6C65]">Senior Engineer Engagement</span>
+                <span className="font-display text-base font-bold text-[#111111] block mb-0.5">Direct Partnering</span>
+                <span className="font-display text-[10px] font-semibold uppercase tracking-wider text-[#2563EB] bg-[#2563EB]/10 px-2 py-0.5 rounded border border-[#2563EB]/20 inline-block">Senior Engagement</span>
               </div>
             </div>
           </div>
@@ -76,4 +76,5 @@ export default function AboutSection() {
     </section>
   );
 }
+
 

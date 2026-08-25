@@ -5,12 +5,18 @@
 @theme {
   --color-bg-ivory: #F7F5F0;
   --color-bg-white: #FFFFFF;
+  --color-bg-dark: #141414;
   --color-text-nearblack: #111111;
   --color-text-softblack: #1A1A18;
   --color-text-muted: #6F6C65;
   --color-border-subtle: #E5E2D9;
-  --color-gold-champagne: #B89B5E;
-  --color-gold-accent: #A38548;
+  --color-border-dark: #2A2A2A;
+  
+  /* LemontaKode Brand Identity Colors */
+  --color-gold-brand: #D9A74A;
+  --color-gold-hover: #C89B3C;
+  --color-blue-brand: #2563EB;
+  --color-blue-dark: #1D4ED8;
 
   --font-display: 'Plus Jakarta Sans', sans-serif;
   --font-serif-italic: 'Playfair Display', serif;
@@ -42,7 +48,7 @@ html.lenis, html.lenis body {
   scroll-behavior: auto !important;
 }
 
-.lenis.lenis-smooth [data-lenis-prevent] {
+.lenis.lenis-prevent {
   overscroll-behavior: contain;
 }
 
@@ -112,9 +118,9 @@ html.lenis, html.lenis body {
 
 .btn-editorial-primary:hover {
   background-color: #1A1A18;
-  border-color: #B89B5E;
+  border-color: #D9A74A;
   color: #FFFFFF;
-  box-shadow: 0 4px 16px rgba(184, 155, 94, 0.18);
+  box-shadow: 0 4px 16px rgba(217, 167, 74, 0.22);
   transform: translateY(-1px);
 }
 
@@ -139,15 +145,23 @@ html.lenis, html.lenis body {
 }
 
 .btn-editorial-secondary:hover {
-  border-color: #111111;
+  border-color: #2563EB;
+  color: #2563EB;
   background-color: #F7F5F0;
   transform: translateY(-1px);
 }
 
-/* Gold Accent Line */
-.gold-accent-line {
+/* Yellow Accent Line */
+.yellow-accent-line {
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, #B89B5E 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, #D9A74A 50%, transparent 100%);
+}
+
+/* Brand Blue Tag Utility */
+.tag-brand-blue {
+  background-color: rgba(37, 99, 235, 0.08);
+  color: #2563EB;
+  border: 1px solid rgba(37, 99, 235, 0.2);
 }
 
 /* Section Padding Standard (Controlled height, anti-overstretching) */
@@ -175,5 +189,5 @@ html.lenis, html.lenis body {
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #B89B5E;
+  background: #D9A74A;
 }

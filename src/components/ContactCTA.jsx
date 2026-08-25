@@ -90,13 +90,13 @@ export default function ContactCTA() {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-[#F7F5F0] text-[#111111] border-b border-[#E5E2D9] select-none">
+    <section id="contact" className="py-16 md:py-24 bg-[#FFFFFF] text-[#111111] border-b border-[#E5E2D9] select-none">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
         
         {/* Left Column: Headline & Direct Contact */}
         <div className="lg:col-span-6 space-y-6">
           <div className="flex items-center gap-3">
-            <span className="h-px w-6 bg-[#B89B5E]" />
+            <span className="h-px w-6 bg-[#D9A74A]" />
             <span className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-[#6F6C65]">
               START A CONVERSATION
             </span>
@@ -106,7 +106,7 @@ export default function ContactCTA() {
             Have something that needs{' '}
             <span className="font-serif-italic font-normal text-[#111111] relative inline-block">
               fixing?
-              <span className="absolute bottom-1 left-0 right-0 h-[1.5px] bg-[#B89B5E]/40" />
+              <span className="absolute bottom-1 left-0 right-0 h-[2px] bg-[#D9A74A]/60" />
             </span>
           </h2>
 
@@ -117,25 +117,25 @@ export default function ContactCTA() {
           <div className="pt-6 border-t border-[#E5E2D9] space-y-4 font-display text-xs tracking-wider text-[#6F6C65]">
             <div>
               <span className="uppercase text-[#111111] font-semibold block mb-1">Direct Contact</span>
-              <a href="mailto:hello@lemontakode.tech" className="text-[#111111] underline hover:text-[#B89B5E] transition-colors text-sm font-medium">
-                hello@lemontakode.tech
+              <a href="mailto:contact@lemontakode.com" className="text-[#2563EB] underline hover:text-[#D9A74A] transition-colors text-sm font-semibold">
+                contact@lemontakode.com
               </a>
             </div>
             <div>
-              <span className="uppercase text-[#111111] font-semibold block mb-1">Response Time</span>
-              <span>Our engineering studio responds within 12 hours.</span>
+              <span className="uppercase text-[#111111] font-semibold block mb-1">Response Commitment</span>
+              <span>Our engineering team responds within 12 hours.</span>
             </div>
           </div>
         </div>
 
-        {/* Right Column: Clean Editorial Form */}
+        {/* Right Column: Clean Form */}
         <div className="lg:col-span-6">
           {status === 'success' ? (
-            <div className="p-8 rounded-xl border border-[#E5E2D9] bg-[#FFFFFF] shadow-sm text-center space-y-4">
-              <div className="w-10 h-10 rounded-full bg-[#B89B5E]/15 text-[#B89B5E] flex items-center justify-center mx-auto mb-2">
-                <CheckCircle2 size={22} className="text-[#B89B5E]" />
+            <div className="p-8 rounded-xl border border-[#E5E2D9] bg-[#F7F5F0] shadow-sm text-center space-y-4">
+              <div className="w-10 h-10 rounded-full bg-[#D9A74A]/15 text-[#D9A74A] flex items-center justify-center mx-auto mb-2">
+                <CheckCircle2 size={22} className="text-[#D9A74A]" />
               </div>
-              <div className="font-display text-[11px] text-[#B89B5E] font-bold uppercase tracking-widest">INQUIRY RECEIVED</div>
+              <div className="font-display text-[11px] text-[#D9A74A] font-bold uppercase tracking-widest">INQUIRY RECEIVED</div>
               <h3 className="font-display text-xl sm:text-2xl font-bold text-[#111111]">Thank you. Your message has been sent.</h3>
               <p className="font-body text-sm text-[#6F6C65] max-w-md mx-auto leading-relaxed">
                 Our engineering team will review your inquiry and get back to you within 12 hours.
@@ -143,7 +143,7 @@ export default function ContactCTA() {
               <button
                 type="button"
                 onClick={() => setStatus('idle')}
-                className="mt-2 text-xs font-display font-bold uppercase tracking-wider text-[#111111] underline hover:text-[#B89B5E] transition-colors cursor-pointer"
+                className="mt-2 text-xs font-display font-bold uppercase tracking-wider text-[#111111] underline hover:text-[#2563EB] transition-colors cursor-pointer"
               >
                 Send another message →
               </button>
@@ -152,7 +152,7 @@ export default function ContactCTA() {
             <form
               ref={formRef}
               onSubmit={handleSubmit}
-              className="space-y-5 rounded-xl border border-[#E5E2D9] bg-[#FFFFFF] p-6 sm:p-8 shadow-sm"
+              className="space-y-5 rounded-xl border border-[#E5E2D9] bg-[#F7F5F0] p-6 sm:p-8 shadow-sm"
               noValidate
             >
               {status === 'error' && (
@@ -168,7 +168,7 @@ export default function ContactCTA() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="space-y-1.5">
                   <label className="font-display text-xs uppercase tracking-wider text-[#6F6C65] block font-medium">
-                    Your Name <span className="text-[#B89B5E]">*</span>
+                    Your Name <span className="text-[#D9A74A]">*</span>
                   </label>
                   <input
                     type="text"
@@ -177,16 +177,16 @@ export default function ContactCTA() {
                     placeholder="Alex Morgan"
                     value={formData.from_name}
                     onChange={handleChange}
-                    className={`w-full bg-[#F7F5F0] border ${
+                    className={`w-full bg-[#FFFFFF] border ${
                       errors.from_name ? 'border-red-500' : 'border-[#E5E2D9]'
-                    } rounded-lg p-3 text-sm text-[#111111] focus:outline-none focus:border-[#111111] transition-colors`}
+                    } rounded-lg p-3 text-sm text-[#111111] focus:outline-none focus:border-[#2563EB] transition-colors`}
                   />
                   {errors.from_name && <p className="text-xs text-red-500 mt-1">{errors.from_name}</p>}
                 </div>
 
                 <div className="space-y-1.5">
                   <label className="font-display text-xs uppercase tracking-wider text-[#6F6C65] block font-medium">
-                    Email Address <span className="text-[#B89B5E]">*</span>
+                    Email Address <span className="text-[#D9A74A]">*</span>
                   </label>
                   <input
                     type="email"
@@ -195,9 +195,9 @@ export default function ContactCTA() {
                     placeholder="alex@company.com"
                     value={formData.from_email}
                     onChange={handleChange}
-                    className={`w-full bg-[#F7F5F0] border ${
+                    className={`w-full bg-[#FFFFFF] border ${
                       errors.from_email ? 'border-red-500' : 'border-[#E5E2D9]'
-                    } rounded-lg p-3 text-sm text-[#111111] focus:outline-none focus:border-[#111111] transition-colors`}
+                    } rounded-lg p-3 text-sm text-[#111111] focus:outline-none focus:border-[#2563EB] transition-colors`}
                   />
                   {errors.from_email && <p className="text-xs text-red-500 mt-1">{errors.from_email}</p>}
                 </div>
@@ -213,13 +213,13 @@ export default function ContactCTA() {
                   placeholder="e.g. Operational bottleneck, manual process, legacy web system"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full bg-[#F7F5F0] border border-[#E5E2D9] rounded-lg p-3 text-sm text-[#111111] focus:outline-none focus:border-[#111111] transition-colors"
+                  className="w-full bg-[#FFFFFF] border border-[#E5E2D9] rounded-lg p-3 text-sm text-[#111111] focus:outline-none focus:border-[#2563EB] transition-colors"
                 />
               </div>
 
               <div className="space-y-1.5">
                 <label className="font-display text-xs uppercase tracking-wider text-[#6F6C65] block font-medium">
-                  Details <span className="text-[#B89B5E]">*</span>
+                  Details <span className="text-[#D9A74A]">*</span>
                 </label>
                 <textarea
                   name="message"
@@ -228,9 +228,9 @@ export default function ContactCTA() {
                   placeholder="Tell us about the problem or project..."
                   value={formData.message}
                   onChange={handleChange}
-                  className={`w-full bg-[#F7F5F0] border ${
+                  className={`w-full bg-[#FFFFFF] border ${
                     errors.message ? 'border-red-500' : 'border-[#E5E2D9]'
-                  } rounded-lg p-3 text-sm text-[#111111] focus:outline-none focus:border-[#111111] transition-colors resize-none`}
+                  } rounded-lg p-3 text-sm text-[#111111] focus:outline-none focus:border-[#2563EB] transition-colors resize-none`}
                 />
                 {errors.message && <p className="text-xs text-red-500 mt-1">{errors.message}</p>}
               </div>
@@ -242,13 +242,13 @@ export default function ContactCTA() {
               >
                 {status === 'sending' ? (
                   <>
-                    <Loader2 size={16} className="animate-spin shrink-0 text-[#B89B5E]" />
+                    <Loader2 size={16} className="animate-spin shrink-0 text-[#D9A74A]" />
                     <span>Sending inquiry...</span>
                   </>
                 ) : (
                   <>
                     <span>Start a conversation</span>
-                    <ArrowRight size={14} className="text-[#B89B5E]" />
+                    <ArrowRight size={14} className="text-[#D9A74A]" />
                   </>
                 )}
               </button>
@@ -260,5 +260,6 @@ export default function ContactCTA() {
     </section>
   );
 }
+
 
 

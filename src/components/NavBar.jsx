@@ -56,7 +56,7 @@ export default function NavBar() {
           <span className="font-display text-xs sm:text-sm font-bold tracking-[0.14em] uppercase text-[#111111]">
             LEMONTAKODE
           </span>
-          <span className="w-1.5 h-1.5 rounded-full bg-[#B89B5E]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#D9A74A]" />
         </a>
 
         {/* Desktop Nav Links */}
@@ -73,7 +73,7 @@ export default function NavBar() {
               >
                 <span>{link.name}</span>
                 {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#B89B5E]" />
+                  <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#D9A74A]" />
                 )}
               </a>
             );
@@ -87,14 +87,14 @@ export default function NavBar() {
             className="btn-editorial-primary"
           >
             <span>Start a conversation</span>
-            <ArrowRight size={13} className="text-[#B89B5E]" />
+            <ArrowRight size={13} className="text-[#D9A74A]" />
           </a>
         </div>
 
         {/* Mobile Menu Toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-1.5 text-[#111111] hover:text-[#B89B5E] transition-colors cursor-pointer"
+          className="md:hidden p-1.5 text-[#111111] hover:text-[#D9A74A] transition-colors cursor-pointer"
           aria-label="Toggle Menu"
         >
           {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -113,7 +113,7 @@ export default function NavBar() {
                 className="flex items-center justify-between text-2xl font-display font-semibold text-[#111111] border-b border-[#E5E2D9] pb-4"
               >
                 <span>{link.name}</span>
-                <span className="font-display text-xs text-[#B89B5E] font-mono">0{idx + 1}</span>
+                <span className="font-display text-xs text-[#D9A74A] font-mono">0{idx + 1}</span>
               </a>
             ))}
           </div>
@@ -124,12 +124,13 @@ export default function NavBar() {
             className="btn-editorial-primary justify-center w-full py-3.5 text-center text-sm"
           >
             <span>Start a conversation</span>
-            <ArrowRight size={15} className="text-[#B89B5E]" />
+            <ArrowRight size={15} className="text-[#D9A74A]" />
           </a>
         </div>
       )}
     </>
   );
 }
+
 
 

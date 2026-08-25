@@ -7,7 +7,7 @@ const TECH_ITEMS = [
   'Next.js',
   'Node.js',
   'PostgreSQL',
-  'Cloud infrastructure'
+  'Cloud Infrastructure'
 ];
 
 export default function StatsSection() {
@@ -25,14 +25,14 @@ export default function StatsSection() {
             </h3>
           </div>
 
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 font-display text-xs sm:text-sm font-medium text-[#111111] md:justify-end">
-            {TECH_ITEMS.map((item, idx) => (
-              <React.Fragment key={item}>
-                <span className="hover:text-[#B89B5E] transition-colors">{item}</span>
-                {idx < TECH_ITEMS.length - 1 && (
-                  <span className="text-[#B89B5E]/50 text-xs font-mono">•</span>
-                )}
-              </React.Fragment>
+          <div className="flex flex-wrap items-center gap-2.5 font-display text-xs font-semibold md:justify-end">
+            {TECH_ITEMS.map((item) => (
+              <span
+                key={item}
+                className="px-3 py-1 rounded-full bg-[#FFFFFF] border border-[#E5E2D9] text-[#2563EB] hover:border-[#2563EB] transition-colors shadow-xs"
+              >
+                {item}
+              </span>
             ))}
           </div>
         </div>
@@ -41,5 +41,6 @@ export default function StatsSection() {
     </section>
   );
 }
+
 
 
