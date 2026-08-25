@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,9 +10,9 @@ export default function NavBar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      setScrolled(window.scrollY > 40);
 
-      const sections = ['hero', 'vision', 'services', 'process', 'projects', 'contact'];
+      const sections = ['hero', 'philosophy', 'services', 'work', 'approach', 'about', 'contact'];
       const scrollPos = window.scrollY + 200;
 
       for (const sectionId of sections) {
@@ -33,81 +33,87 @@ export default function NavBar() {
   }, []);
 
   const navLinks = [
-    { name: 'Vision', href: '#vision', id: 'vision' },
+    { name: 'Work', href: '#work', id: 'work' },
     { name: 'Services', href: '#services', id: 'services' },
-    { name: 'Process', href: '#process', id: 'process' },
-    { name: 'Work', href: '#projects', id: 'projects' },
-    { name: 'Contact', href: '#contact', id: 'contact' },
+    { name: 'Approach', href: '#approach', id: 'approach' },
+    { name: 'About', href: '#about', id: 'about' },
   ];
 
   return (
     <>
-      {/* Centered Floating Pill Navbar (NO FULL-WIDTH BAR, NO WHITE HORIZONTAL LINE) */}
-      <nav
-        className={`floating-nav px-5 py-2.5 flex items-center justify-between ${
+      <header
+        className={`editorial-nav px-6 md:px-8 py-3.5 flex items-center justify-between ${
           scrolled ? 'scrolled-nav' : ''
         }`}
       >
         {/* Brand Mark */}
-        <a href="#" className="flex items-center gap-2 group shrink-0">
+        <a href="#hero" className="flex items-center gap-2.5 group shrink-0">
           <img
             src="/4th.png"
-            alt="LemontaKode"
-            className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            alt="LemontaKode Monogram"
+            className="h-6 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
-          <span className="font-display text-lg font-bold text-[#F4F2ED] tracking-tight">
-            Lemonta<span className="text-[#ffd400]">Kode</span>
+          <span className="font-display text-sm font-bold tracking-[0.14em] uppercase text-[#111111]">
+            LEMONTAKODE
           </span>
+          <span className="w-1.5 h-1.5 rounded-full bg-[#B89B5E]" />
         </a>
 
-        {/* Desktop Nav Items with Active Indicator */}
-        <div className="hidden md:flex items-center gap-6">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className={`font-mono-tech text-[11px] transition-colors duration-200 flex items-center gap-1.5 ${
-                activeSection === link.id
-                  ? 'text-[#ffd400] font-bold'
-                  : 'text-[#F4F2ED]/70 hover:text-[#ffd400]'
-              }`}
-            >
-              {activeSection === link.id && <span className="w-1 h-1 rounded-full bg-[#ffd400]" />}
-              <span>{link.name}</span>
-            </a>
-          ))}
-        </div>
+        {/* Desktop Nav Links */}
+        <nav className="hidden md:flex items-center gap-9">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id;
+            return (
+              <a
+                key={link.name}
+                href={link.href}
+                className={`font-display text-xs font-medium tracking-wider uppercase transition-colors duration-200 relative py-1 ${
+                  isActive ? 'text-[#111111]' : 'text-[#77736B] hover:text-[#111111]'
+                }`}
+              >
+                <span>{link.name}</span>
+                {isActive && (
+                  <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#B89B5E]" />
+                )}
+              </a>
+            );
+          })}
+        </nav>
 
-        {/* Action Trigger Button */}
+        {/* Action Button */}
         <div className="hidden md:flex items-center shrink-0">
-          <a href="#contact" className="editorial-btn !py-1.5 !px-4 !text-xs">
-            Start a Project
+          <a
+            href="#contact"
+            className="btn-editorial-primary"
+          >
+            <span>Start a conversation</span>
+            <ArrowRight size={13} className="text-[#B89B5E]" />
           </a>
         </div>
 
         {/* Mobile Menu Toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-1 text-[#F4F2ED] hover:text-[#ffd400] transition-colors"
+          className="md:hidden p-1.5 text-[#111111] hover:text-[#B89B5E] transition-colors"
           aria-label="Toggle Menu"
         >
-          {isOpen ? <X size={18} /> : <Menu size={18} />}
+          {isOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
-      </nav>
+      </header>
 
-      {/* Mobile Drawer Overlay */}
+      {/* Mobile Menu Overlay */}
       {isOpen && (
-        <div className="fixed inset-0 bg-[#0a0b0e]/98 backdrop-blur-2xl z-40 md:hidden flex flex-col justify-between p-8 pt-24">
+        <div className="fixed inset-0 bg-[#F7F5F0]/98 backdrop-blur-2xl z-40 md:hidden flex flex-col justify-between p-8 pt-28 border-b border-[#E5E2D9]">
           <div className="flex flex-col gap-6">
             {navLinks.map((link, idx) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-4 text-2xl font-display text-[#F4F2ED] hover:text-[#ffd400] transition-colors"
+                className="flex items-center justify-between text-2xl font-display font-semibold text-[#111111] border-b border-[#E5E2D9] pb-4"
               >
-                <span className="font-mono-tech text-xs text-[#ffd400]">0{idx + 1}</span>
                 <span>{link.name}</span>
+                <span className="font-display text-xs text-[#B89B5E]">0{idx + 1}</span>
               </a>
             ))}
           </div>
@@ -115,12 +121,14 @@ export default function NavBar() {
           <a
             href="#contact"
             onClick={() => setIsOpen(false)}
-            className="editorial-btn w-full text-center justify-center py-4 mb-4"
+            className="btn-editorial-primary justify-center w-full py-4 text-center text-sm"
           >
-            Start a Project
+            <span>Start a conversation</span>
+            <ArrowRight size={16} className="text-[#B89B5E]" />
           </a>
         </div>
       )}
     </>
   );
 }
+

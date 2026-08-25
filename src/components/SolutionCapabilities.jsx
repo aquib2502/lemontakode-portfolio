@@ -1,181 +1,187 @@
 'use client';
 
 import React, { useState } from 'react';
-import OptionWheel from './reactbits/OptionWheel';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 
-const capabilities = [
+const SERVICES = [
   {
-    num: '01',
-    title: 'CUSTOM WEB APPLICATIONS',
-    category: 'WEB PLATFORMS',
-    desc: 'We build web systems that automate daily tasks, replace slow legacy software, and run fast under real load.',
-    tech: 'REACT · NEXT.JS · NODE.JS · POSTGRES',
+    id: '01',
+    title: 'Digital Products',
+    desc: 'Websites, platforms and customer-facing applications designed for performance, clarity and seamless user experience.',
+    tech: 'React · Next.js · Node.js · PostgreSQL',
+    image: '/lemontakode_hero_dashboard_1787310632187.png',
+    badge: 'TPF Aid Web Platform'
   },
   {
-    num: '02',
-    title: 'MOBILE APPLICATIONS',
-    category: 'IOS & ANDROID',
-    desc: 'High-speed apps for iPhone and Android that work smoothly even with a poor internet connection.',
-    tech: 'FLUTTER · REACT NATIVE · FIREBASE',
+    id: '02',
+    title: 'Business Systems',
+    desc: 'Internal software that replaces spreadsheets, manual processes and disconnected tools with custom automated workflows.',
+    tech: 'Enterprise Architecture · Role-Based Auth · REST APIs',
+    image: '/tpfadmin-video.mp4',
+    badge: 'TPF Admin Operations System'
   },
   {
-    num: '03',
-    title: 'PRODUCT & UX DESIGN',
-    category: 'INTERFACE DESIGN',
-    desc: 'Clean, simple interface designs that eliminate user confusion and help customers take action faster.',
-    tech: 'USER TESTING · WIREFRAMES · PROTOTYPES',
+    id: '03',
+    title: 'Mobile Experiences',
+    desc: 'Applications designed around how customers actually use a service, optimized for touch, speed and offline capability.',
+    tech: 'React Native · Swift · Mobile Security',
+    image: '/tpfvideo.mp4',
+    badge: 'Mobile Product Interface'
   },
   {
-    num: '04',
-    title: 'BUSINESS AUTOMATION',
-    category: 'WORKFLOW SOFTWARE',
-    desc: 'Custom internal tools that replace manual spreadsheets, saving your team hours every single day.',
-    tech: 'API INTEGRATIONS · BOT WORKFLOWS · DATABASES',
+    id: '04',
+    title: 'Automation & Integration',
+    desc: 'Connect existing systems and eliminate repetitive work through robust APIs, queues and custom background pipelines.',
+    tech: 'Python · Cloud Queues · Third-party APIs',
+    image: '/lemontakode_task_execution_1787310653065.png',
+    badge: 'Operational Integration Pipeline'
   },
   {
-    num: '05',
-    title: 'CLOUD & HOSTING',
-    category: 'SYSTEM INFRASTRUCTURE',
-    desc: 'Reliable cloud setups that stay online 24/7 and scale without crashing during high traffic.',
-    tech: 'AWS · DOCKER · AUTOMATED BACKUPS',
-  },
-  {
-    num: '06',
-    title: 'CYBER SECURITY AUDITS',
-    category: 'DATA PROTECTION',
-    desc: 'Thorough security testing to fix vulnerabilities, protect customer data, and prevent attacks.',
-    tech: 'SECURITY SCANS · OWASP · ENCRYPTION',
-  },
+    id: '05',
+    title: 'Product Design',
+    desc: 'Interfaces that are simple, clear and easy to use, supported by rigorous wireframing, design systems and user research.',
+    tech: 'UI/UX Design Systems · Prototyping · Design Audits',
+    image: '/lemontakode_analytics_results_1787310673170.png',
+    badge: 'Design System & Interface Specs'
+  }
 ];
 
 export default function SolutionCapabilities() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [hasInteracted, setHasInteracted] = useState(false);
+  const [activeIdx, setActiveIdx] = useState(0);
 
-  // Extract just the titles for the OptionWheel
-  const titles = capabilities.map(cap => cap.title);
-  
-  const activeCap = capabilities[activeIndex] || capabilities[0];
-
-  const handleIndexChange = (idx) => {
-    setActiveIndex(idx);
-    if (!hasInteracted) setHasInteracted(true);
-  };
+  const activeService = SERVICES[activeIdx];
 
   return (
-    <section className="theme-charcoal py-24 md:py-32 border-t border-white/10 select-none overflow-hidden bg-[#0a0b0e]" id="services">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 w-full">
+    <section id="services" className="py-28 md:py-40 bg-[#F7F5F0] text-[#111111] border-b border-[#E5E2D9] select-none">
+      <div className="max-w-[1280px] mx-auto px-6 md:px-12">
+        
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6 border-b border-white/10 pb-6">
-          <div>
-            <div className="font-mono-tech text-xs tracking-[0.2em] text-[#ffd400] uppercase mb-3">
-              03 // WHAT WE SOLVE
-            </div>
-            <h2 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-[#F4F2ED]">
-              How we <span className="font-serif-italic font-normal text-[#ffd400]">help you.</span>
-            </h2>
-          </div>
+        <div className="flex items-center gap-3 mb-6">
+          <span className="h-px w-8 bg-[#B89B5E]" />
+          <span className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-[#77736B]">
+            CAPABILITIES
+          </span>
         </div>
 
-        {/* Split Layout: OptionWheel on Left, Details on Right */}
-        <div className="flex flex-col lg:flex-row items-center justify-between min-h-[50vh] gap-12 lg:gap-24 relative mt-12">
+        <div className="mb-16">
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#111111]">
+            What we{' '}
+            <span className="font-serif-italic font-normal text-[#111111] relative inline-block">
+              build.
+              <span className="absolute bottom-1 left-0 right-0 h-[2px] bg-[#B89B5E]/30" />
+            </span>
+          </h2>
+        </div>
+
+        {/* Editorial Services List & Preview Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           
-          {/* Instruction Pop-up (Outside the wheel, pointing left) */}
-          <AnimatePresence>
-            {!hasInteracted && (
-              <motion.div 
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                viewport={{ once: true, amount: 0.5 }}
-                className="absolute top-1/2 left-[50%] transform -translate-y-1/2 -translate-x-1/2 z-30 pointer-events-none hidden lg:flex items-center gap-3"
-              >
-                <motion.div
-                  animate={{ x: [-5, 5, -5] }}
-                  transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+          {/* Left Column: Clean Editorial List */}
+          <div className="lg:col-span-6 border-t border-[#E5E2D9]">
+            {SERVICES.map((service, idx) => {
+              const isActive = activeIdx === idx;
+              return (
+                <div
+                  key={service.id}
+                  onMouseEnter={() => setActiveIdx(idx)}
+                  className="py-7 border-b border-[#E5E2D9] cursor-pointer transition-all duration-300 group"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[#ffd400]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                  </svg>
-                </motion.div>
-                <div className="bg-[#050608]/90 border border-[#ffd400]/20 text-[#F4F2ED] px-4 py-2 rounded-lg backdrop-blur-md shadow-[0_10px_30px_rgba(255,212,0,0.2)] max-w-[160px]">
-                  <span className="font-body text-xs font-semibold leading-tight block">Drag the wheel to know more about what we do</span>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-5">
+                      <span className={`font-display text-xs font-bold transition-colors ${isActive ? 'text-[#B89B5E]' : 'text-[#77736B]'}`}>
+                        {service.id}
+                      </span>
+                      <h3 className={`font-display text-2xl md:text-3xl font-semibold tracking-tight transition-colors ${isActive ? 'text-[#111111]' : 'text-[#111111]/50 group-hover:text-[#111111]'}`}>
+                        {service.title}
+                      </h3>
+                    </div>
 
-          {/* Left Side: OptionWheel (Internal Logic) */}
-          <div className="w-full lg:w-1/2 h-[40vh] lg:h-[50vh] relative border-l-2 border-[#ffd400]/20 pl-4 rounded-3xl bg-[#050608] shadow-[inset_0_0_50px_rgba(0,0,0,0.8)] overflow-hidden">
-            {/* Gradient Mask for fading out top/bottom edges of the wheel */}
-            <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-[#050608] via-transparent to-[#050608] z-10"></div>
-            
-            <OptionWheel
-              items={titles}
-              onChange={handleIndexChange}
-              textColor="#4a4c52"
-              activeColor="#ffd400"
-              side="left"
-              fontSize={1.8}
-              spacing={2.2}
-              curve={1.2}
-              tilt={8}
-              blur={2}
-              fade={0.3}
-              smoothing={200}
-              inset={40}
-              loop={false}
-              draggable={true}
-              className="font-display font-extrabold uppercase tracking-tight"
-            />
+                    <ArrowUpRight
+                      size={18}
+                      className={`transition-all duration-300 ${
+                        isActive ? 'text-[#B89B5E] translate-x-1 -translate-y-1' : 'text-[#77736B]/40 group-hover:text-[#111111]'
+                      }`}
+                    />
+                  </div>
+
+                  {isActive && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      transition={{ duration: 0.3 }}
+                      className="pt-4 ml-10 space-y-3"
+                    >
+                      <p className="font-body text-base text-[#77736B] leading-relaxed">
+                        {service.desc}
+                      </p>
+                      <div className="font-display text-xs text-[#B89B5E] font-medium tracking-wide">
+                        {service.tech}
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
-          {/* Right Side: Details Crossfade */}
-          <div className="w-full lg:w-1/2 h-[40vh] lg:h-[50vh] flex flex-col justify-center">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeCap.num}
-                initial={{ opacity: 0, y: 20, filter: 'blur(5px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                exit={{ opacity: 0, y: -20, filter: 'blur(5px)' }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                className="bg-[#0a0b0e] border border-[#ffd400]/20 shadow-[0_20px_60px_rgba(0,0,0,0.5)] p-8 md:p-12 rounded-3xl relative"
-              >
-                {/* Number Badge */}
-                <div className="absolute top-0 right-0 -mt-6 mr-8 bg-[#ffd400] text-black font-display font-extrabold text-2xl py-2 px-4 rounded-lg shadow-xl shadow-[#ffd400]/20 transform rotate-3">
-                  {activeCap.num}
+          {/* Right Column: Editorial Product Preview Frame */}
+          <div className="lg:col-span-6 sticky top-28">
+            <div className="w-full rounded-2xl border border-[#E5E2D9] bg-[#FFFFFF] overflow-hidden shadow-xl p-3 relative">
+              
+              {/* Window Header */}
+              <div className="h-9 px-4 bg-[#F7F5F0] rounded-xl flex items-center justify-between mb-3 border border-[#E5E2D9]">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#111111]/20" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#111111]/20" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#111111]/20" />
                 </div>
+                
+                <span className="font-display text-[11px] text-[#77736B] uppercase tracking-wider font-medium">
+                  {activeService.badge}
+                </span>
 
-                <div className="space-y-6">
-                  <div>
-                    <div className="font-mono-tech text-xs tracking-[0.2em] text-white/40 uppercase mb-2">
-                      {activeCap.category}
-                    </div>
-                    <h3 className="font-display text-3xl font-extrabold text-[#F4F2ED] leading-tight">
-                      {activeCap.title}
-                    </h3>
-                  </div>
+                <span className="w-2 h-2 rounded-full bg-[#B89B5E]" />
+              </div>
 
-                  <p className="font-body text-[#a0a2a8] text-lg leading-relaxed">
-                    {activeCap.desc}
-                  </p>
+              {/* Dynamic Image / Video Preview */}
+              <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-[#F7F5F0] border border-[#E5E2D9]">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeService.id}
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-full h-full"
+                  >
+                    {activeService.image.endsWith('.mp4') ? (
+                      <video
+                        src={activeService.image}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <img
+                        src={activeService.image}
+                        alt={activeService.title}
+                        className="w-full h-full object-cover"
+                      />
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
 
-                  <div className="pt-6 border-t border-white/10 mt-6">
-                    <div className="font-mono-tech text-[10px] text-[#ffd400] tracking-wider uppercase mb-2">
-                      TECH STACK
-                    </div>
-                    <div className="font-mono-tech text-xs text-[#F4F2ED] bg-[#1a1c23] p-4 rounded-xl border border-white/5 shadow-inner inline-block">
-                      {activeCap.tech}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+            </div>
           </div>
 
         </div>
+
       </div>
     </section>
   );
 }
+

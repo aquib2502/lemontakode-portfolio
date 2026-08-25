@@ -1,268 +1,104 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React from 'react';
+import { motion } from 'framer-motion';
 
-const steps = [
+const PROCESS_STEPS = [
   {
     num: '01',
-    subtitle: 'Step 1: Goal Mapping',
-    title: 'UNDERSTAND THE PROBLEM',
-    desc: 'We start by interviewing your team, mapping your current workflow, and identifying the exact bottlenecks — before writing a single line of code.',
+    name: 'Understand',
+    title: 'We understand the business before discussing technology.',
+    desc: 'We start by interviewing key stakeholders, mapping operational friction, and defining clear real-world business requirements before proposing software solutions.'
   },
   {
     num: '02',
-    subtitle: 'Step 2: User Testing',
-    title: 'DESIGN SIMPLE INTERFACES',
-    desc: 'We design clear wireframes and prototypes so your team and customers can navigate the new software without needing a manual or training session.',
+    name: 'Design',
+    title: 'We turn the problem into a clear product experience.',
+    desc: 'We craft intuitive wireframes, software architecture, and clear user flows so that complex operations feel natural and effortless.'
   },
   {
     num: '03',
-    subtitle: 'Step 3: Custom Build',
-    title: 'ENGINEER FAST CODE',
-    desc: 'We write clean, modular software with automated tests to ensure maximum security, speed, and zero production bugs at launch.',
+    name: 'Build',
+    title: 'We engineer the system around real-world requirements.',
+    desc: 'We build modular, maintainable software platforms with automated testing and secure data pipelines, designed for scalability and high performance.'
   },
   {
     num: '04',
-    subtitle: 'Step 4: Safe Release',
-    title: 'TEST & LAUNCH',
-    desc: 'We run live load tests, deploy with automated rollback protection, and monitor system health so your launch never causes downtime.',
+    name: 'Launch',
+    title: 'We test, deploy and make sure everything works properly.',
+    desc: 'We conduct comprehensive scenario testing, staging validations, and smooth deployment protocols to ensure zero downtime and total stability.'
   },
   {
     num: '05',
-    subtitle: 'Step 5: Ongoing Growth',
-    title: 'MONITOR & EXPAND',
-    desc: 'We continuously track performance, optimize database queries, and help you roll out new features as your business grows.',
-  },
+    name: 'Improve',
+    title: 'We continue improving the product as the business evolves.',
+    desc: 'We monitor production performance, refine user workflows, and continually roll out enhancements as your business grows and changes.'
+  }
 ];
 
 export default function DetailsCraftsmanship() {
-  const sectionRef = useRef(null);
-  const wrapperRef = useRef(null);
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const mm = gsap.matchMedia();
-
-    // DESKTOP: Single master timeline, single pin, single scrub
-    mm.add('(min-width: 1024px)', () => {
-      if (prefersReduced) return;
-
-      const section = sectionRef.current;
-      const numEls = gsap.utils.toArray('.proc-num', section);
-      const subtitleEls = gsap.utils.toArray('.proc-subtitle', section);
-      const titleEls = gsap.utils.toArray('.proc-title', section);
-      const descEls = gsap.utils.toArray('.proc-desc', section);
-
-      // Set initial states
-      // Only step 0 is visible at start
-      gsap.set(numEls.slice(1), { yPercent: 110 });
-      gsap.set(titleEls.slice(1), { yPercent: 110 });
-      gsap.set(subtitleEls.slice(1), { opacity: 0, y: 8 });
-      gsap.set(descEls.slice(1), { opacity: 0, y: 10 });
-
-      // ONE master timeline
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          // Each of the 4 transitions gets 600px of scroll + 300px hold
-          end: `+=${steps.length * 900}`,
-          pin: true,
-          scrub: 0.8,
-          anticipatePin: 1,
-          pinSpacing: true,
-        },
-      });
-
-      steps.forEach((_, i) => {
-        if (i === 0) return; // nothing before first step
-
-        // Hold previous state briefly (0.3 units = ~270px scroll before transition starts)
-        tl.addLabel(`hold-${i - 1}`, '>');
-
-        // --- NUMBER: clip mask replace ---
-        // outgoing: travels upward behind its overflow-hidden wrapper
-        tl.to(numEls[i - 1], {
-          yPercent: -110,
-          duration: 0.35,
-          ease: 'power2.inOut',
-        }, `>0.3`);
-        // incoming: enters from below
-        tl.fromTo(numEls[i],
-          { yPercent: 110 },
-          { yPercent: 0, duration: 0.35, ease: 'power2.inOut' },
-          '<'
-        );
-
-        // --- TITLE: clip mask replace (slightly offset for visual priority) ---
-        tl.to(titleEls[i - 1], {
-          yPercent: -110,
-          duration: 0.3,
-          ease: 'power2.inOut',
-        }, '<0.05');
-        tl.fromTo(titleEls[i],
-          { yPercent: 110 },
-          { yPercent: 0, duration: 0.3, ease: 'power2.inOut' },
-          '<'
-        );
-
-        // --- SUBTITLE: quiet fade ---
-        tl.to(subtitleEls[i - 1], {
-          opacity: 0,
-          y: -6,
-          duration: 0.2,
-          ease: 'power2.in',
-        }, '<');
-        tl.fromTo(subtitleEls[i],
-          { opacity: 0, y: 6 },
-          { opacity: 1, y: 0, duration: 0.25, ease: 'power2.out' },
-          '>-0.05'
-        );
-
-        // --- DESCRIPTION: quiet, small gap between exit and entrance ---
-        tl.to(descEls[i - 1], {
-          opacity: 0,
-          y: -8,
-          duration: 0.2,
-          ease: 'power2.in',
-        }, '<-0.1');
-        tl.fromTo(descEls[i],
-          { opacity: 0, y: 8 },
-          { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' },
-          '>0.05'
-        );
-
-        // Hold this new state
-        tl.addLabel(`state-${i}`, '>');
-      });
-
-      return () => {
-        ScrollTrigger.getAll().forEach(t => t.kill());
-        tl.kill();
-      };
-    });
-
-    return () => mm.revert();
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      className="bg-[#07080a] text-[#F4F2ED] border-t border-white/10 relative select-none"
-      id="process"
-      style={{ minHeight: '100svh' }}
-    >
-      {/* Navbar-safe top padding so "04 // HOW WE WORK" never collides with floating nav */}
-      <div
-        ref={wrapperRef}
-        className="max-w-7xl mx-auto px-6 md:px-12 w-full h-full flex flex-col justify-center"
-        style={{ paddingTop: '6.5rem', paddingBottom: '4rem' }}
-      >
-        {/* Section label */}
-        <div className="font-mono-tech text-xs tracking-[0.2em] text-[#ffd400] uppercase mb-12">
-          04 // HOW WE WORK
+    <section id="approach" className="py-28 md:py-40 bg-[#F7F5F0] text-[#111111] border-b border-[#E5E2D9] select-none">
+      <div className="max-w-[1280px] mx-auto px-6 md:px-12">
+        
+        {/* Section Header */}
+        <div className="flex items-center gap-3 mb-6">
+          <span className="h-px w-8 bg-[#B89B5E]" />
+          <span className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-[#77736B]">
+            METHODOLOGY
+          </span>
         </div>
 
-        {/* DESKTOP: Stacked clip-mask layers */}
-        <div className="hidden lg:grid grid-cols-12 gap-12 items-center">
-          {/* Left: Large Number — overflow-hidden clip mask */}
-          <div className="col-span-4">
-            {/* The clip container */}
-            <div className="overflow-hidden relative" style={{ height: 'clamp(7rem, 14vw, 13rem)' }}>
-              {steps.map((step, i) => (
-                <div
-                  key={step.num}
-                  className="proc-num absolute inset-0 flex items-center font-mono-tech font-extrabold text-[#ffd400] leading-none tracking-tighter"
-                  style={{ fontSize: 'clamp(6rem, 12vw, 11rem)' }}
-                >
-                  {step.num}
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className="mb-20">
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#111111]">
+            How we{' '}
+            <span className="font-serif-italic font-normal text-[#111111] relative inline-block">
+              work.
+              <span className="absolute bottom-1 left-0 right-0 h-[2px] bg-[#B89B5E]/30" />
+            </span>
+          </h2>
+        </div>
 
-          {/* Right: Step content */}
-          <div className="col-span-8 border-l border-white/10 pl-10 space-y-5 relative">
-            {/* Subtitle — separate absolute stack */}
-            <div className="relative" style={{ height: '1.2rem' }}>
-              {steps.map((step, i) => (
-                <div
-                  key={step.num}
-                  className="proc-subtitle absolute inset-0 font-mono-tech text-xs uppercase tracking-widest text-[#ffd400] font-bold"
-                >
-                  {step.subtitle}
-                </div>
-              ))}
-            </div>
-
-            {/* Title — overflow-hidden clip mask */}
-            <div className="overflow-hidden relative" style={{ height: 'clamp(2.5rem, 5vw, 4rem)' }}>
-              {steps.map((step, i) => (
-                <div
-                  key={step.num}
-                  className="proc-title absolute inset-0 flex items-center font-display font-extrabold tracking-tight text-[#F4F2ED]"
-                  style={{ fontSize: 'clamp(1.6rem, 3.2vw, 2.8rem)', lineHeight: 1.1 }}
-                >
-                  {step.title}
-                </div>
-              ))}
-            </div>
-
-            {/* Description — separate absolute stack */}
-            <div className="relative" style={{ minHeight: '5rem' }}>
-              {steps.map((step, i) => (
-                <p
-                  key={step.num}
-                  className="proc-desc absolute top-0 left-0 font-body text-base text-[#cbcbcb] max-w-xl leading-relaxed font-normal"
-                >
-                  {step.desc}
-                </p>
-              ))}
-            </div>
-
-            {/* Step progress dots */}
-            <div className="flex gap-2 pt-4">
-              {steps.map((step) => (
-                <span
-                  key={step.num}
-                  className="font-mono-tech text-[10px] text-white/30 tracking-widest"
-                >
+        {/* Clean Editorial Sequence */}
+        <div className="border-t border-[#E5E2D9]">
+          {PROCESS_STEPS.map((step, idx) => (
+            <motion.div
+              key={step.num}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.08 }}
+              className="py-10 border-b border-[#E5E2D9] grid grid-cols-1 lg:grid-cols-12 gap-8 items-start hover:bg-[#FFFFFF]/60 transition-colors duration-300 px-4 -mx-4 rounded-xl"
+            >
+              {/* Number & Stage Name */}
+              <div className="lg:col-span-3 flex items-center gap-5">
+                <span className="font-display text-2xl font-bold text-[#B89B5E]">
                   {step.num}
                 </span>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* MOBILE: Natural vertical layout — no pinning, no scroll hijacking */}
-        <div className="lg:hidden flex flex-col gap-14">
-          {steps.map((step) => (
-            <div key={step.num} className="flex flex-col gap-3">
-              <div
-                className="font-mono-tech font-extrabold text-[#ffd400] leading-none"
-                style={{ fontSize: 'clamp(3.5rem, 18vw, 5rem)' }}
-              >
-                {step.num}
+                <span className="font-display text-xs font-bold uppercase tracking-[0.16em] text-[#111111]">
+                  {step.name}
+                </span>
               </div>
-              <div className="border-t border-white/10 pt-4 space-y-2">
-                <div className="font-mono-tech text-[10px] uppercase tracking-widest text-[#ffd400] font-bold">
-                  {step.subtitle}
-                </div>
-                <h3 className="font-display text-xl font-extrabold tracking-tight text-[#F4F2ED]">
+
+              {/* Title */}
+              <div className="lg:col-span-4">
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-[#111111] leading-snug">
                   {step.title}
                 </h3>
-                <p className="font-body text-sm text-[#cbcbcb] leading-relaxed font-normal">
+              </div>
+
+              {/* Description */}
+              <div className="lg:col-span-5">
+                <p className="font-body text-base text-[#77736B] leading-relaxed">
                   {step.desc}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );
 }
+
