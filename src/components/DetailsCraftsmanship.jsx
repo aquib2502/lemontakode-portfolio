@@ -38,22 +38,22 @@ const PROCESS_STEPS = [
 
 export default function DetailsCraftsmanship() {
   return (
-    <section id="approach" className="py-16 md:py-24 bg-[#141414] text-[#FFFFFF] border-b border-[#2A2A2A] select-none">
-      <div className="max-w-[1280px] mx-auto px-6 md:px-12">
+    <section id="approach" className="py-12 sm:py-16 md:py-24 bg-[#141414] text-[#FFFFFF] border-b border-[#2A2A2A] select-none">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-12">
         
         {/* Eyebrow */}
-        <div className="flex items-center gap-3 mb-6">
-          <span className="h-px w-6 bg-[#D9A74A]" />
-          <span className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-[#D9A74A]">
+        <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-4 sm:mb-6">
+          <span className="h-px w-5 sm:w-6 bg-[#D9A74A]" />
+          <span className="font-display text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] sm:tracking-[0.2em] text-[#D9A74A]">
             METHODOLOGY
           </span>
-          <span className="px-2 py-0.5 rounded text-[10px] font-display font-semibold uppercase tracking-wider bg-[#2563EB]/20 text-[#60A5FA] border border-[#2563EB]/40">
+          <span className="px-2 py-0.5 rounded text-[9px] sm:text-[10px] font-display font-semibold uppercase tracking-wider bg-[#2563EB]/20 text-[#60A5FA] border border-[#2563EB]/40">
             5-Stage Execution Process
           </span>
         </div>
 
-        <div className="mb-14">
-          <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-[#FFFFFF]">
+        <div className="mb-10 sm:mb-14">
+          <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#FFFFFF]">
             How we{' '}
             <span className="font-serif-italic font-normal text-[#FFFFFF] relative inline-block">
               work.
@@ -71,11 +71,11 @@ export default function DetailsCraftsmanship() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.06 }}
-              className="py-7 border-b border-[#2A2A2A] grid grid-cols-1 lg:grid-cols-12 gap-6 items-start hover:bg-white/[0.03] transition-colors duration-300 px-3 -mx-3 rounded-lg"
+              className="py-5 sm:py-7 border-b border-[#2A2A2A] grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-6 items-start hover:bg-white/[0.03] transition-colors duration-300 px-2 sm:px-3 -mx-2 sm:-mx-3 rounded-lg"
             >
               {/* Number & Stage Name */}
-              <div className="lg:col-span-3 flex items-center gap-4">
-                <span className="font-display text-lg font-mono font-bold text-[#D9A74A]">
+              <div className="lg:col-span-3 flex items-center gap-3 sm:gap-4">
+                <span className="font-display text-base sm:text-lg font-mono font-bold text-[#D9A74A]">
                   {step.num}
                 </span>
                 <span className="font-display text-xs font-semibold uppercase tracking-wider text-[#FFFFFF]">
@@ -85,14 +85,14 @@ export default function DetailsCraftsmanship() {
 
               {/* Title */}
               <div className="lg:col-span-4">
-                <h3 className="font-display text-lg sm:text-xl font-bold text-[#FFFFFF] leading-snug">
+                <h3 className="font-display text-base sm:text-lg lg:text-xl font-bold text-[#FFFFFF] leading-snug">
                   {step.title}
                 </h3>
               </div>
 
               {/* Description */}
               <div className="lg:col-span-5">
-                <p className="font-body text-sm text-[#D1D0C9] leading-relaxed">
+                <p className="font-body text-xs sm:text-sm text-[#D1D0C9] leading-relaxed">
                   {step.desc}
                 </p>
               </div>

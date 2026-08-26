@@ -90,19 +90,19 @@ export default function ContactCTA() {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-[#FFFFFF] text-[#111111] border-b border-[#E5E2D9] select-none">
-      <div className="max-w-[1280px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+    <section id="contact" className="py-12 sm:py-16 md:py-24 bg-[#FFFFFF] text-[#111111] border-b border-[#E5E2D9] select-none">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
         
         {/* Left Column: Headline & Direct Contact */}
-        <div className="lg:col-span-6 space-y-6">
-          <div className="flex items-center gap-3">
-            <span className="h-px w-6 bg-[#D9A74A]" />
-            <span className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-[#6F6C65]">
+        <div className="lg:col-span-6 space-y-4 sm:space-y-6">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <span className="h-px w-5 sm:w-6 bg-[#D9A74A]" />
+            <span className="font-display text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] sm:tracking-[0.2em] text-[#6F6C65]">
               START A CONVERSATION
             </span>
           </div>
 
-          <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-[#111111] leading-[1.05]">
+          <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#111111] leading-[1.08] sm:leading-[1.05]">
             Have something that needs{' '}
             <span className="font-serif-italic font-normal text-[#111111] relative inline-block">
               fixing?
@@ -110,14 +110,14 @@ export default function ContactCTA() {
             </span>
           </h2>
 
-          <p className="font-body text-base sm:text-lg text-[#6F6C65] leading-relaxed max-w-lg">
+          <p className="font-body text-sm sm:text-base lg:text-lg text-[#6F6C65] leading-relaxed max-w-lg">
             Tell us what&apos;s slowing your business down. We&apos;ll help you figure out what should happen next.
           </p>
 
-          <div className="pt-6 border-t border-[#E5E2D9] space-y-4 font-display text-xs tracking-wider text-[#6F6C65]">
+          <div className="pt-4 sm:pt-6 border-t border-[#E5E2D9] space-y-3 sm:space-y-4 font-display text-xs tracking-wider text-[#6F6C65]">
             <div>
               <span className="uppercase text-[#111111] font-semibold block mb-1">Direct Contact</span>
-              <a href="mailto:contact@lemontakode.com" className="text-[#2563EB] underline hover:text-[#D9A74A] transition-colors text-sm font-semibold">
+              <a href="mailto:contact@lemontakode.com" className="text-[#2563EB] underline hover:text-[#D9A74A] transition-colors text-xs sm:text-sm font-semibold">
                 contact@lemontakode.com
               </a>
             </div>
@@ -131,13 +131,13 @@ export default function ContactCTA() {
         {/* Right Column: Clean Form */}
         <div className="lg:col-span-6">
           {status === 'success' ? (
-            <div className="p-8 rounded-xl border border-[#E5E2D9] bg-[#F7F5F0] shadow-sm text-center space-y-4">
+            <div className="p-6 sm:p-8 rounded-xl border border-[#E5E2D9] bg-[#F7F5F0] shadow-sm text-center space-y-4">
               <div className="w-10 h-10 rounded-full bg-[#D9A74A]/15 text-[#D9A74A] flex items-center justify-center mx-auto mb-2">
                 <CheckCircle2 size={22} className="text-[#D9A74A]" />
               </div>
-              <div className="font-display text-[11px] text-[#D9A74A] font-bold uppercase tracking-widest">INQUIRY RECEIVED</div>
-              <h3 className="font-display text-xl sm:text-2xl font-bold text-[#111111]">Thank you. Your message has been sent.</h3>
-              <p className="font-body text-sm text-[#6F6C65] max-w-md mx-auto leading-relaxed">
+              <div className="font-display text-[10px] sm:text-[11px] text-[#D9A74A] font-bold uppercase tracking-widest">INQUIRY RECEIVED</div>
+              <h3 className="font-display text-lg sm:text-2xl font-bold text-[#111111]">Thank you. Your message has been sent.</h3>
+              <p className="font-body text-xs sm:text-sm text-[#6F6C65] max-w-md mx-auto leading-relaxed">
                 Our engineering team will review your inquiry and get back to you within 12 hours.
               </p>
               <button
@@ -152,7 +152,7 @@ export default function ContactCTA() {
             <form
               ref={formRef}
               onSubmit={handleSubmit}
-              className="space-y-5 rounded-xl border border-[#E5E2D9] bg-[#F7F5F0] p-6 sm:p-8 shadow-sm"
+              className="space-y-4 sm:space-y-5 rounded-xl border border-[#E5E2D9] bg-[#F7F5F0] p-4 sm:p-6 lg:p-8 shadow-sm"
               noValidate
             >
               {status === 'error' && (
@@ -165,9 +165,9 @@ export default function ContactCTA() {
                 </div>
               )}
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                 <div className="space-y-1.5">
-                  <label className="font-display text-xs uppercase tracking-wider text-[#6F6C65] block font-medium">
+                  <label className="font-display text-[11px] sm:text-xs uppercase tracking-wider text-[#6F6C65] block font-medium">
                     Your Name <span className="text-[#D9A74A]">*</span>
                   </label>
                   <input
@@ -179,13 +179,13 @@ export default function ContactCTA() {
                     onChange={handleChange}
                     className={`w-full bg-[#FFFFFF] border ${
                       errors.from_name ? 'border-red-500' : 'border-[#E5E2D9]'
-                    } rounded-lg p-3 text-sm text-[#111111] focus:outline-none focus:border-[#2563EB] transition-colors`}
+                    } rounded-lg p-2.5 sm:p-3 text-sm text-[#111111] focus:outline-none focus:border-[#2563EB] transition-colors`}
                   />
                   {errors.from_name && <p className="text-xs text-red-500 mt-1">{errors.from_name}</p>}
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="font-display text-xs uppercase tracking-wider text-[#6F6C65] block font-medium">
+                  <label className="font-display text-[11px] sm:text-xs uppercase tracking-wider text-[#6F6C65] block font-medium">
                     Email Address <span className="text-[#D9A74A]">*</span>
                   </label>
                   <input
@@ -197,14 +197,14 @@ export default function ContactCTA() {
                     onChange={handleChange}
                     className={`w-full bg-[#FFFFFF] border ${
                       errors.from_email ? 'border-red-500' : 'border-[#E5E2D9]'
-                    } rounded-lg p-3 text-sm text-[#111111] focus:outline-none focus:border-[#2563EB] transition-colors`}
+                    } rounded-lg p-2.5 sm:p-3 text-sm text-[#111111] focus:outline-none focus:border-[#2563EB] transition-colors`}
                   />
                   {errors.from_email && <p className="text-xs text-red-500 mt-1">{errors.from_email}</p>}
                 </div>
               </div>
 
               <div className="space-y-1.5">
-                <label className="font-display text-xs uppercase tracking-wider text-[#6F6C65] block font-medium">
+                <label className="font-display text-[11px] sm:text-xs uppercase tracking-wider text-[#6F6C65] block font-medium">
                   What is slowing your business down?
                 </label>
                 <input
@@ -213,12 +213,12 @@ export default function ContactCTA() {
                   placeholder="e.g. Operational bottleneck, manual process, legacy web system"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full bg-[#FFFFFF] border border-[#E5E2D9] rounded-lg p-3 text-sm text-[#111111] focus:outline-none focus:border-[#2563EB] transition-colors"
+                  className="w-full bg-[#FFFFFF] border border-[#E5E2D9] rounded-lg p-2.5 sm:p-3 text-sm text-[#111111] focus:outline-none focus:border-[#2563EB] transition-colors"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <label className="font-display text-xs uppercase tracking-wider text-[#6F6C65] block font-medium">
+                <label className="font-display text-[11px] sm:text-xs uppercase tracking-wider text-[#6F6C65] block font-medium">
                   Details <span className="text-[#D9A74A]">*</span>
                 </label>
                 <textarea
@@ -230,7 +230,7 @@ export default function ContactCTA() {
                   onChange={handleChange}
                   className={`w-full bg-[#FFFFFF] border ${
                     errors.message ? 'border-red-500' : 'border-[#E5E2D9]'
-                  } rounded-lg p-3 text-sm text-[#111111] focus:outline-none focus:border-[#2563EB] transition-colors resize-none`}
+                  } rounded-lg p-2.5 sm:p-3 text-sm text-[#111111] focus:outline-none focus:border-[#2563EB] transition-colors resize-none`}
                 />
                 {errors.message && <p className="text-xs text-red-500 mt-1">{errors.message}</p>}
               </div>

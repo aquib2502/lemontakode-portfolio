@@ -14,10 +14,10 @@ export default function Footer() {
       </div>
 
       {/* Foreground Content Container */}
-      <div className="max-w-[1280px] mx-auto px-6 md:px-12 relative z-10">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-12 relative z-10">
         
         {/* Top Row: Brand Info, Nav Links, Direct Contact */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 pb-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 sm:gap-8 pb-8">
           
           {/* Brand Info */}
           <div className="space-y-1.5">
@@ -32,13 +32,13 @@ export default function Footer() {
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#D9A74A]" />
             </div>
-            <p className="font-display text-[11px] text-[#6F6C65]">
+            <p className="font-display text-[10px] sm:text-[11px] text-[#6F6C65]">
               Digital Product Studio & Technology Consultancy
             </p>
           </div>
 
           {/* Links Column */}
-          <div className="flex flex-wrap items-center gap-6 sm:gap-8 text-xs uppercase tracking-wider text-[#111111] font-semibold">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6 sm:gap-8 text-xs uppercase tracking-wider text-[#111111] font-semibold">
             <a href="#work" className="hover:text-[#2563EB] transition-colors">Work</a>
             <a href="#services" className="hover:text-[#2563EB] transition-colors">Services</a>
             <a href="#approach" className="hover:text-[#2563EB] transition-colors">Approach</a>
@@ -54,7 +54,7 @@ export default function Footer() {
             >
               contact@lemontakode.com
             </a>
-            <div className="flex items-center gap-3 text-[11px] tracking-wider uppercase text-[#6F6C65]">
+            <div className="flex items-center gap-3 text-[10px] sm:text-[11px] tracking-wider uppercase text-[#6F6C65]">
               <a href="#" className="hover:text-[#2563EB] transition-colors">LinkedIn</a>
               <span className="text-[#D9A74A]">•</span>
               <a href="#" className="hover:text-[#2563EB] transition-colors">GitHub</a>
@@ -64,7 +64,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Row: Copyright Line with Subtle Peeking Wordmark Overlay */}
-        <div className="pt-5 border-t border-[#E5E2D9]/80 flex flex-col sm:flex-row justify-between items-center text-[11px] text-[#6F6C65]">
+        <div className="pt-4 sm:pt-5 border-t border-[#E5E2D9]/80 flex flex-col sm:flex-row justify-between items-center text-[10px] sm:text-[11px] text-[#6F6C65]">
           <div>
             &copy; {new Date().getFullYear()} LemontaKode. All rights reserved.
           </div>

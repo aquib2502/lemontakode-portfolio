@@ -79,27 +79,27 @@ function PlayVideoIfVisible({ src }) {
       muted
       playsInline
       preload="metadata"
-      className="w-full h-full object-cover"
+      className="w-full h-full object-cover opacity-95 transition-opacity duration-300 group-hover:opacity-100"
     />
   );
 }
 
 export default function EmotionStories() {
   return (
-    <section id="work" className="py-16 md:py-24 bg-[#F7F5F0] text-[#111111] border-b border-[#E5E2D9] select-none">
-      <div className="max-w-[1280px] mx-auto px-6 md:px-12">
+    <section id="work" className="py-12 sm:py-16 md:py-24 bg-[#F7F5F0] text-[#111111] border-b border-[#E5E2D9] select-none">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-12">
         
         {/* Eyebrow */}
-        <div className="flex items-center gap-3 mb-6">
-          <span className="h-px w-6 bg-[#D9A74A]" />
-          <span className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-[#6F6C65]">
+        <div className="flex items-center gap-2.5 sm:gap-3 mb-4 sm:mb-6">
+          <span className="h-px w-5 sm:w-6 bg-[#D9A74A]" />
+          <span className="font-display text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] sm:tracking-[0.2em] text-[#6F6C65]">
             SELECTED WORK
           </span>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4 border-b border-[#E5E2D9] pb-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 sm:mb-12 gap-4 border-b border-[#E5E2D9] pb-6">
           <div>
-            <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-[#111111]">
+            <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#111111]">
               Featured{' '}
               <span className="font-serif-italic font-normal text-[#111111] relative inline-block">
                 projects.
@@ -107,13 +107,13 @@ export default function EmotionStories() {
               </span>
             </h2>
           </div>
-          <p className="font-body text-[#6F6C65] max-w-md text-sm sm:text-base leading-relaxed">
+          <p className="font-body text-[#6F6C65] max-w-md text-xs sm:text-sm lg:text-base leading-relaxed">
             Practical digital platforms and business systems engineered for real operational impact.
           </p>
         </div>
 
         {/* Compact Curated Portfolio Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10">
           {PROJECTS.map((project) => (
             <motion.div
               key={project.id}
@@ -121,11 +121,11 @@ export default function EmotionStories() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className={`${project.span} group flex flex-col justify-between rounded-xl border border-[#E5E2D9] bg-[#FFFFFF] p-4 sm:p-5 shadow-sm hover:shadow-md transition-shadow duration-300`}
+              className={`${project.span} group flex flex-col justify-between rounded-xl border border-[#E5E2D9] bg-[#FFFFFF] p-4 sm:p-5 lg:p-6 shadow-sm hover:shadow-md transition-shadow duration-300`}
             >
               <div>
                 {/* Media Aspect Window */}
-                <div className="relative aspect-[16/10] rounded-lg overflow-hidden bg-[#F7F5F0] border border-[#E5E2D9] mb-4">
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[16/10] rounded-lg overflow-hidden bg-[#F7F5F0] border border-[#E5E2D9] mb-4">
                   {project.image.endsWith('.mp4') ? (
                     <PlayVideoIfVisible src={project.image} />
                   ) : (
@@ -142,16 +142,16 @@ export default function EmotionStories() {
                   <span className="font-display text-xs font-mono font-bold text-[#D9A74A]">
                     {project.id}
                   </span>
-                  <span className="px-2.5 py-0.5 rounded text-[10px] font-display font-semibold uppercase tracking-wider bg-[#2563EB]/10 text-[#2563EB] border border-[#2563EB]/20">
+                  <span className="px-2 py-0.5 rounded text-[9px] sm:text-[10px] font-display font-semibold uppercase tracking-wider bg-[#2563EB]/10 text-[#2563EB] border border-[#2563EB]/20">
                     {project.industry}
                   </span>
                 </div>
 
                 {/* Title & Business Outcome */}
-                <h3 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-[#111111] mb-1.5 group-hover:text-[#2563EB] transition-colors duration-300">
+                <h3 className="font-display text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-[#111111] mb-1.5 group-hover:text-[#2563EB] transition-colors duration-300">
                   {project.name}
                 </h3>
-                <p className="font-serif-italic text-sm sm:text-base text-[#111111] mb-2 leading-snug">
+                <p className="font-serif-italic text-xs sm:text-sm lg:text-base text-[#111111] mb-2 leading-snug">
                   &ldquo;{project.outcome}&rdquo;
                 </p>
                 <p className="font-body text-xs sm:text-sm text-[#6F6C65] leading-relaxed mb-4">

@@ -103,14 +103,14 @@ export default function NavBar() {
 
       {/* Mobile Menu Overlay */}
       {isOpen && (
-        <div className="fixed inset-0 bg-[#F7F5F0]/98 backdrop-blur-xl z-40 md:hidden flex flex-col justify-between p-8 pt-28 border-b border-[#E5E2D9]">
-          <div className="flex flex-col gap-5">
+        <div className="fixed inset-0 bg-[#F7F5F0]/98 backdrop-blur-xl z-40 md:hidden flex flex-col justify-between p-6 sm:p-8 pt-24 sm:pt-28 border-b border-[#E5E2D9] overflow-y-auto">
+          <div className="flex flex-col gap-4 sm:gap-5">
             {navLinks.map((link, idx) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="flex items-center justify-between text-2xl font-display font-semibold text-[#111111] border-b border-[#E5E2D9] pb-4"
+                className="flex items-center justify-between text-xl sm:text-2xl font-display font-semibold text-[#111111] border-b border-[#E5E2D9] pb-3.5"
               >
                 <span>{link.name}</span>
                 <span className="font-display text-xs text-[#D9A74A] font-mono">0{idx + 1}</span>
@@ -118,14 +118,16 @@ export default function NavBar() {
             ))}
           </div>
 
-          <a
-            href="#contact"
-            onClick={() => setIsOpen(false)}
-            className="btn-editorial-primary justify-center w-full py-3.5 text-center text-sm"
-          >
-            <span>Start a conversation</span>
-            <ArrowRight size={15} className="text-[#D9A74A]" />
-          </a>
+          <div className="pt-6 mt-auto">
+            <a
+              href="#contact"
+              onClick={() => setIsOpen(false)}
+              className="btn-editorial-primary justify-center w-full py-3.5 text-center text-sm"
+            >
+              <span>Start a conversation</span>
+              <ArrowRight size={15} className="text-[#D9A74A]" />
+            </a>
+          </div>
         </div>
       )}
     </>
